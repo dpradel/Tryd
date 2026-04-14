@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html {
+    width: 100%; height: 100%;
+    background: transparent;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #ffffff;
+    overflow: hidden;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Widget shell ──────────────────────────────────────────────── */
+.widget {
+    width: 100%; height: 100%;
+    background: linear-gradient(180deg, #151820 0%, #0c0e12 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* ROW 1 — Title bar with tabs                                     */
+/* ═══════════════════════════════════════════════════════════════ */
+.titlebar {
+    height: 28px;
+    min-height: 28px;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 6px;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+/* Report icon — pixel perfect recreation from Figma */
+.report-icon {
+    width: 16px; height: 16px;
+    position: relative;
+    flex-shrink: 0;
+}
+.report-icon .ri-page {
+    position: absolute;
+    left: 1px; top: 0; width: 13px; height: 16px;
+    background: #e6e6e6;
+    border-radius: 1px;
+}
+.report-icon .ri-bar { position: absolute; background: #3794fa; }
+.report-icon .ri-b1 { left: 2px; top: 7px;  width: 2px; height: 8px; }
+.report-icon .ri-b2 { left: 5px; top: 12px; width: 2px; height: 3px; }
+.report-icon .ri-b3 { left: 8px; top: 10px; width: 2px; height: 5px; }
+.report-icon .ri-b4 { left: 11px; top: 8px; width: 2px; height: 7px; }
+.report-icon .ri-line { position: absolute; background: #262626; height: 1px; border-radius: 1px; }
+.report-icon .ri-l1 { left: 2px; top: 1px; width: 11px; }
+.report-icon .ri-l2 { left: 2px; top: 3px; width: 6px; }
+.report-icon .ri-l3 { left: 9px; top: 3px; width: 4px; }
+
+/* Title chevron (↓ pixel style) */
+.chev-px {
+    font-size: 8px;
+    line-height: 1;
+    color: #ccc;
+    display: flex; align-items: center; justify-content: center;
+    width: 16px; height: 16px;
+    opacity: 0.5;
+}
+
+/* Tab list */
+.tabs {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-right: 3px;
+    min-width: 0;
+}
+
+.tab {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.45);
+    border-radius: 4px;
+    border: 1px solid transparent;
+    flex-shrink: 0;
+    white-space: nowrap;
+    cursor: pointer;
+    position: relative;
+    /* Vertical dividers between tabs */
+    margin-right: -1px;
+    transition: color 0.15s, background 0.15s;
+}
+
+/* Left / right 14px tall dividers on inactive tabs */
+.tab::before, .tab::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.08);
+}
+.tab::before { left: -1px; }
+.tab::after  { right: -1px; }
+
+.tab:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.tab.active {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+    border-color: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    color: #ffffff;
+    font-weight: 600;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.tab.active::before, .tab.active::after { display: none; }
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* ROW 2 — Toolbar / subheader                                   */
+/* ═══════════════════════════════════════════════════════════════ */
+.toolbar {
+    height: 32px;
+    min-height: 32px;
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+/* "Todos Ativos" and "Patrimônio" — input style */
+.tool-input {
+    width: auto;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 2px 2px 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: background 0.15s, border-color 0.15s;
+    cursor: pointer;
+}
+.tool-input:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+.tool-input-text {
+    flex: 1;
+    font-size: 11px;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+    min-width: 0;
+    font-weight: 500;
+}
+
+/* "Day Trade" — button with checkbox */
+.tool-btn {
+    height: 22px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 6px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+.tool-btn:hover .tool-btn-check {
+    background: rgba(255, 255, 255, 0.08);
+}
+.tool-btn-check {
+    width: 13px; height: 13px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    flex-shrink: 0;
+    transition: background 0.15s;
+}
+.tool-btn-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: nowrap;
+    font-weight: 500;
+}
+.tool-btn:hover .tool-btn-label { color: #fff; }
+
+/* "3 Meses" — button with calendar icon */
+.tool-date {
+    height: 22px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 6px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.15s, border-color 0.15s;
+}
+.tool-date:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+.tool-date:hover .tool-btn-label { color: #fff; }
+
+/* Calendar icon */
+.cal-icon {
+    width: 14px; height: 14px;
+    position: relative;
+    flex-shrink: 0;
+}
+.cal-icon .cal-body {
+    position: absolute;
+    left: 0; top: 1px;
+    width: 14px; height: 13px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 1px;
+}
+.cal-icon .cal-header {
+    position: absolute;
+    left: 0; top: 1px;
+    width: 14px; height: 4px;
+    background: linear-gradient(to bottom, #00e7f7, #51c3f1);
+    border-radius: 2px 2px 0 0;
+}
+.cal-icon .cal-fold {
+    position: absolute;
+    right: 0; bottom: 0;
+    width: 4px; height: 4px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 0;
+}
+.cal-icon .cal-pins {
+    position: absolute;
+    top: 0; left: 2px;
+    width: 10px; height: 3px;
+    display: flex; gap: 4px;
+}
+.cal-icon .cal-pin {
+    width: 2px; height: 3px;
+    background: #8ecbe8;
+    border-radius: 1px;
+}
+.cal-icon .cal-days {
+    position: absolute;
+    left: 2px; top: 6px;
+    width: 9px; height: 6px;
+    background: repeating-linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.4) 0px, rgba(255, 255, 255, 0.4) 1px,
+        transparent 1px, transparent 3px
+    );
+    opacity: 0.5;
+    border-radius: 1px;
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* CHART AREA                                                      */
+/* ═══════════════════════════════════════════════════════════════ */
+.chart-section {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(ellipse at center 20%, rgba(0, 131, 187, 0.12) 0%, transparent 65%);
+}
+
+.svg-wrap {
+    flex: 1;
+    min-height: 0;
+    padding: 0 0; /* Changed to use maximum extent */
+}
+
+svg.patrimonio {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+/* ── SVG chart styles ────────────────────────────────────────── */
+.grid-ln      { stroke: rgba(255,255,255,0.04); stroke-width: 1; }
+.zero-ln      { stroke: rgba(255,255,255,0.15); stroke-width: 1; stroke-dasharray: 4 4; }
+.xaxis-ln     { stroke: rgba(255,255,255,0.06); stroke-width: 1; }
+.eq-green     { fill: none; stroke: #00c469; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 6px rgba(0,196,105,0.8)); }
+.eq-red       { fill: none; stroke: #ef5858; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 6px rgba(239,88,88,0.8)); }
+.fill-g       { fill: url(#gGreen); }
+.fill-r       { fill: url(#gRed); }
+.ax-lbl       { font-family: 'Inter', system-ui, sans-serif; font-size: 10px; font-weight: 500; fill: rgba(255,255,255,0.3); }
+.ax-lbl-p     { fill: rgba(0,196,105,0.6); }
+.ax-lbl-n     { fill: rgba(239,88,88,0.6); }
+.cursor-dot   { fill: #fff; filter: drop-shadow(0 0 6px rgba(255,255,255,1)); }
+.bub-txt      { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 11px; font-weight: 600; fill: #fff; letter-spacing: -0.5px; }
+</style>
+</head>
+<body>
+<div class="widget">
+
+    <!-- ── ROW 1: Title bar with tabs ──────────────────────────── -->
+    <div class="titlebar">
+
+        <!-- Report icon (pixel recreation) -->
+        <div class="report-icon">
+            <div class="ri-page"></div>
+            <div class="ri-bar ri-b1"></div>
+            <div class="ri-bar ri-b2"></div>
+            <div class="ri-bar ri-b3"></div>
+            <div class="ri-bar ri-b4"></div>
+            <div class="ri-line ri-l1"></div>
+            <div class="ri-line ri-l2"></div>
+            <div class="ri-line ri-l3"></div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab">Resumo</div>
+            <div class="tab">Operações</div>
+            <div class="tab active">Gráficos</div>
+            <div class="tab">Comparador</div>
+        </div>
+    </div>
+
+    <!-- ── ROW 2: Toolbar ──────────────────────────────────────── -->
+    <div class="toolbar">
+
+        <!-- Todos Ativos dropdown input -->
+        <div class="tool-input">
+            <div class="tool-input-text">Todos Ativos</div>
+            <div class="chev-px">▾</div>
+        </div>
+
+        <!-- Day Trade checkbox -->
+        <div class="tool-btn">
+            <div class="tool-btn-check"></div>
+            <div class="tool-btn-label">Day Trade</div>
+        </div>
+
+        <!-- 3 Meses with calendar icon -->
+        <div class="tool-date">
+            <div class="cal-icon">
+                <div class="cal-body"></div>
+                <div class="cal-header"></div>
+                <div class="cal-fold"></div>
+                <div class="cal-pins">
+                    <div class="cal-pin"></div>
+                    <div class="cal-pin"></div>
+                </div>
+                <div class="cal-days"></div>
+            </div>
+            <div class="tool-btn-label">3 Meses</div>
+        </div>
+
+        <!-- Patrimônio dropdown input -->
+        <div class="tool-input">
+            <div class="tool-input-text">Patrimônio</div>
+            <div class="chev-px">▾</div>
+        </div>
+        
+    </div>
+
+    <!-- ── CHART ────────────────────────────────────────────────── -->
+    <div class="chart-section">
+        <div class="svg-wrap">
+            <svg class="patrimonio" id="chartSvg" viewBox="0 0 540 320" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="gGreen" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%"   stop-color="#00c469" stop-opacity="0.30"/>
+                        <stop offset="100%" stop-color="#00c469" stop-opacity="0.00"/>
+                    </linearGradient>
+                    <linearGradient id="gRed" x1="0" y1="1" x2="0" y2="0">
+                        <stop offset="0%"   stop-color="#ef5858" stop-opacity="0.30"/>
+                        <stop offset="100%" stop-color="#ef5858" stop-opacity="0.00"/>
+                    </linearGradient>
+                    <clipPath id="clipSweep">
+                        <rect id="sweepRect" x="0" y="0" width="0" height="320"/>
+                    </clipPath>
+                    <clipPath id="clipAbove">
+                        <rect id="clipAboveRect" x="0" y="0" width="540" height="0"/>
+                    </clipPath>
+                    <clipPath id="clipBelow">
+                        <rect id="clipBelowRect" x="0" y="0" width="540" height="320"/>
+                    </clipPath>
+                </defs>
+
+                <g id="gridGroup"></g>
+                <line class="zero-ln" id="zeroLineEl" x1="46" y1="0" x2="514" y2="0"/>
+                <line class="xaxis-ln" x1="46" y1="290" x2="514" y2="290"/>
+                <g id="xLabels"></g>
+
+                <g clip-path="url(#clipSweep)">
+                    <path id="fillGreen" class="fill-g" clip-path="url(#clipAbove)" opacity="0"/>
+                    <path id="fillRed"   class="fill-r" clip-path="url(#clipBelow)" opacity="0"/>
+                </g>
+                <g clip-path="url(#clipSweep)">
+                    <path id="lineGreen" class="eq-green" clip-path="url(#clipAbove)"/>
+                    <path id="lineRed"   class="eq-red"   clip-path="url(#clipBelow)"/>
+                </g>
+
+                <ellipse id="cursorDot" class="cursor-dot" rx="3.5" ry="3.5" opacity="0"/>
+
+                <g id="valueBubble" opacity="0">
+                    <rect id="bubbleRect" rx="4" fill="#00c469"/>
+                    <text id="bubbleText" class="bub-txt" text-anchor="middle" dominant-baseline="middle"/>
+                </g>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<script>
+// ── Chart geometry ────────────────────────────────────────────────────────────
+// Increased height significantly to utilize empty space
+const VB_W = 540, VB_H = 320;
+const X0 = 46, X1 = 514;
+const Y0 = 20,  Y1 = 290; // Extends from y=20 to y=290
+const CW = X1 - X0;
+const CH = Y1 - Y0;
+
+// ── Data ──────────────────────────────────────────────────────────────────────
+const DATA = [
+    [0.00,    0],
+    [0.26,    0],
+    [0.40,   90],
+    [0.48,    6],
+    [0.57, -320],
+    [0.64, -320],
+    [0.74,   18],
+    [0.86,  148],
+    [1.00,  517],
+];
+const FINAL_VAL = 517.45;
+
+const allV  = DATA.map(d => d[1]);
+const MIN_V = Math.min(...allV), MAX_V = Math.max(...allV);
+const pad   = (MAX_V - MIN_V) * 0.12; // increased padding to breathe
+const DMIN  = MIN_V - pad, DMAX = MAX_V + pad;
+const DSPAN = DMAX - DMIN;
+
+function vToY(v)  { return Y0 + (1 - (v - DMIN) / DSPAN) * CH; }
+function nxToX(n) { return X0 + n * CW; }
+
+const ZERO_Y  = vToY(0);
+const FINAL_X = nxToX(1);
+const FINAL_Y = vToY(FINAL_VAL);
+
+// ── Build smooth path ─────────────────────────────────────────────────────────
+const pts = DATA.map(([nx, v]) => [nxToX(nx), vToY(v)]);
+function f(n) { return n.toFixed(2); }
+
+function crPath(p) {
+    let d = `M ${f(p[0][0])},${f(p[0][1])}`;
+    for (let i = 0; i < p.length - 1; i++) {
+        const p0 = p[Math.max(i-1,0)], p1 = p[i], p2 = p[i+1], p3 = p[Math.min(i+2,p.length-1)];
+        const a = 1/6;
+        d += ` C ${f(p1[0]+(p2[0]-p0[0])*a)},${f(p1[1]+(p2[1]-p0[1])*a)} ${f(p2[0]-(p3[0]-p1[0])*a)},${f(p2[1]-(p3[1]-p1[1])*a)} ${f(p2[0])},${f(p2[1])}`;
+    }
+    return d;
+}
+
+const linePath = crPath(pts);
+const areaPath = linePath + ` L ${f(FINAL_X)},${f(ZERO_Y)} L ${f(X0)},${f(ZERO_Y)} Z`;
+
+['lineGreen','lineRed'].forEach(id => document.getElementById(id).setAttribute('d', linePath));
+['fillGreen','fillRed'].forEach(id => document.getElementById(id).setAttribute('d', areaPath));
+
+const zeroEl = document.getElementById('zeroLineEl');
+zeroEl.setAttribute('y1', f(ZERO_Y)); zeroEl.setAttribute('y2', f(ZERO_Y));
+
+document.getElementById('clipAboveRect').setAttribute('y', f(Y0-10));
+document.getElementById('clipAboveRect').setAttribute('height', f(ZERO_Y - Y0 + 10));
+document.getElementById('clipBelowRect').setAttribute('y', f(ZERO_Y));
+document.getElementById('clipBelowRect').setAttribute('height', f(Y1 - ZERO_Y + 10));
+
+// ── Grid & labels ─────────────────────────────────────────────────────────────
+const ticks = [-300, -200, -100, 0, 100, 200, 300, 400];
+let gh = '';
+ticks.forEach(v => {
+    const y = vToY(v);
+    if (y < Y0-4 || y > Y1+4) return;
+    if (v !== 0) gh += `<line class="grid-ln" x1="${X0}" y1="${f(y)}" x2="${X1}" y2="${f(y)}"/>`;
+    const cls = v > 0 ? 'ax-lbl ax-lbl-p' : v < 0 ? 'ax-lbl ax-lbl-n' : 'ax-lbl';
+    const lbl = v === 0 ? '0' : v > 0 ? `+${v}` : `${v}`;
+    gh += `<text class="${cls}" x="${X0-8}" y="${f(y)}" text-anchor="end" dominant-baseline="middle">${lbl}</text>`;
+});
+document.getElementById('gridGroup').innerHTML = gh;
+
+const dates = ['mar/16', 'mar/26', 'abr/06', 'abr/12', 'abr/16'];
+let xh = '';
+dates.forEach((l, i) => {
+    const x = X0 + (i / (dates.length-1)) * CW;
+    xh += `<text class="ax-lbl" x="${f(x)}" y="${f(Y1+18)}" text-anchor="middle">${l}</text>`;
+});
+document.getElementById('xLabels').innerHTML = xh;
+
+// ── Value bubble ──────────────────────────────────────────────────────────────
+const br = document.getElementById('bubbleRect');
+const bt = document.getElementById('bubbleText');
+const BW = 66, BH = 20; // Slightly larger matching the premium look
+br.setAttribute('width', BW); br.setAttribute('height', BH);
+const bx = Math.min(FINAL_X - BW - 4, X1 - BW - 2);
+const by = FINAL_Y - BH/2;
+br.setAttribute('x', f(bx)); br.setAttribute('y', f(by));
+bt.setAttribute('x', f(bx + BW/2)); bt.setAttribute('y', f(FINAL_Y));
+bt.textContent = `+${FINAL_VAL.toFixed(2).replace('.',',')}`;
+
+// ── Cursor dot ────────────────────────────────────────────────────────────────
+function approxPt(t) {
+    for (let i = 0; i < DATA.length-1; i++) {
+        const [nx0,v0] = DATA[i], [nx1,v1] = DATA[i+1];
+        if (t >= nx0 && t <= nx1) {
+            const s = (t-nx0)/(nx1-nx0);
+            return { x: nxToX(t), y: vToY(v0+(v1-v0)*s) };
+        }
+    }
+    return { x: FINAL_X, y: FINAL_Y };
+}
+
+// ── Fix cursor dot elongation due to preserveAspectRatio="none" ───────────────
+// SVG scales to fit, so rx and ry must counter the scaling to look circular.
+const wrapper = document.querySelector('.svg-wrap');
+function updateCursorDotScale() {
+    if(!wrapper) return;
+    const rect = wrapper.getBoundingClientRect();
+    if(rect.width === 0 || rect.height === 0) return;
+    
+    // Scale factors: how SVG viewBox maps to DOM pixels
+    const scaleX = rect.width / VB_W;
+    const scaleY = rect.height / VB_H;
+    
+    // We want a 4px visual radius:
+    const visualR = 4;
+    cursorDot.setAttribute('rx', f(visualR / scaleX));
+    cursorDot.setAttribute('ry', f(visualR / scaleY));
+}
+window.addEventListener('resize', updateCursorDotScale);
+setTimeout(updateCursorDotScale, 100);
+
+// ── Animation ─────────────────────────────────────────────────────────────────
+const DRAW_MS = 3400, HOLD_MS = 2400, FADE_MS = 700, PAUSE_MS = 400;
+const sweepRect   = document.getElementById('sweepRect');
+const fillGreenEl = document.getElementById('fillGreen');
+const fillRedEl   = document.getElementById('fillRed');
+const lineGreenEl = document.getElementById('lineGreen');
+const lineRedEl   = document.getElementById('lineRed');
+const cursorDot   = document.getElementById('cursorDot');
+const valBubble   = document.getElementById('valueBubble');
+
+let phase = 'draw', phaseStart = 0, rafId = null;
+
+function easeOut(t)  { return 1 - Math.pow(1-t, 2.5); }
+function easeIO(t)   { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+function resetAll() {
+    sweepRect.setAttribute('width','0');
+    fillGreenEl.setAttribute('opacity','0'); fillRedEl.setAttribute('opacity','0');
+    lineGreenEl.style.opacity = '1'; lineRedEl.style.opacity = '1';
+    valBubble.setAttribute('opacity','0'); cursorDot.setAttribute('opacity','0');
+}
+resetAll();
+
+function tick(ts) {
+    if (!phaseStart) {
+        phaseStart = ts;
+        updateCursorDotScale(); // Ensure dot scale is crisp on animation start
+    }
+    const el = ts - phaseStart;
+
+    if (phase === 'draw') {
+        const t = Math.min(el/DRAW_MS, 1), e = easeOut(t);
+        sweepRect.setAttribute('width', f(X0 + e * CW));
+        const ft = Math.max(0, (e-0.12)/0.88);
+        fillGreenEl.setAttribute('opacity', f(ft*1));
+        fillRedEl.setAttribute('opacity',   f(ft*1));
+        if (e > 0.02 && e < 0.98) {
+            const pt = approxPt(e);
+            cursorDot.setAttribute('cx', f(pt.x)); cursorDot.setAttribute('cy', f(pt.y));
+            cursorDot.setAttribute('opacity', '1');
+        } else { cursorDot.setAttribute('opacity','0'); }
+        if (e > 0.84) valBubble.setAttribute('opacity', f((e-0.84)/0.16));
+        if (t >= 1) {
+            sweepRect.setAttribute('width', VB_W);
+            fillGreenEl.setAttribute('opacity','1'); fillRedEl.setAttribute('opacity','1');
+            valBubble.setAttribute('opacity','1'); cursorDot.setAttribute('opacity','0');
+            phase = 'hold'; phaseStart = ts;
+        }
+    } else if (phase === 'hold') {
+        valBubble.setAttribute('opacity', f(0.88 + Math.sin(el/520)*0.12));
+        if (el >= HOLD_MS) { phase = 'fade'; phaseStart = ts; }
+    } else if (phase === 'fade') {
+        const inv = 1 - easeIO(Math.min(el/FADE_MS, 1));
+        lineGreenEl.style.opacity = f(inv); lineRedEl.style.opacity = f(inv);
+        fillGreenEl.setAttribute('opacity', f(1*inv)); fillRedEl.setAttribute('opacity', f(1*inv));
+        valBubble.setAttribute('opacity', f(inv));
+        if (el >= FADE_MS) { phase = 'pause'; phaseStart = ts; }
+    } else if (phase === 'pause') {
+        if (el >= PAUSE_MS) {
+            lineGreenEl.style.opacity = '1'; lineRedEl.style.opacity = '1';
+            resetAll(); phase = 'draw'; phaseStart = ts;
+        }
+    }
+    rafId = requestAnimationFrame(tick);
+}
+
+setTimeout(() => { rafId = requestAnimationFrame(tick); }, 600);
+
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } }
+    else if (!rafId)     { phaseStart = 0; rafId = requestAnimationFrame(tick); }
+});
+</script>
+</body>
+</html>

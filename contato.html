@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tryd - Contato</title>
+    <meta name="description" content="Entre em contato com a equipe Tryd. Suporte técnico, vendas, imprensa e parcerias.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .contact-hero {
+            padding: 160px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,131,187,0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .contact-hero h1 {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.08;
+            margin-bottom: 20px;
+        }
+        .contact-hero h1 span {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-lighter) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .contact-hero .section-desc {
+            max-width: 500px;
+            margin: 0 auto;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* Contact layout */
+        .contact-section {
+            padding: 80px 0 96px;
+        }
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        /* Left: info cards */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .contact-info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            transition: all 0.4s;
+        }
+        .contact-info-card:hover {
+            border-color: rgba(0,131,187,0.35);
+            transform: translateX(3px);
+        }
+        .contact-info-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(0,131,187,0.1);
+            border: 1px solid rgba(0,131,187,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-light);
+        }
+        .contact-info-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .contact-info-card p { font-size: 13px; color: var(--text-tertiary); line-height: 1.55; }
+        .contact-info-card a {
+            font-size: 13px;
+            color: var(--brand-light);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .contact-info-card a:hover { text-decoration: underline; }
+
+        /* Status indicator */
+        .contact-status {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .status-dot-animated {
+            width: 10px;
+            height: 10px;
+            background: var(--success);
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 10px var(--success);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        .contact-status p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .contact-status strong { color: var(--success); }
+
+        /* Form */
+        .contact-form-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .contact-form-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(100,200,255,0.5) 50%, transparent);
+        }
+        .form-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+        .form-subtitle {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            margin-bottom: 32px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: rgba(0,131,187,0.5);
+            box-shadow: 0 0 0 3px rgba(0,131,187,0.08);
+            background-color: rgba(0,131,187,0.03);
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+        .form-select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: calc(100% - 12px) center;
+            background-size: 12px;
+            padding-right: 32px;
+            cursor: pointer;
+        }
+        .form-select option { background: var(--bg-secondary); }
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+        .form-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-light));
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0,131,187,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: auto;
+        }
+        .form-submit:hover {
+            box-shadow: 0 0 40px rgba(0,131,187,0.5);
+            transform: translateY(-1px);
+        }
+        .form-submit.sent {
+            background: linear-gradient(135deg, #10b981, #34d399) !important;
+        }
+
+        /* Success message */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 60px 0;
+        }
+        .form-success .checkmark {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(16,185,129,0.1);
+            border: 2px solid rgba(16,185,129,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--success);
+            box-shadow: 0 0 30px rgba(16,185,129,0.2);
+        }
+        .form-success h3 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+        .form-success p { color: var(--text-tertiary); font-size: 15px; }
+
+        @media (max-width: 968px) {
+            .contact-layout { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .contact-form-box { padding: 32px 24px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
+
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <img src="assets/tryd logo white and blue.svg" alt="Tryd" style="height: 32px;">
+            </a>
+            <div class="nav-links">
+                <a href="recursos.html">Recursos</a>
+                <a href="planos.html">Planos</a>
+                <a href="corretoras.html">Corretoras</a>
+                <a href="baixar.html">Baixar</a>
+                <a href="contato.html" style="color: var(--text-primary);">Contato</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#" class="nav-link-login">Entrar</a>
+                <a href="baixar.html" class="btn btn-primary btn-sm">Baixe Agora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="contact-hero">
+        <div class="container animate-on-scroll" style="position: relative; z-index: 1;">
+            <div class="section-badge">Contato</div>
+            <h1>Fale com a<br><span>nossa equipe</span></h1>
+            <p class="section-desc">Estamos prontos para te ajudar. Seja para suporte técnico, dúvidas sobre planos ou parcerias comerciais.</p>
+        </div>
+    </section>
+
+    <!-- Contact layout -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-layout">
+
+                <!-- Left: info -->
+                <div class="contact-info animate-on-scroll">
+
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <div>
+                            <h3>Suporte técnico</h3>
+                            <p>Para dúvidas técnicas, bugs e questões operacionais com a plataforma.</p>
+                            <a href="mailto:suporte@tryd.com.br">suporte@tryd.com.br</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                        </div>
+                        <div>
+                            <h3>Comercial & Planos</h3>
+                            <p>Para informações sobre planos corporativos, mesas profissionais e gestoras.</p>
+                            <a href="mailto:comercial@tryd.com.br">comercial@tryd.com.br</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div>
+                            <h3>Parcerias & Corretoras</h3>
+                            <p>Para corretoras ou empresas interessadas em integração e parceria comercial.</p>
+                            <a href="mailto:parcerias@tryd.com.br">parcerias@tryd.com.br</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div>
+                            <h3>Imprensa</h3>
+                            <p>Para jornalistas, podcasters e criadores de conteúdo financeiro.</p>
+                            <a href="mailto:imprensa@tryd.com.br">imprensa@tryd.com.br</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right: form -->
+                <div class="contact-form-box animate-on-scroll">
+                    <div id="formContainer">
+                        <div class="form-title">Envie uma mensagem</div>
+                        <p class="form-subtitle">Preencha o formulário e nossa equipe cuidará da sua solicitação</p>
+
+                        <form id="contactForm" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="contactName">Nome</label>
+                                    <input type="text" id="contactName" class="form-input" placeholder="Seu nome completo" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="contactEmail">E-mail</label>
+                                    <input type="email" id="contactEmail" class="form-input" placeholder="seu@email.com" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="contactPhone">Telefone (opcional)</label>
+                                    <input type="tel" id="contactPhone" class="form-input" placeholder="(11) 99999-9999">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="contactSubject">Assunto</label>
+                                    <select id="contactSubject" class="form-select">
+                                        <option value="">Selecione um assunto</option>
+                                        <option value="suporte">Suporte Técnico</option>
+                                        <option value="planos">Dúvidas sobre Planos</option>
+                                        <option value="comercial">Comercial / Mesas</option>
+                                        <option value="corretoras">Parcerias / Corretoras</option>
+                                        <option value="imprensa">Imprensa</option>
+                                        <option value="outro">Outro</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="contactMessage">Mensagem</label>
+                                <textarea id="contactMessage" class="form-textarea" placeholder="Descreva sua dúvida ou solicitação em detalhes..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="form-submit" id="submitBtn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                Enviar mensagem
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="form-success" id="formSuccess">
+                        <div class="checkmark">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <h3>Mensagem enviada!</h3>
+                        <p>Nossa equipe retornará em breve, geralmente em menos de 2 horas durante o horário comercial.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Enviando...';
+            btn.disabled = true;
+            setTimeout(() => {
+                document.getElementById('formContainer').style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'block';
+            }, 1200);
+        });
+
+        // Phone mask
+        document.getElementById('contactPhone').addEventListener('input', function(e) {
+            let v = e.target.value.replace(/\D/g, '');
+            if (v.length <= 11) {
+                v = v.replace(/^(\d{2})(\d)/, '($1) $2');
+                v = v.replace(/(\d{5})(\d)/, '$1-$2');
+            }
+            e.target.value = v;
+        });
+    </script>
+</body>
+</html>

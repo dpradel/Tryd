@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            color: #d0d0d0;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* ── Premium Boleta Bar (Buy / Sell only) — TOP BAR ─────────── */
+        .glass-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #151820 0%, #0c0e12 100%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .mini-boleta {
+            width: 100%;
+            height: 48px;
+            min-height: 48px;
+            background: rgba(4, 8, 18, 0.95);
+            border-top: 1px solid rgba(0, 131, 187, 0.22);
+            box-shadow:
+                0 -4px 20px rgba(0, 131, 187, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 0 16px;
+            z-index: 20;
+            position: relative;
+            flex-shrink: 0;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .mini-boleta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 131, 187, 0.5), transparent);
+        }
+
+        .boleta-label {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(100, 160, 220, 0.6);
+            padding: 0 8px;
+        }
+
+        .btn-compra {
+            width: 130px;
+            padding: 9px 0;
+            font-size: 12px;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.3px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            background: linear-gradient(160deg, #1c70c8 0%, #3991f3 60%, #5ba8ff 100%);
+            color: #fff;
+            box-shadow:
+                0 0 16px rgba(57, 145, 243, 0.4),
+                0 2px 6px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-compra:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 24px rgba(57, 145, 243, 0.55),
+                0 4px 10px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        .btn-compra:active {
+            transform: scale(0.96);
+        }
+
+        .btn-venda {
+            width: 130px;
+            padding: 9px 0;
+            font-size: 12px;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.3px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            background: linear-gradient(160deg, #b52020 0%, #ed5f59 60%, #ff7a75 100%);
+            color: #fff;
+            box-shadow:
+                0 0 16px rgba(237, 95, 89, 0.4),
+                0 2px 6px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-venda:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 24px rgba(237, 95, 89, 0.55),
+                0 4px 10px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        .btn-venda:active {
+            transform: scale(0.96);
+        }
+
+        /* Shimmer sweep on button hover */
+        .btn-compra::after,
+        .btn-venda::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.15) 50%, transparent 60%);
+            background-size: 200% 100%;
+            background-position: 200% 0;
+            transition: background-position 0.35s ease;
+        }
+
+        .btn-compra:hover::after,
+        .btn-venda:hover::after {
+            background-position: -50% 0;
+        }
+
+        .boleta-divider {
+            width: 1px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.08);
+            margin: 0 4px;
+        }
+
+        /* ── Chart Area ─────────────────────────────────────────────────── */
+        .chart-area {
+            flex: 1;
+            position: relative;
+            background-color: transparent;
+            background-image: radial-gradient(ellipse at center 40%, rgba(0, 131, 187, 0.12) 0%, transparent 65%);
+            display: flex;
+            transition: background-color 0.4s ease-out;
+            min-height: 0;
+        }
+
+        .chart-canvas-wrapper {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 15% 35px;
+            cursor: crosshair;
+            contain: layout paint;
+        }
+
+        .price-axis {
+            width: 55px;
+            background: transparent;
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px 0 20px 0;
+            font-size: 10.5px;
+            color: #777;
+            text-align: right;
+            padding-right: 6px;
+            font-family: inherit;
+            position: relative;
+            z-index: 10;
+        }
+
+        .time-axis {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 24px;
+            background: transparent;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            font-size: 10.5px;
+            color: #777;
+            z-index: 10;
+            overflow: visible;
+            white-space: nowrap;
+        }
+
+        .time-ticks {
+            display: flex;
+            gap: 45px;
+            position: absolute;
+            font-weight: 500;
+            will-change: transform;
+        }
+
+        .time-ticks div {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-ticks div::before {
+            content: '';
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            height: 24px;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: -1;
+        }
+
+        .date-label {
+            position: absolute;
+            top: 18px;
+            font-size: 9px;
+            color: #555;
+        }
+
+        /* ── Current Price ───────────────────────────────────────────────── */
+        .current-price-tag {
+            position: absolute;
+            right: 0;
+            top: 40%;
+            background: #fff;
+            color: #000;
+            font-weight: 700;
+            font-size: 10.5px;
+            padding: 3px 5px;
+            border-radius: 4px 0 0 4px;
+            border-left: 3px solid #888;
+            transform: translateY(-50%);
+            z-index: 20;
+            transition: top 0.2s ease-out;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .current-price-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 40%;
+            border-top: 1px dashed rgba(255, 255, 255, 0.3);
+            z-index: 5;
+            transition: top 0.2s ease-out;
+        }
+
+        /* ── Candles ─────────────────────────────────────────────────────── */
+        .candles-container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 24px;
+            top: 0;
+            z-index: 2;
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            padding-left: 10px;
+            will-change: transform;
+        }
+
+        .candle {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            width: 12px;
+            flex-shrink: 0;
+            height: 100%;
+            /* No CSS transition on filter — applied instantly in JS */
+        }
+
+        .candle-wick {
+            width: 2px;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .candle-body {
+            width: 100%;
+            position: absolute;
+            border-radius: 2px;
+            z-index: 2;
+            transition: height 0.15s ease-out, top 0.15s ease-out;
+        }
+
+        .candle.bull .candle-wick,
+        .candle.bull .candle-body {
+            background: #0083bb;
+        }
+
+        .candle.bear .candle-wick,
+        .candle.bear .candle-body {
+            background: #ef4444;
+        }
+
+        /* ── Execution Order Line ────────────────────────────────────────── */
+        /*
+         * Lives in canvasWrapper (static layer), NOT inside scrolling candles.
+         * Arrow is on the RIGHT (where current candle is); line extends left.
+         * Each order stacks with a vertical offset so they never overlap.
+         */
+        .exec-order-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 0;
+            z-index: 40;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.7s ease-out;
+        }
+
+        /* Dashed horizontal price line across the chart */
+        .exec-order-line .eol-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            border-top: 1.5px dashed;
+            top: 0;
+        }
+
+        .exec-order-line.buy .eol-line {
+            border-color: rgba(57, 145, 243, 0.7);
+        }
+
+        .exec-order-line.sell .eol-line {
+            border-color: rgba(237, 95, 89, 0.7);
+        }
+
+        /* Arrow that pops on the RIGHT side (near newest candle) */
+        .exec-order-line .eol-arrow {
+            position: absolute;
+            right: 58px;
+            /* just left of price axis */
+            top: -10px;
+            font-size: 14px;
+            font-weight: 900;
+            animation: eol-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .exec-order-line.buy .eol-arrow {
+            color: #3991f3;
+            text-shadow: 0 0 10px rgba(57, 145, 243, 1);
+        }
+
+        .exec-order-line.sell .eol-arrow {
+            color: #ed5f59;
+            text-shadow: 0 0 10px rgba(237, 95, 89, 1);
+        }
+
+        /* Label tag — sits just left of the arrow, anchored to the right.
+         * NO backdrop-filter: it costs a full GPU blur pass on every frame
+         * that the animated candles are scrolling underneath. */
+        .exec-order-line .eol-tag {
+            position: absolute;
+            right: 75px;
+            top: -10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 3px;
+            white-space: nowrap;
+            border: 1px solid;
+            font-family: inherit;
+        }
+
+        .exec-order-line.buy .eol-tag {
+            background: rgba(20, 60, 120, 0.92);
+            border-color: rgba(57, 145, 243, 0.7);
+            color: #a8d8ff;
+        }
+
+        .exec-order-line.sell .eol-tag {
+            background: rgba(100, 20, 20, 0.92);
+            border-color: rgba(237, 95, 89, 0.7);
+            color: #ffb5b2;
+        }
+
+        /* Live PnL badge inside tag — no CSS transitions, updated directly by JS */
+        .eol-pnl {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 1px 5px;
+            border-radius: 3px;
+            min-width: 50px;
+            text-align: right;
+            border: 1px solid;
+            font-family: 'Courier New', monospace;
+        }
+
+        .eol-pnl.pos {
+            background: rgba(0, 200, 80, 0.12);
+            border-color: rgba(0, 200, 80, 0.45);
+            color: #33ff88;
+        }
+
+        .eol-pnl.neg {
+            background: rgba(255, 60, 60, 0.12);
+            border-color: rgba(255, 60, 60, 0.45);
+            color: #ff6666;
+        }
+
+        @keyframes eol-pop {
+            0% {
+                transform: scale(0.2);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.6);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* ── Crosshair ───────────────────────────────────────────────────── */
+        .crosshair-x {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 30;
+            pointer-events: none;
+        }
+
+        .crosshair-y {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            border-left: 1px dashed rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 30;
+            pointer-events: none;
+        }
+
+        .ch-price-tag {
+            position: absolute;
+            right: 0;
+            background: #333;
+            color: #fff;
+            font-size: 10.5px;
+            padding: 3px 5px;
+            border-radius: 4px 0 0 4px;
+            border-left: 3px solid #3794fa;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 30;
+            pointer-events: none;
+        }
+
+        /* ── Measure Tool ────────────────────────────────────────────────── */
+        .measure-line {
+            position: absolute;
+            height: 1.5px;
+            background: #5ab1ef;
+            transform-origin: 0 50%;
+            display: none;
+            z-index: 25;
+            pointer-events: none;
+        }
+
+        .measure-line::before,
+        .measure-line::after {
+            content: '';
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #5ab1ef;
+            top: -2.5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .measure-line::before {
+            left: -3.5px;
+        }
+
+        .measure-line::after {
+            right: -3.5px;
+        }
+
+        .measure-popup {
+            position: absolute;
+            background: rgba(35, 35, 35, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 6px 8px;
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 40;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            font-size: 11px;
+            font-family: Tahoma, 'Segoe UI', Arial, sans-serif;
+            min-width: 145px;
+        }
+
+        .mp-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mp-label {
+            color: #d0d0d0;
+            font-weight: 600;
+        }
+
+        .mp-val {
+            color: #fff;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .val-green {
+            color: #00ff00;
+        }
+
+        .val-red {
+            color: #ff3333;
+        }
+
+        @keyframes pulse-dot {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0.9);
+                opacity: 0.7;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glass-container">
+
+        <!-- Chart Area -->
+        <div class="chart-area" id="chartArea">
+            <div class="chart-canvas-wrapper" id="canvasWrapper">
+
+                <div class="candles-container" id="candlesContainer"></div>
+
+                <!-- Current Price Line -->
+                <div class="current-price-line" id="currentPriceLine"></div>
+
+                <!-- Crosshairs -->
+                <div class="crosshair-x" id="crossX"></div>
+                <div class="crosshair-y" id="crossY"></div>
+                <div class="ch-price-tag" id="tooltip">31,00</div>
+
+                <!-- Measurement Tool -->
+                <div id="measureBox" class="measure-line"></div>
+                <div id="measurePopup" class="measure-popup">
+                    <div class="mp-row"><span class="mp-label">Variação:</span> <span class="mp-val val-green"
+                            id="mpVar">10,99%</span></div>
+                    <div class="mp-row"><span class="mp-label">Diferença:</span> <span class="mp-val"
+                            id="mpDif">3,81</span></div>
+                    <div class="mp-row"><span class="mp-label">Ponto 1:</span> <span class="mp-val"
+                            id="mpP1">34,70</span></div>
+                    <div class="mp-row"><span class="mp-label">Ponto 2:</span> <span class="mp-val"
+                            id="mpP2">38,52</span></div>
+                    <div class="mp-row"><span class="mp-label">Intervalos:</span> <span class="mp-val"
+                            id="mpInt">7</span></div>
+                    <div class="mp-row"><span class="mp-label">Candles:</span> <span class="mp-val"
+                            id="mpCandles">7</span></div>
+                </div>
+
+                <div class="time-axis">
+                    <div class="time-ticks" id="timeTicks"></div>
+                </div>
+            </div>
+
+            <div class="price-axis" id="priceAxis"></div>
+
+            <div class="current-price-tag" id="currentPriceTag">31,16</div>
+        </div>
+
+        <!-- ── Premium Boleta Bar (Bottom) ── -->
+        <div class="mini-boleta">
+            <button class="btn-compra" id="btnCompra">Compra</button>
+            <button class="btn-venda" id="btnVenda">Venda</button>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('candlesContainer');
+        const priceAxis = document.getElementById('priceAxis');
+        const timeTicks = document.getElementById('timeTicks');
+        const currentLine = document.getElementById('currentPriceLine');
+        const currentTag = document.getElementById('currentPriceTag');
+
+        const maxPrice = 32.10;
+        const minPrice = 29.80;
+        const priceRange = maxPrice - minPrice;
+
+        // ── Price axis labels ──────────────────────────────────────────────
+        let priceHtml = '';
+        for (let p = maxPrice; p >= minPrice; p -= 0.10) {
+            priceHtml += `<span>${p.toFixed(2).replace('.', ',')}</span>`;
+        }
+        priceAxis.innerHTML = priceHtml;
+
+        // ── Time axis ticks ───────────────────────────────────────────────
+        const times = [
+            "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
+            "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
+            "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
+            "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
+            "10:00", "10:30"
+        ];
+        let timeHtml = '';
+        for (let i = 0; i < times.length; i++) {
+            let dl = '';
+            if (i === 6) dl = '24/jul';
+            if (i === 20) dl = '25/jul';
+            if (i === 28) dl = '28/jul';
+            timeHtml += `<div>${times[i]}${dl ? `<span class="date-label">${dl}</span>` : ''}</div>`;
+        }
+        timeTicks.innerHTML = timeHtml;
+
+        // ── Utility ───────────────────────────────────────────────────────
+        function priceToPct(price) {
+            return 100 - ((price - minPrice) / priceRange) * 100;
+        }
+
+        // ── Generate seed candle data ─────────────────────────────────────
+        let currentPrice = 30.95;
+        const candlesCount = 80;
+        const data = [];
+        const trendTarget = [30.2, 31.4, 30.7, 31.4, 30.8, 31.1];
+        let trendIdx = 0;
+
+        for (let i = 0; i < candlesCount; i++) {
+            let open = currentPrice;
+            let diff = trendTarget[trendIdx] - currentPrice;
+            if (Math.abs(diff) < 0.2 && trendIdx < trendTarget.length - 1) trendIdx++;
+
+            let close = open + (diff * 0.15) + (Math.random() - 0.5) * 0.2;
+            let high = Math.max(open, close) + Math.random() * 0.10;
+            let low = Math.min(open, close) - Math.random() * 0.10;
+            high = Math.min(high, maxPrice - 0.05);
+            low = Math.max(low, minPrice + 0.05);
+            data.push({ open, high, low, close });
+            currentPrice = close;
+        }
+
+        function createCandleDOM(cData) {
+            const el = document.createElement('div');
+            const isBull = cData.close >= cData.open;
+            el.className = `candle ${isBull ? 'bull' : 'bear'}`;
+
+            const topPct = priceToPct(cData.high);
+            const bottomPct = priceToPct(cData.low);
+            const bodyTopPct = priceToPct(Math.max(cData.open, cData.close));
+            const bodyBotPct = priceToPct(Math.min(cData.open, cData.close));
+
+            const wick = document.createElement('div');
+            wick.className = 'candle-wick';
+            wick.style.top = topPct + '%';
+            wick.style.height = (bottomPct - topPct) + '%';
+
+            const body = document.createElement('div');
+            body.className = 'candle-body';
+            body.style.top = bodyTopPct + '%';
+            body.style.height = Math.max(bodyBotPct - bodyTopPct, 0.5) + '%';
+
+            el.appendChild(wick);
+            el.appendChild(body);
+            return el;
+        }
+
+        data.forEach(c => container.appendChild(createCandleDOM(c)));
+
+        // ── Scroll animation ─────────────────────────────────────────────
+        let scrollOffset = 0;
+        let timeScrollOffset = 0;
+        const candleTotalWidth = 18;
+        const scrollSpeed = 0.5;
+        const timeTicksEl = document.getElementById('timeTicks');
+        let scrollRafId = null; // single stored ID — prevents duplicate loops
+
+        function stopScroll() {
+            if (scrollRafId !== null) {
+                cancelAnimationFrame(scrollRafId); // cancels the PENDING callback
+                scrollRafId = null;
+            }
+        }
+        function startScroll() {
+            if (scrollRafId !== null) return; // already running — do nothing
+            scrollRafId = requestAnimationFrame(animateScroll);
+        }
+
+        // Pause when the tab/iframe is backgrounded so no frames queue up.
+        document.addEventListener('visibilitychange', () => {
+            document.hidden ? stopScroll() : startScroll();
+        });
+
+        function animateScroll() {
+            scrollRafId = null; // clear before doing work
+
+            scrollOffset -= scrollSpeed;
+            timeScrollOffset -= scrollSpeed;
+
+            if (scrollOffset <= -candleTotalWidth) {
+                scrollOffset += candleTotalWidth;
+                data.shift();
+                container.firstElementChild.remove();
+
+                let diff = trendTarget[trendIdx] - currentPrice;
+                if (Math.abs(diff) < 0.2) {
+                    trendIdx = trendIdx < trendTarget.length - 1 ? trendIdx + 1 : 0;
+                }
+                currentPrice = currentPrice + (diff * 0.1) + (Math.random() - 0.5) * 0.2;
+
+                const open = data[data.length - 1].close;
+                const close = open + (Math.random() - 0.5) * 0.15;
+                let high = Math.min(Math.max(open, close) + Math.random() * 0.08, maxPrice - 0.05);
+                let low = Math.max(Math.min(open, close) - Math.random() * 0.08, minPrice + 0.05);
+
+                const newC = { open, high, low, close };
+                data.push(newC);
+                container.appendChild(createCandleDOM(newC));
+            }
+
+            container.style.transform = `translateX(${scrollOffset}px)`;
+            timeTicksEl.style.transform = `translateX(${timeScrollOffset}px)`;
+
+            if (timeScrollOffset <= -2000) timeScrollOffset += 2000;
+
+            scrollRafId = requestAnimationFrame(animateScroll); // store new ID
+        }
+        startScroll();
+
+        // ── Live last-candle update ───────────────────────────────────────
+        setInterval(() => {
+            const last = data[data.length - 1];
+            const change = (Math.random() - 0.5) * 0.08;
+            last.close += change;
+
+            if (last.close > last.high) last.high = Math.min(last.close, maxPrice - 0.05);
+            if (last.close < last.low) last.low = Math.max(last.close, minPrice + 0.05);
+            last.close = Math.max(Math.min(last.close, maxPrice - 0.05), minPrice + 0.05);
+
+            const lastEl = container.lastElementChild;
+            if (!lastEl) return;
+            const isBull = last.close >= last.open;
+            lastEl.className = `candle ${isBull ? 'bull' : 'bear'}`;
+
+            const wick = lastEl.querySelector('.candle-wick');
+            const body = lastEl.querySelector('.candle-body');
+            wick.style.top = priceToPct(last.high) + '%';
+            wick.style.height = (priceToPct(last.low) - priceToPct(last.high)) + '%';
+            body.style.top = priceToPct(Math.max(last.open, last.close)) + '%';
+            body.style.height = Math.max(priceToPct(Math.min(last.open, last.close)) - priceToPct(Math.max(last.open, last.close)), 0.5) + '%';
+
+            currentLine.style.top = priceToPct(last.close) + '%';
+            currentTag.style.top = priceToPct(last.close) + '%';
+            currentTag.textContent = last.close.toFixed(2).replace('.', ',');
+        }, 200);
+
+        // ── Crosshair & Measure tool ──────────────────────────────────────
+        const wrapper = document.getElementById('canvasWrapper');
+        const cx = document.getElementById('crossX');
+        const cy = document.getElementById('crossY');
+        const tt = document.getElementById('tooltip');
+        const measureBox = document.getElementById('measureBox');
+        const measurePopup = document.getElementById('measurePopup');
+
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartY = 0;
+        let dragStartPrice = 0;
+
+        wrapper.addEventListener('mousedown', e => {
+            const rect = wrapper.getBoundingClientRect();
+            dragStartX = e.clientX - rect.left;
+            dragStartY = e.clientY - rect.top;
+            dragStartPrice = maxPrice - (dragStartY / rect.height) * priceRange;
+            isDragging = true;
+            measureBox.style.display = 'block';
+            measureBox.style.left = dragStartX + 'px';
+            measureBox.style.top = dragStartY + 'px';
+            measureBox.style.width = '0px';
+            measureBox.style.transform = 'rotate(0deg)';
+            measurePopup.style.display = 'flex';
+        });
+
+        window.addEventListener('mouseup', () => { isDragging = false; });
+
+        // Cache measure popup element refs once
+        const mpVar = document.getElementById('mpVar');
+        const mpDif = document.getElementById('mpDif');
+        const mpP1  = document.getElementById('mpP1');
+        const mpP2  = document.getElementById('mpP2');
+        const mpInt = document.getElementById('mpInt');
+        const mpCnd = document.getElementById('mpCandles');
+
+        // rAF throttle flag for mousemove — prevents layout thrashing
+        let mouseMoveRafPending = false;
+        let lastMouseX = 0, lastMouseY = 0;
+
+        wrapper.addEventListener('mousemove', e => {
+            lastMouseX = e.clientX;
+            lastMouseY = e.clientY;
+            if (mouseMoveRafPending) return;
+            mouseMoveRafPending = true;
+            requestAnimationFrame(() => {
+                mouseMoveRafPending = false;
+                const rect = wrapper.getBoundingClientRect();
+                const x = lastMouseX - rect.left;
+                const y = lastMouseY - rect.top;
+
+                cx.style.opacity = '1'; cy.style.opacity = '1'; tt.style.opacity = '1';
+                cx.style.top = y + 'px';
+                cy.style.left = x + 'px';
+                tt.style.top = y + 'px';
+
+                const hoverPrice = maxPrice - (y / rect.height) * priceRange;
+                tt.textContent = hoverPrice.toFixed(2).replace('.', ',');
+
+                if (isDragging) {
+                    const wX = x - dragStartX, wY = y - dragStartY;
+                    const len = Math.sqrt(wX * wX + wY * wY);
+                    const angle = Math.atan2(wY, wX) * 180 / Math.PI;
+                    measureBox.style.width = len + 'px';
+                    measureBox.style.transform = `rotate(${angle}deg)`;
+
+                    let px = x + 15, py = y + 15;
+                    if (x + 160 > rect.width) px = x - 150;
+                    if (y + 130 > rect.height) py = y - 130;
+                    measurePopup.style.left = px + 'px';
+                    measurePopup.style.top = py + 'px';
+
+                    const diff = hoverPrice - dragStartPrice;
+                    const varPct = (diff / dragStartPrice) * 100;
+                    const cCount = Math.max(1, Math.round(Math.abs(x - dragStartX) / 18));
+
+                    mpVar.textContent = (varPct > 0 ? '+' : '') + varPct.toFixed(2).replace('.', ',') + '%';
+                    mpVar.className = 'mp-val ' + (varPct >= 0 ? 'val-green' : 'val-red');
+                    mpDif.textContent = diff.toFixed(2).replace('.', ',');
+                    mpP1.textContent  = dragStartPrice.toFixed(2).replace('.', ',');
+                    mpP2.textContent  = hoverPrice.toFixed(2).replace('.', ',');
+                    mpInt.textContent = cCount + (cCount > 1 ? ' períodos' : ' período');
+                    mpCnd.textContent = cCount;
+                }
+
+                // Walk container children directly — no querySelectorAll on every frame
+                const idx = Math.floor((x - 10) / 18);
+                const children = container.children;
+                for (let i = 0; i < children.length; i++) {
+                    children[i].style.filter = Math.abs(i - idx) <= 1 ? 'brightness(1.3)' : 'brightness(0.8)';
+                }
+            });
+        });
+
+        wrapper.addEventListener('mouseleave', () => {
+            isDragging = false;
+            cx.style.opacity = '0'; cy.style.opacity = '0'; tt.style.opacity = '0';
+            measureBox.style.display = 'none';
+            measurePopup.style.display = 'none';
+            // Use children reference — no DOM query
+            const children = container.children;
+            for (let i = 0; i < children.length; i++) children[i].style.filter = '';
+        });
+
+        // ── Active orders registry ────────────────────────────────────────
+        // Each entry: { el, execPrice, type, pnlEl, fading }
+        const activeOrders = [];
+
+        // ── Click throttling & fade-out queue ─────────────────────────────
+        const MAX_VISIBLE_ORDERS = 2;   // max concurrent visible markers
+        const MIN_CLICK_INTERVAL = 350; // ms hard debounce between clicks
+        let lastClickTime = 0;
+        let clickLocked = false;        // guard against re-entrant clicks
+
+        function canClick() {
+            if (clickLocked) return false;
+            const now = performance.now();
+            if (now - lastClickTime < MIN_CLICK_INTERVAL) return false;
+            lastClickTime = now;
+            return true;
+        }
+
+        // Fade and remove an order entry safely.
+        function fadeOrder(entry) {
+            if (entry.fading) return; // already being removed
+            entry.fading = true;
+            entry.el.style.transition = 'opacity 0.6s ease-out';
+            entry.el.style.opacity = '0';
+            setTimeout(() => {
+                if (entry.el.parentNode) entry.el.remove();
+                const idx = activeOrders.indexOf(entry);
+                if (idx !== -1) activeOrders.splice(idx, 1);
+            }, 700);
+        }
+
+        // After a new order is pushed, fade extras until we're within the cap.
+        function enforceOrderCap() {
+            // Remove oldest non-fading entries until count <= MAX_VISIBLE_ORDERS
+            while (activeOrders.filter(o => !o.fading).length > MAX_VISIBLE_ORDERS) {
+                const oldest = activeOrders.find(o => !o.fading);
+                if (!oldest) break;
+                fadeOrder(oldest);
+            }
+        }
+
+        // Vertical slot logic: orders within SLOT_GAP_PCT of each other get offset.
+        const SLOT_GAP_PCT = 3;
+
+        function findFreeSlot(basePct) {
+            const occupied = activeOrders
+                .filter(o => !o.fading)
+                .map(o => parseFloat(o.el.style.top));
+            let candidate = basePct;
+            let shifted = true;
+            while (shifted) {
+                shifted = false;
+                for (const taken of occupied) {
+                    if (Math.abs(candidate - taken) < SLOT_GAP_PCT) {
+                        candidate = taken + SLOT_GAP_PCT;
+                        shifted = true;
+                        break;
+                    }
+                }
+            }
+            return Math.min(Math.max(candidate, 2), 92);
+        }
+
+        function triggerOrder(type) {
+            if (!canClick()) return;
+
+            // Lock briefly to prevent double-fire from fast double-clicks
+            clickLocked = true;
+            setTimeout(() => { clickLocked = false; }, MIN_CLICK_INTERVAL);
+
+            // Button press tactile feedback
+            const btn = document.getElementById(type === 'buy' ? 'btnCompra' : 'btnVenda');
+            btn.style.transform = 'scale(0.9)';
+            setTimeout(() => { btn.style.transform = ''; }, 130);
+
+            const execPrice = data[data.length - 1].close;
+            const rawPct = priceToPct(execPrice);
+            const slotPct = findFreeSlot(rawPct);
+            const label = execPrice.toFixed(2).replace('.', ',');
+            const arrow = type === 'buy' ? '▲' : '▼';
+            const orderLabel = type === 'buy' ? 'Compra' : 'Venda';
+
+            const line = document.createElement('div');
+            line.className = `exec-order-line ${type}`;
+            line.style.top = slotPct + '%';
+            line.style.opacity = '1';
+
+            line.innerHTML = `
+                <div class="eol-line"></div>
+                <div class="eol-arrow">${arrow}</div>
+                <div class="eol-tag">
+                    ${orderLabel} @ ${label}
+                    <span class="eol-pnl pos">+R$ 0,00</span>
+                </div>`;
+
+            // Inject into the STATIC wrapper — never moves with scrolling candles
+            wrapper.appendChild(line);
+
+            const pnlEl = line.querySelector('.eol-pnl');
+            const entry = { el: line, execPrice, type, pnlEl, fading: false };
+            activeOrders.push(entry);
+
+            // Enforce the cap — fades the oldest if we now have too many
+            enforceOrderCap();
+
+            // Chart flash
+            const chartArea = document.getElementById('chartArea');
+            chartArea.style.transition = 'background-color 0s';
+            chartArea.style.backgroundColor = type === 'buy'
+                ? 'rgba(57,145,243,0.15)' : 'rgba(237,95,89,0.15)';
+            setTimeout(() => {
+                chartArea.style.transition = 'background-color 0.5s ease-out';
+                chartArea.style.backgroundColor = 'transparent';
+            }, 60);
+
+            // Auto-remove after 10 s
+            const autoRemove = setTimeout(() => { fadeOrder(entry); }, 10000);
+            // Keep a reference so we can clear it if manually removed earlier
+            entry.autoRemove = autoRemove;
+        }
+
+        // Attach click handlers safely
+        document.getElementById('btnCompra').addEventListener('click', () => triggerOrder('buy'));
+        document.getElementById('btnVenda').addEventListener('click', () => triggerOrder('sell'));
+
+        // ── Live PnL ticker — stable interval, not recursive setTimeout ────
+        setInterval(() => {
+            if (activeOrders.length === 0) return;
+            const now = data[data.length - 1].close;
+            // Snapshot the array to be safe against concurrent splices
+            for (const order of activeOrders.slice()) {
+                if (order.fading) continue;
+                if (!order.el.isConnected) continue;
+                const diff = now - order.execPrice;
+                const pnl = (order.type === 'buy' ? diff : -diff) * 100;
+                const sign = pnl >= 0 ? '+' : '-';
+                const cls  = pnl >= 0 ? 'pos' : 'neg';
+                order.pnlEl.className = `eol-pnl ${cls}`;
+                order.pnlEl.textContent = `${sign}R$ ${Math.abs(pnl).toFixed(2).replace('.', ',')}`;
+            }
+        }, 250);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tryd - Funcionalidades</title>
+    <meta name="description" content="Ferramentas de alta performance para trading profissional.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Feature page specific styles */
+        .feature-hero {
+            padding: 180px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 131, 187, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .feature-hero .section-title {
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .feature-hero .section-title .highlight {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-lighter) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-hero .section-desc {
+            max-width: 560px;
+            margin: 0 auto 40px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* Feature category sections */
+        .feature-category {
+            padding: 112px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .feature-category:nth-child(even) {
+            background: var(--bg-surface);
+        }
+
+        .feature-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .feature-split.reverse .feature-image {
+            order: 2;
+        }
+
+        .feature-split.reverse .feature-text {
+            order: 1;
+        }
+
+        .feature-image {
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .feature-text .section-badge {
+            margin-bottom: 16px;
+        }
+
+        .feature-text .section-title {
+            font-size: clamp(28px, 3vw, 40px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .feature-text .section-desc {
+            font-size: 16px;
+            color: var(--text-tertiary);
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .feature-items {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 14px;
+        }
+
+        .feature-item-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(0, 131, 187, 0.1);
+            border: 1px solid rgba(0, 131, 187, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-light);
+        }
+
+        .feature-item-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .feature-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .feature-item p {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .feature-cta {
+            padding: 112px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .feature-cta-box {
+            background: linear-gradient(180deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-cta-box::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(0, 131, 187, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .feature-cta-box h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .feature-cta-box p {
+            color: var(--text-tertiary);
+            font-size: 17px;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        @media (max-width: 1024px) {
+            .feature-split {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .feature-split.reverse .feature-image {
+                order: 0;
+            }
+
+            .feature-split.reverse .feature-text {
+                order: 0;
+            }
+
+            .feature-items {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Elements -->
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <img src="assets/tryd logo white and blue.svg" alt="Tryd" style="height: 32px;">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="funcionalidades.html" style="color: var(--text-primary);">Funcionalidades</a>
+                <a href="index.html#planos">Planos</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#" class="nav-link-login">Entrar</a>
+                <a href="#" class="btn btn-primary btn-sm">Começar Grátis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Feature Hero -->
+    <section class="feature-hero">
+        <div class="container animate-on-scroll" style="position: relative;">
+            <div class="section-badge">Funcionalidades</div>
+            <h1 class="section-title">Ferramentas de alta performance<br><span class="highlight">em um só lugar</span>
+            </h1>
+            <p class="section-desc">Cada funcionalidade do Tryd foi desenvolvida com obsessão por performance e
+                usabilidade. Descubra tudo que está à sua disposição.</p>
+            <a href="#" class="btn btn-primary btn-large">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Experimentar Grátis por 14 dias
+            </a>
+        </div>
+    </section>
+
+    <!-- Análise Gráfica -->
+    <section class="feature-category">
+        <div class="container">
+            <div class="feature-split">
+                <div class="feature-image animate-on-scroll">
+                    <img src="assets/tryd_hero_terminal.png" alt="Análise Gráfica">
+                </div>
+                <div class="feature-text animate-on-scroll">
+                    <div class="section-badge">Análise Gráfica</div>
+                    <h2 class="section-title">O motor gráfico mais avançado do mercado brasileiro</h2>
+                    <p class="section-desc">Renderização acelerada por GPU para feeds de alta frequência. Nunca perca um
+                        tick sequer, mesmo com dezenas de ativos abertos simultaneamente.</p>
+
+                    <div class="feature-items">
+                        <div class="feature-item">
+                            <div class="feature-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 3v18h18" />
+                                    <path d="m19 9-5 5-4-4-4 4" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>12+ tipos de gráfico</h4>
+                                <p>Candle, Heikin Ashi, Renko, Kagi, Ponto & Figura, Range Bar, Footprint e mais.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 2v6h-6" />
+                                    <path d="M3 12a9 9 0 0 1 15-6.7L21 8" />
+                                    <path d="M3 22v-6h6" />
+                                    <path d="M21 12a9 9 0 0 1-15 6.7L3 16" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Replay de mercado</h4>
+                                <p>Reviva qualquer sessão histórica com velocidade ajustável para estudo e backtesting.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Alertas inteligentes</h4>
+                                <p>Alertas de preço, volume, cruzamento de indicador e padrões gráficos com notificação
+                                    em tempo real.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
+                                    <path d="M12 8v8" />
+                                    <path d="M8 12h8" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Execução pelo gráfico</h4>
+                                <p>Envie ordens, mova stops e alvos diretamente no gráfico com drag-and-drop intuitivo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fluxo de Ordens -->
+    <section class="feature-category">
+        <div class="container">
+            <div class="feature-split reverse">
+                <div class="feature-image animate-on-scroll">
+                    <img src="assets/tape_reading_ui.png" alt="Fluxo de Ordens">
+                </div>
+                <div class="feature-text animate-on-scroll">
+                    <div class="section-badge">Fluxo de Ordens</div>
+                    <h2 class="section-title">Leia o mercado com precisão cirúrgica</h2>
+                    <p class="section-desc">O módulo de análise de fluxo do Tryd é o mais completo disponível no Brasil.
+                        Identifique o posicionamento do dinheiro grande antes que o movimento aconteça.</p>
+
+                    <div class="feature-items">
+                        <div class="feature-item">
+                            <div class="feature-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Tape Reading avançado</h4>
+                                <p>Filtro por tamanho, nível de preço e agressão. Destaque automático de negócios
+                                    relevantes.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 20V10" />
+                                    <path d="M12 20V4" />
+                                    <path d="M6 20v-6" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Footprint Chart</h4>
+                                <p>Visualize o delta de volume em cada vela. Identifique desequilíbrios e pontos de
+                                    exaustão do mercado.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <ellipse cx="12" cy="5" rx="9" ry="3" />
+                                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Book de Ofertas</h4>
+                                <p>Profundidade do mercado em tempo real com visualização de liquidez em mapa de calor.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="4" y1="21" x2="4" y2="14" />
+                                    <line x1="4" y1="10" x2="4" y2="3" />
+                                    <line x1="12" y1="21" x2="12" y2="12" />
+                                    <line x1="12" y1="8" x2="12" y2="3" />
+                                    <line x1="20" y1="21" x2="20" y2="16" />
+                                    <line x1="20" y1="12" x2="20" y2="3" />
+                                    <line x1="1" y1="14" x2="7" y2="14" />
+                                    <line x1="9" y1="8" x2="15" y2="8" />
+                                    <line x1="17" y1="16" x2="23" y2="16" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Configuração total</h4>
+                                <p>Personalize filtros, cores, colunas e comportamentos para o seu estilo de operação.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtividade -->
+    <section class="feature-category">
+        <div class="container">
+            <div class="feature-split">
+                <div class="feature-image animate-on-scroll">
+                    <img src="assets/tryd_hero_terminal.png" alt="Produtividade">
+                </div>
+                <div class="feature-text animate-on-scroll">
+                    <div class="section-badge">Produtividade</div>
+                    <h2 class="section-title">Seu ambiente de operação, do seu jeito</h2>
+                    <p class="section-desc">Workspaces flexíveis, atalhos de teclado totalmente configuráveis e
+                        integração com múltiplas corretoras. O Tryd se adapta a você, não o contrário.</p>
+
+                    <div class="feature-items">
+                        <div class="feature-item">
+                            <div class="feature-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="7" height="7" />
+                                    <rect x="14" y="3" width="7" height="7" />
+                                    <rect x="14" y="14" width="7" height="7" />
+                                    <rect x="3" y="14" width="7" height="7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Workspaces ilimitados</h4>
+                                <p>Crie, salve e compartilhe perfis de layout. Alterne entre setups com um único atalho
+                                    de teclado.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                                    <line x1="8" y1="21" x2="16" y2="21" />
+                                    <line x1="12" y1="17" x2="12" y2="21" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Suporte multi-monitor</h4>
+                                <p>Distribua janelas em até 6 monitores com total independência e sincronização
+                                    automática.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                    <line x1="16" y1="13" x2="8" y2="13" />
+                                    <line x1="16" y1="17" x2="8" y2="17" />
+                                    <polyline points="10 9 9 9 8 9" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Diário de operações</h4>
+                                <p>Registre e analise seu histórico operacional com estatísticas detalhadas de
+                                    performance.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Atalhos configuráveis</h4>
+                                <p>Mapeie cada ação para os atalhos que você já conhece. Sem curva de aprendizado
+                                    forçada.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="feature-cta">
+        <div class="container">
+            <div class="feature-cta-box animate-on-scroll">
+                <h2>Experimente todas as funcionalidades gratuitamente</h2>
+                <p>14 dias de acesso completo. Sem cartão de crédito. Cancele quando quiser.</p>
+                <a href="#" class="btn btn-primary btn-large">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    Baixar Gratuitamente
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

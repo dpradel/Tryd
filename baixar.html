@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tryd - Baixar</title>
+    <meta name="description" content="Baixe o Tryd gratuitamente. Disponível para Windows. 30 dias grátis, sem cartão de crédito.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .download-hero {
+            padding: 160px 0 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .download-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,131,187,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 30% at 50% 100%, rgba(0,131,187,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .download-hero .hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .download-hero h1 {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            margin-bottom: 24px;
+        }
+        .download-hero h1 span {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-lighter) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .download-hero p {
+            font-size: 17px;
+            color: var(--text-tertiary);
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        /* Download button */
+        .download-btn-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-light));
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 100px;
+            font-size: 17px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 0 40px rgba(0,131,187,0.4), 0 16px 40px rgba(0,0,0,0.4);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .download-btn-main::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+            background-size: 200% 100%;
+            animation: shine-btn-fill 3s ease-in-out infinite alternate;
+        }
+        .download-btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 60px rgba(0,131,187,0.5), 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .download-meta {
+            margin-top: 16px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            flex-wrap: wrap;
+        }
+        .download-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* System cards */
+        .system-section {
+            padding: 96px 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 56px;
+        }
+        .system-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+        .system-card::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 50%;
+            background: radial-gradient(ellipse at 50% 100%, rgba(0,131,187,0.2) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(20px);
+            transition: all 0.5s;
+            opacity: 0.6;
+        }
+        .system-card:hover { border-color: rgba(0,131,187,0.4); transform: translateY(-4px); }
+        .system-card:hover::after { opacity: 1; }
+        .system-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: rgba(0,131,187,0.1);
+            border: 1px solid rgba(0,131,187,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-light);
+            margin-bottom: 20px;
+        }
+        .system-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+        .system-card .req-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 16px;
+        }
+        .system-card .req-list li {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 13px;
+            color: var(--text-tertiary);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            padding-bottom: 6px;
+            margin-bottom: 4px;
+        }
+        .system-card .req-list li span:last-child { color: var(--text-primary); font-weight: 600; }
+
+        /* Steps */
+        .steps-section {
+            padding: 80px 0 96px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 56px;
+        }
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 36px 28px;
+            position: relative;
+            transition: all 0.4s;
+        }
+        .step-card:hover { border-color: rgba(0,131,187,0.3); }
+        .step-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0,131,187,0.12);
+            border: 1px solid rgba(0,131,187,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--brand-light);
+            margin: 0 auto 20px;
+        }
+        .step-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+        .step-card p { font-size: 14px; color: var(--text-tertiary); line-height: 1.6; }
+
+        /* Mockup */
+        .download-screenshot {
+            width: 100%;
+            max-width: 750px;
+            margin: 60px auto 0;
+            position: relative;
+            z-index: 1;
+        }
+        .mockup-desktop {
+            background: rgba(4, 8, 16, 0.4);
+            border-radius: 14px 14px 0 0;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            overflow: hidden;
+            box-shadow: 0 -20px 80px rgba(0,131,187,0.12), 0 40px 100px rgba(0,0,0,0.8);
+        }
+        .mockup-header {
+            height: 36px;
+            background: #0a0e1a;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 8px;
+        }
+        .dot { width: 9px; height: 9px; border-radius: 50%; }
+        .dot.red { background: #ff5f57; }
+        .dot.yellow { background: #febc2e; }
+        .dot.green { background: #28c840; }
+        .mockup-body { line-height: 0; }
+        .mockup-body img {
+            width: 100%;
+            height: auto;
+            display: block;
+            -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 75%, transparent 100%);
+        }
+
+        @media (max-width: 768px) {
+            .system-grid, .steps-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
+
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <img src="assets/tryd logo white and blue.svg" alt="Tryd" style="height: 32px;">
+            </a>
+            <div class="nav-links">
+                <a href="recursos.html">Recursos</a>
+                <a href="planos.html">Planos</a>
+                <a href="corretoras.html">Corretoras</a>
+                <a href="baixar.html" style="color: var(--text-primary);">Baixar</a>
+                <a href="contato.html">Contato</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#" class="nav-link-login">Entrar</a>
+                <a href="baixar.html" class="btn btn-primary btn-sm">Baixe Agora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="download-hero">
+        <div class="hero-inner animate-on-scroll">
+            <div class="section-badge">Download</div>
+            <h1>A plataforma que<br><span>os melhores usam</span></h1>
+            <p>Instale em minutos e tenha acesso a ferramentas de nível institucional. 30 dias grátis, sem cartão de crédito.</p>
+            <a href="#" class="download-btn-main" id="downloadBtn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Baixar Tryd para Windows
+            </a>
+            <div class="download-meta">
+                <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Versão 4.2.1</span>
+                <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Windows 10 ou superior</span>
+                <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>~180 MB</span>
+                <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Atualizado em Abr 2026</span>
+            </div>
+        </div>
+        <div class="download-screenshot animate-on-scroll">
+            <div class="mockup-desktop">
+                <div class="mockup-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="mockup-body">
+                    <img src="assets/Glass Tryd.png" alt="Interface Tryd">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steps -->
+    <section class="steps-section">
+        <div class="container">
+            <div class="animate-on-scroll">
+                <div class="section-badge">Como instalar</div>
+                <h2 class="section-title">Em 3 passos você está operando</h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card animate-on-scroll">
+                    <div class="step-num">1</div>
+                    <h3>Baixe o instalador</h3>
+                    <p>Clique no botão de download acima. O arquivo é seguro, verificado digitalmente e com cerca de 180 MB.</p>
+                </div>
+                <div class="step-card animate-on-scroll">
+                    <div class="step-num">2</div>
+                    <h3>Instale o Tryd</h3>
+                    <p>Execute o instalador e siga o assistente. O processo leva menos de 2 minutos. Nenhuma dependência adicional necessária.</p>
+                </div>
+                <div class="step-card animate-on-scroll">
+                    <div class="step-num">3</div>
+                    <h3>Conecte sua corretora</h3>
+                    <p>Faça login com sua conta da corretora parceira e comece a operar imediatamente com 30 dias de acesso gratuito.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Requirements -->
+    <section class="system-section">
+        <div class="container">
+            <div class="animate-on-scroll" style="text-align: center; margin-bottom: 0;">
+                <div class="section-badge">Requisitos do sistema</div>
+                <h2 class="section-title">Otimizado para máxima performance</h2>
+                <p class="section-desc" style="margin: 0 auto;">O Tryd foi projetado para rodar com leveza, mesmo em configurações simples</p>
+            </div>
+            <div class="system-grid">
+                <div class="system-card animate-on-scroll">
+                    <div class="system-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h3>Mínimo</h3>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 4px;">Para uso básico e simulação</p>
+                    <ul class="req-list">
+                        <li><span>Sistema operacional</span><span>Windows 10 (64-bit)</span></li>
+                        <li><span>Processador</span><span>Intel Core i3 / Ryzen 3</span></li>
+                        <li><span>Memória RAM</span><span>4 GB</span></li>
+                        <li><span>Armazenamento</span><span>500 MB livre</span></li>
+                        <li><span>Internet</span><span>10 Mbps</span></li>
+                    </ul>
+                </div>
+                <div class="system-card animate-on-scroll" style="border-color: rgba(0,131,187,0.35);">
+                    <div class="system-icon" style="background: rgba(0,131,187,0.2);">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <h3>Recomendado</h3>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 4px;">Para operação profissional</p>
+                    <ul class="req-list">
+                        <li><span>Sistema operacional</span><span>Windows 11 (64-bit)</span></li>
+                        <li><span>Processador</span><span>Intel Core i5 / Ryzen 5</span></li>
+                        <li><span>Memória RAM</span><span>8 GB</span></li>
+                        <li><span>Armazenamento</span><span>2 GB livre (SSD)</span></li>
+                        <li><span>Internet</span><span>50 Mbps</span></li>
+                    </ul>
+                </div>
+                <div class="system-card animate-on-scroll">
+                    <div class="system-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <h3>Multi-monitor</h3>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 4px;">Para setups avançados</p>
+                    <ul class="req-list">
+                        <li><span>Sistema operacional</span><span>Windows 11 (64-bit)</span></li>
+                        <li><span>Processador</span><span>Intel Core i7 / Ryzen 7</span></li>
+                        <li><span>Memória RAM</span><span>16 GB</span></li>
+                        <li><span>Armazenamento</span><span>4 GB livre (SSD NVMe)</span></li>
+                        <li><span>Internet</span><span>100 Mbps (fibra)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+    <script>
+        const btn = document.getElementById('downloadBtn');
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const original = btn.innerHTML;
+            btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Download iniciado!';
+            btn.style.pointerEvents = 'none';
+            setTimeout(() => {
+                btn.innerHTML = original;
+                btn.style.pointerEvents = '';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

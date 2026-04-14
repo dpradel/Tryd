@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tryd - Planos & Preços</title>
+    <meta name="description" content="Escolha o plano Tryd ideal para você. Starter gratuito ou Pro completo. Experimente 30 dias sem cartão de crédito.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .plans-hero {
+            padding: 160px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .plans-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(0,131,187,0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .plans-hero .section-title {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.08;
+            margin-bottom: 20px;
+        }
+        .plans-hero .highlight {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-lighter) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .plans-hero .section-desc {
+            max-width: 500px;
+            margin: 0 auto 16px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* Toggle */
+        .billing-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 32px auto 60px;
+        }
+        .billing-toggle span {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .toggle-track {
+            width: 48px;
+            height: 26px;
+            background: rgba(0,131,187,0.2);
+            border: 1px solid rgba(0,131,187,0.4);
+            border-radius: 100px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .toggle-track.active { background: rgba(0,131,187,0.5); }
+        .toggle-thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            background: #0083bb;
+            border-radius: 50%;
+            transition: transform 0.3s;
+            box-shadow: 0 0 10px rgba(0,131,187,0.5);
+        }
+        .toggle-track.active .toggle-thumb { transform: translateX(22px); }
+        .save-badge {
+            background: rgba(16,185,129,0.15);
+            border: 1px solid rgba(16,185,129,0.3);
+            color: var(--success);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Plans grid */
+        .plans-page-section { padding: 0 0 96px; }
+        .plans-page-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+        .plan-page-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .plan-page-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(100,200,255,0.5) 50%, transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .plan-page-card:hover::before { opacity: 1; }
+        .plan-page-card:hover {
+            border-color: rgba(0,131,187,0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 30px rgba(0,131,187,0.1);
+        }
+        .plan-page-card.featured {
+            border-color: rgba(0,131,187,0.5);
+            background: rgba(0,131,187,0.05);
+        }
+        .plan-page-card.featured::before { opacity: 1; }
+        .plan-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0,131,187,0.15);
+            border: 1px solid rgba(0,131,187,0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--brand-light);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            margin-bottom: 20px;
+        }
+        .plan-page-card .plan-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .plan-page-price {
+            font-size: 52px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, #fff 30%, var(--brand-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .plan-page-price span {
+            font-size: 18px;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+        .plan-page-desc {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        .plan-page-divider {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 28px 0;
+        }
+        .plan-page-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 36px;
+        }
+        .plan-page-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .plan-page-features li svg {
+            flex-shrink: 0;
+            margin-top: 2px;
+            color: var(--brand-primary);
+        }
+        .plan-page-features li.muted { color: var(--text-muted); }
+        .plan-page-features li.muted svg { color: var(--text-muted); }
+        .plan-page-btn {
+            display: block;
+            text-align: center;
+            padding: 14px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            margin-top: auto;
+        }
+        .plan-page-btn-outline {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        .plan-page-btn-outline:hover {
+            border-color: var(--brand-primary);
+            background: rgba(0,131,187,0.08);
+        }
+        .plan-page-btn-primary {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-light));
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0,131,187,0.3);
+        }
+        .plan-page-btn-primary:hover {
+            box-shadow: 0 0 35px rgba(0,131,187,0.5);
+            transform: translateY(-1px);
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 80px 0 96px;
+            border-top: 1px solid var(--border-color);
+        }
+        .faq-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 28px;
+            transition: border-color 0.3s;
+        }
+        .faq-item:hover { border-color: rgba(0,131,187,0.3); }
+        .faq-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        .faq-item p {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            line-height: 1.65;
+        }
+
+        /* Final CTA */
+        .plans-final { padding: 80px 0; border-top: 1px solid var(--border-color); text-align: center; }
+
+        @media (max-width: 768px) {
+            .plans-page-grid { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
+
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <img src="assets/tryd logo white and blue.svg" alt="Tryd" style="height: 32px;">
+            </a>
+            <div class="nav-links">
+                <a href="recursos.html">Recursos</a>
+                <a href="planos.html" style="color: var(--text-primary);">Planos</a>
+                <a href="corretoras.html">Corretoras</a>
+                <a href="baixar.html">Baixar</a>
+                <a href="contato.html">Contato</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#" class="nav-link-login">Entrar</a>
+                <a href="baixar.html" class="btn btn-primary btn-sm">Baixe Agora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="plans-hero">
+        <div class="container animate-on-scroll" style="position: relative; z-index: 1;">
+            <div class="section-badge">Planos & Preços</div>
+            <h1 class="section-title">Invista na sua<br><span class="highlight">performance</span></h1>
+            <p class="section-desc">Escolha o plano ideal para o seu perfil. Todos incluem período gratuito sem cartão de crédito.</p>
+            <div class="billing-toggle" id="billingToggle">
+                <span>Mensal</span>
+                <div class="toggle-track" id="toggleTrack">
+                    <div class="toggle-thumb"></div>
+                </div>
+                <span>Anual</span>
+                <span class="save-badge">Economize 20%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans -->
+    <section class="plans-page-section">
+        <div class="container">
+            <div class="plans-page-grid">
+
+                <!-- Starter -->
+                <div class="plan-page-card animate-on-scroll">
+                    <div class="plan-name">Starter</div>
+                    <div class="plan-page-price">Grátis</div>
+                    <p class="plan-page-desc">O seu primeiro passo na alta performance. Acesso permanente sem custo ao simulador e gráficos essenciais.</p>
+                    <hr class="plan-page-divider">
+                    <ul class="plan-page-features">
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Gráficos essenciais</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Simulador nativo</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Tecnologia Nelogica</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Indicadores básicos</li>
+                        <li class="muted"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Roteamento Alta Frequência</li>
+                        <li class="muted"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Tape Reading completo</li>
+                        <li class="muted"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Indicadores Premium</li>
+                    </ul>
+                    <a href="baixar.html" class="plan-page-btn plan-page-btn-outline">Começar gratuitamente</a>
+                </div>
+
+                <!-- Pro -->
+                <div class="plan-page-card featured animate-on-scroll">
+                    <div class="plan-badge">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        Mais popular
+                    </div>
+                    <div class="plan-name">Pro</div>
+                    <div class="plan-page-price" id="proPrice">R$ 149<span>/mês</span></div>
+                    <p class="plan-page-desc" id="proDesc">Para o trader que exige o máximo. Alta frequência, Tape Reading completo e indicadores premium inclusos.</p>
+                    <hr class="plan-page-divider">
+                    <ul class="plan-page-features">
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Tudo do Starter</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Roteamento Alta Frequência</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>300+ Indicadores Premium</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Chart Trading Avançado</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Tape Reading completo</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Volume Profile & Footprint</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>3 conexões simultâneas</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Suporte prioritário</li>
+                    </ul>
+                    <a href="baixar.html" class="plan-page-btn plan-page-btn-primary">Assinar Pro</a>
+                </div>
+
+            </div>
+
+            <!-- Trust line -->
+            <p style="text-align: center; margin-top: 32px; font-size: 14px; color: var(--text-secondary); font-weight: 500; display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;">
+                <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 4px; vertical-align: middle;"><polyline points="20 6 9 17 4 12"/></svg>30 dias grátis</span>
+                <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 4px; vertical-align: middle;"><polyline points="20 6 9 17 4 12"/></svg>Sem cartão de crédito</span>
+                <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 4px; vertical-align: middle;"><polyline points="20 6 9 17 4 12"/></svg>Cancele quando quiser</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-header animate-on-scroll">
+                <div class="section-badge">Dúvidas frequentes</div>
+                <h2 class="section-title">Perguntas & Respostas</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item animate-on-scroll">
+                    <h4>Preciso de cartão de crédito para testar?</h4>
+                    <p>Não. O período de avaliação gratuita não exige nenhum dado de pagamento. Você só fornece informações de cobrança quando optar por assinar.</p>
+                </div>
+                <div class="faq-item animate-on-scroll">
+                    <h4>Posso cancelar a qualquer momento?</h4>
+                    <p>Sim. Você pode cancelar a qualquer momento pelo painel do usuário, sem burocracia ou taxas adicionais. Sem fidelidade.</p>
+                </div>
+                <div class="faq-item animate-on-scroll">
+                    <h4>O plano inclui suporte à minha corretora?</h4>
+                    <p>O Tryd é homologado nas principais corretoras do Brasil. Verifique a lista completa na página de Corretoras Parceiras.</p>
+                </div>
+                <div class="faq-item animate-on-scroll">
+                    <h4>Tenho desconto por ser cliente da corretora parceira?</h4>
+                    <p>Sim! As corretoras parceiras oferecem condições especiais, incluindo desconto ou isenção total da assinatura. Consulte a sua corretora.</p>
+                </div>
+                <div class="faq-item animate-on-scroll">
+                    <h4>Quantos computadores posso usar simultaneamente?</h4>
+                    <p>O plano Pro permite até 3 conexões simultâneas. Ideal para quem opera em setup com múltiplos monitores ou máquinas.</p>
+                </div>
+                <div class="faq-item animate-on-scroll">
+                    <h4>Qual a diferença entre o Starter e o Pro?</h4>
+                    <p>O Starter é permanentemente gratuito e inclui funcionalidades essenciais. O Pro desbloqueia alta frequência, indicadores premium, Chart Trading e Tape Reading completo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="plans-final">
+        <div class="container animate-on-scroll">
+            <h2 class="section-title" style="margin-bottom: 16px;">Pronto para operar no próximo nível?</h2>
+            <p class="section-desc" style="margin: 0 auto 36px;">Junte-se a mais de 80.000 traders que escolheram performance, estabilidade e ferramentas institucionais</p>
+            <a href="baixar.html" class="btn btn-primary btn-large">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Baixar o Tryd Grátis
+            </a>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+    <script>
+        const toggle = document.getElementById('toggleTrack');
+        const priceEl = document.getElementById('proPrice');
+        const descEl = document.getElementById('proDesc');
+        let isAnnual = false;
+        toggle.addEventListener('click', () => {
+            isAnnual = !isAnnual;
+            toggle.classList.toggle('active', isAnnual);
+            if (isAnnual) {
+                priceEl.innerHTML = 'R$ 119<span>/mês</span>';
+                descEl.textContent = 'Cobrado anualmente (R$ 1.428/ano). Você economiza R$ 360 em relação ao plano mensal.';
+            } else {
+                priceEl.innerHTML = 'R$ 149<span>/mês</span>';
+                descEl.textContent = 'Para o trader que exige o máximo. Alta frequência, Tape Reading completo e indicadores premium inclusos.';
+            }
+        });
+    </script>
+</body>
+</html>
