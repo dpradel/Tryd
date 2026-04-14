@@ -1819,8 +1819,8 @@ section {
     padding: 8px 0;
     border-radius: 6px;
     font-size: 12px;
-    font-weight: 700;
-    color: white;
+    font-weight: 500;
+    color: #040810;
     cursor: pointer;
     border: none;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
