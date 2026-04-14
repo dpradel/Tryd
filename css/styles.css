@@ -3140,35 +3140,105 @@ section {
     }
 }
 
+/* Mobile menu base styling */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    z-index: 1000;
+}
+.mobile-menu-btn svg {
+    stroke: var(--text-primary);
+}
+
 @media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .nav-actions {
+        display: none;
+    }
+    
+    .navbar-container {
+        width: 100%;
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    body.menu-open::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: rgba(4, 8, 16, 0.98);
+        z-index: 90;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
     .nav-links {
         display: none;
     }
 
-    .features-grid {
-        grid-template-columns: 1fr;
+    body.menu-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 95;
+        gap: 32px;
+        font-size: 20px;
+        text-align: center;
+        width: 100%;
     }
 
+    body.menu-open .nav-actions {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 95;
+        gap: 20px;
+        width: 80%;
+    }
+
+    body.menu-open .nav-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Fixed Layout issues */
+    .features-grid, .pilares-grid, 
+    .bento-grid, .split-container, .infra-grid, 
+    .testimonials-grid, .plans-grid-2, .footer-top, 
+    .plans-page-grid, .faq-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
     .stats-grid {
         grid-template-columns: 1fr 1fr;
         gap: 16px;
     }
 
-    .infra-grid {
-        grid-template-columns: 1fr;
+    .hero-title, .section-title {
+        font-size: clamp(32px, 8vw, 42px) !important;
+        line-height: 1.1;
     }
 
-    .testimonials-grid {
-        grid-template-columns: 1fr;
+    .hero-subtitle, .section-desc {
+        font-size: 16px !important;
     }
 
-    .plans-grid-2 {
-        grid-template-columns: 1fr;
-        max-width: 400px;
-    }
-
-    .footer-top {
-        grid-template-columns: 1fr;
+    .split-text {
+        padding-top: 20px !important;
     }
 
     .hero-cta {
