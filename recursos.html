@@ -11,38 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        .feature-hero {
-            padding: 180px 0 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .feature-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 131, 187, 0.12) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        .feature-hero .section-title {
-            font-size: clamp(36px, 5vw, 64px);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.08;
-            margin-bottom: 24px;
-        }
-        .feature-hero .highlight {
-            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-lighter) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .feature-hero .section-desc {
-            max-width: 520px;
-            margin: 0 auto 40px;
-            font-size: 17px;
-            line-height: 1.7;
-        }
+
 
         /* Resource categories */
         .resource-category {
@@ -59,15 +28,11 @@
         .resource-split.reverse > * { direction: ltr; }
 
         .resource-visual {
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-            background: var(--bg-card);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            /* Estilos removidos para suportar PNGs sem fundo já tratados */
         }
         .resource-visual img {
             width: 100%;
@@ -122,11 +87,53 @@
             line-height: 1.55;
         }
 
-        /* Evolution section */
-        .evolution-resources {
-            padding: 96px 0;
-            border-top: 1px solid var(--border-color);
+        /* Hero Evolution Unificado */
+        .feature-hero-evolution {
+            padding: 200px 0 0; /* Mais padding no topo para a Hero */
             text-align: center;
+            position: relative;
+        }
+
+        .evolution-era-wrapper {
+            position: relative;
+            padding-bottom: 96px;
+        }
+
+        /* Mockup posicionado como fundo, atrás do texto */
+        .evolution-bg-image {
+            position: absolute;
+            top: -40px; /* sobe a imagem para ficar por trás do topo */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 800px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .evolution-bg-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* Sem border, sem box-shadow */
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        /* Texto fica na frente do mockup */
+        .evolution-text {
+            position: relative;
+            z-index: 2;
+            padding-top: 340px; /* empurra o texto para baixo do mockup */
+        }
+
+        .evolution-text .section-badge {
+            margin-bottom: 16px;
+        }
+
+        .evolution-text .section-title {
+            margin-bottom: 16px;
         }
 
         /* Features accordion */
@@ -178,6 +185,13 @@
             .resource-split { grid-template-columns: 1fr; gap: 48px; }
             .resource-split.reverse { direction: ltr; }
             .resource-items { grid-template-columns: 1fr; }
+
+            .evolution-text {
+                padding-top: 220px; /* Reduced from 340px to get closer to the image */
+            }
+            .evolution-bg-image {
+                top: -20px; /* Slightly lower on mobile to better integrate with small screens */
+            }
         }
     </style>
 </head>
@@ -205,32 +219,28 @@
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="feature-hero">
-        <div class="container animate-on-scroll" style="position: relative; z-index: 1;">
-            <div class="section-badge">Recursos</div>
-            <h1 class="section-title">Ferramentas de elite<br><span class="highlight">para o trader moderno</span></h1>
-            <p class="section-desc">Cada funcionalidade do Tryd foi construída com obsessão por performance, precisão e usabilidade. Conheça tudo que está à sua disposição.</p>
-            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <a href="baixar.html" class="btn btn-primary btn-large">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Experimente Grátis
-                </a>
-                <a href="planos.html" class="btn btn-outline btn-large">Ver Planos</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Uma Nova Era -->
-    <section class="evolution-resources">
+    <!-- New Hero (Unified with Evolution) -->
+    <section class="feature-hero-evolution">
         <div class="container">
-            <div class="animate-on-scroll" style="text-align: center; margin-bottom: 56px;">
-                <div class="section-badge">Uma Nova Era</div>
-                <h2 class="section-title">Feito por quem opera, para quem opera</h2>
-                <p class="section-desc" style="margin: 0 auto;">Cada pixel do Novo Tryd foi reconstruído para reduzir a carga cognitiva. Menos ruído visual, mais clareza para ler o preço e apertar o botão na hora certa</p>
-            </div>
-            <div class="evolution-visual animate-on-scroll">
-                <img src="assets/placeholder.png" alt="Interface Tryd" style="border-radius: 16px; width: 100%; max-width: 650px; box-shadow: 0 40px 100px rgba(0,0,0,0.8); border: 1px solid var(--border-color); margin: 0 auto; display: block;">
+            <div class="evolution-era-wrapper animate-on-scroll">
+                <!-- Mockup como fundo, atrás do texto -->
+                <div class="evolution-bg-image">
+                    <img src="assets/mockups/mockup mac voando fade out.png" alt="Interface Tryd">
+                </div>
+                <!-- Conteúdo textual na frente -->
+                <div class="evolution-text">
+                    <div class="section-badge">Uma Nova Era</div>
+                    <h1 class="section-title">Feito por quem opera,<br>para quem opera</h1>
+                    <p class="section-desc" style="margin: 0 auto 36px;">Cada pixel do Novo Tryd foi reconstruído para reduzir a carga cognitiva. Menos ruído visual, mais clareza para ler o preço e apertar o botão na hora certa</p>
+                    
+                    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 10;">
+                        <a href="baixar.html" class="btn btn-primary btn-large">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Experimente Grátis
+                        </a>
+                        <a href="planos.html" class="btn btn-outline btn-large">Ver Planos</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -240,7 +250,7 @@
         <div class="container">
             <div class="resource-split">
                 <div class="resource-visual animate-on-scroll">
-                    <img src="assets/placeholder.png" alt="Interface de Tape Reading">
+                    <img src="assets/fluxo de ordens.png" alt="Interface de Tape Reading">
                 </div>
                 <div class="resource-text animate-on-scroll">
                     <div class="section-badge">Tape Reading Avançado</div>
@@ -274,7 +284,7 @@
         <div class="container">
             <div class="resource-split reverse">
                 <div class="resource-visual animate-on-scroll">
-                    <img src="assets/placeholder.png" alt="Análise Gráfica Avançada">
+                    <img src="assets/analise grafica.png" alt="Análise Gráfica Avançada">
                 </div>
                 <div class="resource-text animate-on-scroll">
                     <div class="section-badge">Análise Gráfica Avançada</div>
@@ -308,7 +318,7 @@
         <div class="container">
             <div class="resource-split">
                 <div class="resource-visual animate-on-scroll">
-                    <img src="assets/placeholder.png" alt="Gestão de Risco">
+                    <img src="assets/custodia.png" alt="Gestão de Risco">
                 </div>
                 <div class="resource-text animate-on-scroll">
                     <div class="section-badge">Gestão de Risco e Custódia</div>
@@ -341,8 +351,264 @@
     <section class="resource-category">
         <div class="container">
             <div class="resource-split reverse">
-                <div class="resource-visual animate-on-scroll">
-                    <img src="assets/placeholder.png" alt="Monitor de Conexão">
+                <div class="resource-visual uptime-visual animate-on-scroll">
+                    <div class="uptime-illustration">
+
+                        <!-- Glow de fundo -->
+                        <div class="uptime-glow"></div>
+
+                        <!-- Anéis de latência pulsando -->
+                        <div class="uptime-ring ring-1"></div>
+                        <div class="uptime-ring ring-2"></div>
+                        <div class="uptime-ring ring-3"></div>
+
+                        <!-- Foguete SVG -->
+                        <div class="uptime-rocket">
+                            <svg width="80" height="120" viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Corpo do foguete -->
+                                <path d="M40 5 C26 5 16 28 14 55 L66 55 C64 28 54 5 40 5Z" fill="url(#rocketGrad)"/>
+                                <!-- Janela -->
+                                <circle cx="40" cy="32" r="9" fill="url(#windowGrad)" opacity="0.9"/>
+                                <circle cx="40" cy="32" r="6" fill="rgba(0,180,255,0.3)"/>
+                                <!-- Corpo inferior -->
+                                <rect x="18" y="54" width="44" height="22" rx="4" fill="url(#rocketBodyGrad)"/>
+                                <!-- Asa esquerda -->
+                                <path d="M18 54 L4 76 L18 72 Z" fill="url(#wingGrad)"/>
+                                <!-- Asa direita -->
+                                <path d="M62 54 L76 76 L62 72 Z" fill="url(#wingGrad)"/>
+                                <!-- Bico do fogo -->
+                                <ellipse cx="40" cy="78" rx="10" ry="6" fill="rgba(0,131,187,0.6)"/>
+                                <!-- Fogo animado -->
+                                <path class="flame flame-1" d="M34 78 Q40 100 40 110 Q40 100 46 78Z" fill="url(#flameGrad1)"/>
+                                <path class="flame flame-2" d="M37 78 Q42 95 40 105 Q38 95 43 78Z" fill="url(#flameGrad2)" opacity="0.8"/>
+
+                                <defs>
+                                    <linearGradient id="rocketGrad" x1="40" y1="5" x2="40" y2="55" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+                                        <stop offset="100%" stop-color="rgba(0,131,187,0.35)"/>
+                                    </linearGradient>
+                                    <radialGradient id="windowGrad" cx="50%" cy="50%" r="50%">
+                                        <stop offset="0%" stop-color="rgba(0,200,255,0.9)"/>
+                                        <stop offset="100%" stop-color="rgba(0,131,187,0.5)"/>
+                                    </radialGradient>
+                                    <linearGradient id="rocketBodyGrad" x1="18" y1="54" x2="62" y2="76" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="rgba(255,255,255,0.12)"/>
+                                        <stop offset="100%" stop-color="rgba(0,131,187,0.4)"/>
+                                    </linearGradient>
+                                    <linearGradient id="wingGrad" x1="0" y1="54" x2="0" y2="76" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="rgba(0,131,187,0.5)"/>
+                                        <stop offset="100%" stop-color="rgba(0,131,187,0.15)"/>
+                                    </linearGradient>
+                                    <linearGradient id="flameGrad1" x1="40" y1="78" x2="40" y2="110" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="rgba(0,200,255,0.9)"/>
+                                        <stop offset="50%" stop-color="rgba(0,131,187,0.6)"/>
+                                        <stop offset="100%" stop-color="transparent"/>
+                                    </linearGradient>
+                                    <linearGradient id="flameGrad2" x1="40" y1="78" x2="40" y2="105" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="rgba(120,220,255,0.8)"/>
+                                        <stop offset="100%" stop-color="transparent"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+
+                            <!-- Borda glassmorphism ao redor do foguete -->
+                            <div class="rocket-glass-border"></div>
+                        </div>
+
+                        <!-- Partículas de rastro -->
+                        <div class="uptime-particle p1"></div>
+                        <div class="uptime-particle p2"></div>
+                        <div class="uptime-particle p3"></div>
+                        <div class="uptime-particle p4"></div>
+                        <div class="uptime-particle p5"></div>
+
+                        <!-- Card métrica: Uptime -->
+                        <div class="uptime-card card-left">
+                            <div class="uptime-card-label">Uptime</div>
+                            <div class="uptime-card-value">99.9%</div>
+                            <div class="uptime-card-dot"></div>
+                        </div>
+
+                        <!-- Card métrica: Latência -->
+                        <div class="uptime-card card-right">
+                            <div class="uptime-card-label">Latência</div>
+                            <div class="uptime-card-value">&lt;5ms</div>
+                            <div class="uptime-card-dot"></div>
+                        </div>
+
+                    </div>
+
+                    <style>
+                        /* ── Uptime Illustration ───────────── */
+                        .uptime-visual {
+                            min-height: 420px;
+                            background: transparent;
+                            border: none;
+                            box-shadow: none;
+                            overflow: visible;
+                        }
+                        .uptime-illustration {
+                            position: relative;
+                            width: 320px; /* Reduced slightly for safety */
+                            height: 400px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin: 0 auto;
+                        }
+
+                        /* ... (rest of the styles are same, I'll just add the mobile override at the end of the block) */
+                        
+                        @media (max-width: 968px) {
+                            .uptime-visual {
+                                min-height: 300px;
+                            }
+                            .uptime-illustration {
+                                height: 320px;
+                            }
+                            .card-left { top: 30%; }
+                            .card-right { top: 45%; }
+                            
+                            .uptime-ring.ring-3 { display: none; } /* Remove largest ring on mobile to save space */
+                        }
+
+                        /* Glow central */
+                        .uptime-glow {
+                            position: absolute;
+                            width: 200px;
+                            height: 200px;
+                            border-radius: 50%;
+                            background: radial-gradient(circle, rgba(0,131,187,0.25) 0%, transparent 70%);
+                            animation: glowPulse 3s ease-in-out infinite;
+                        }
+                        @keyframes glowPulse {
+                            0%, 100% { transform: scale(1); opacity: 0.7; }
+                            50%       { transform: scale(1.3); opacity: 1; }
+                        }
+
+                        /* Anéis concêntricos pulsando */
+                        .uptime-ring {
+                            position: absolute;
+                            border-radius: 50%;
+                            border: 1px solid rgba(0,131,187,0.35);
+                            animation: ringExpand 3s ease-out infinite;
+                        }
+                        .ring-1 { width: 160px; height: 160px; animation-delay: 0s; }
+                        .ring-2 { width: 240px; height: 240px; animation-delay: 1s; }
+                        .ring-3 { width: 320px; height: 320px; animation-delay: 2s; }
+                        @keyframes ringExpand {
+                            0%   { transform: scale(0.7); opacity: 0.8; }
+                            100% { transform: scale(1.1); opacity: 0; }
+                        }
+
+                        /* Foguete */
+                        .uptime-rocket {
+                            position: absolute;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            animation: rocketFloat 4s ease-in-out infinite;
+                            z-index: 2;
+                            filter: drop-shadow(0 0 20px rgba(0,131,187,0.5));
+                        }
+                        @keyframes rocketFloat {
+                            0%, 100% { transform: translateY(0px) rotate(-10deg); }
+                            50%       { transform: translateY(-18px) rotate(-10deg); }
+                        }
+
+                        /* Borda glassmorphism ao redor do foguete */
+                        .rocket-glass-border {
+                            position: absolute;
+                            width: 110px;
+                            height: 150px;
+                            border-radius: 50px 50px 20px 20px;
+                            border: 1px solid rgba(0,180,255,0.2);
+                            background: rgba(0,131,187,0.05);
+                            backdrop-filter: blur(4px);
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%) rotate(-10deg);
+                            pointer-events: none;
+                        }
+
+                        /* Chamas animadas */
+                        .flame {
+                            transform-origin: center top;
+                            animation: flicker 0.15s ease-in-out infinite alternate;
+                        }
+                        .flame-1 { animation-duration: 0.18s; }
+                        .flame-2 { animation-duration: 0.13s; animation-delay: 0.05s; }
+                        @keyframes flicker {
+                            0%   { transform: scaleX(1) scaleY(1); }
+                            100% { transform: scaleX(0.85) scaleY(0.92); }
+                        }
+
+                        /* Partículas de rastro */
+                        .uptime-particle {
+                            position: absolute;
+                            border-radius: 50%;
+                            background: rgba(0,180,255,0.7);
+                            animation: particleDrift 2.5s ease-in infinite;
+                        }
+                        .p1 { width: 5px; height: 5px; left: 45%; top: 60%; animation-delay: 0s;    animation-duration: 2.2s; }
+                        .p2 { width: 3px; height: 3px; left: 52%; top: 62%; animation-delay: 0.4s;  animation-duration: 2.5s; }
+                        .p3 { width: 4px; height: 4px; left: 42%; top: 65%; animation-delay: 0.8s;  animation-duration: 2s; }
+                        .p4 { width: 3px; height: 3px; left: 55%; top: 58%; animation-delay: 1.2s;  animation-duration: 2.8s; }
+                        .p5 { width: 5px; height: 5px; left: 48%; top: 70%; animation-delay: 1.6s;  animation-duration: 2.3s; }
+                        @keyframes particleDrift {
+                            0%   { transform: translate(0, 0) scale(1); opacity: 0.9; }
+                            100% { transform: translate(var(--dx, 10px), 60px) scale(0); opacity: 0; }
+                        }
+                        .p1 { --dx: -8px; } .p2 { --dx: 6px; } .p3 { --dx: -4px; }
+                        .p4 { --dx: 10px; } .p5 { --dx: -6px; }
+
+                        /* Cards de métricas flutuantes */
+                        .uptime-card {
+                            position: absolute;
+                            background: rgba(10, 20, 35, 0.75);
+                            border: 1px solid rgba(0,131,187,0.3);
+                            border-radius: 14px;
+                            padding: 12px 18px;
+                            backdrop-filter: blur(12px);
+                            -webkit-backdrop-filter: blur(12px);
+                            z-index: 3;
+                            animation: cardFloat 3.5s ease-in-out infinite;
+                        }
+                        .card-left  { left: 0; top: 40%; animation-delay: 0.5s; }
+                        .card-right { right: 0; top: 55%; animation-delay: 1.5s; }
+                        @keyframes cardFloat {
+                            0%, 100% { transform: translateY(0); }
+                            50%       { transform: translateY(-6px); }
+                        }
+
+                        .uptime-card-label {
+                            font-size: 10px;
+                            font-weight: 600;
+                            letter-spacing: 0.1em;
+                            text-transform: uppercase;
+                            color: rgba(0,180,255,0.7);
+                            margin-bottom: 4px;
+                        }
+                        .uptime-card-value {
+                            font-size: 22px;
+                            font-weight: 800;
+                            color: #fff;
+                            letter-spacing: -0.03em;
+                            line-height: 1;
+                        }
+                        .uptime-card-dot {
+                            width: 6px;
+                            height: 6px;
+                            border-radius: 50%;
+                            background: #00c57a;
+                            margin-top: 6px;
+                            animation: dotBlink 1.5s ease-in-out infinite;
+                        }
+                        @keyframes dotBlink {
+                            0%, 100% { opacity: 1; }
+                            50%       { opacity: 0.3; }
+                        }
+                    </style>
                 </div>
                 <div class="resource-text animate-on-scroll">
                     <div class="section-badge">Alta Disponibilidade</div>
@@ -395,14 +661,14 @@
                     </div>
                 </div>
                 <div class="interactive-visual animate-on-scroll" style="min-height: 400px;">
-                    <div class="interactive-image active" id="info-1"><div class="image-placeholder">Relatório de Performance</div></div>
-                    <div class="interactive-image" id="info-2"><div class="image-placeholder">Simulador</div></div>
-                    <div class="interactive-image" id="info-3"><div class="image-placeholder">Ordens OCO</div></div>
-                    <div class="interactive-image" id="info-4"><div class="image-placeholder">Múltiplos Monitores</div></div>
-                    <div class="interactive-image" id="info-5"><div class="image-placeholder">Volume Profile</div></div>
-                    <div class="interactive-image" id="info-6"><div class="image-placeholder">Busca de Ativos</div></div>
-                    <div class="interactive-image" id="info-7"><div class="image-placeholder">Custódia</div></div>
-                    <div class="interactive-image" id="info-8"><div class="image-placeholder">Métricas</div></div>
+                    <div class="interactive-image active" id="info-1"><img src="assets/Relatório de Performance.png" alt="Relatório de Performance"></div>
+                    <div class="interactive-image" id="info-2"><img src="assets/placeholder.png" alt="Simulador"></div>
+                    <div class="interactive-image" id="info-3"><img src="assets/placeholder.png" alt="Ordens OCO"></div>
+                    <div class="interactive-image" id="info-4"><img src="assets/placeholder.png" alt="Múltiplos Monitores"></div>
+                    <div class="interactive-image" id="info-5"><img src="assets/placeholder.png" alt="Volume Profile"></div>
+                    <div class="interactive-image" id="info-6"><img src="assets/placeholder.png" alt="Busca de Ativos"></div>
+                    <div class="interactive-image" id="info-7"><img src="assets/placeholder.png" alt="Custódia"></div>
+                    <div class="interactive-image" id="info-8"><img src="assets/placeholder.png" alt="Métricas"></div>
                 </div>
             </div>
 
@@ -411,7 +677,7 @@
                 <div class="features-carousel-track" id="featuresTrack">
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><div class="image-placeholder">Relatório de Performance</div></div>
+                        <div class="feature-slide-image"><img src="assets/Relatório de Performance.png" alt="Relatório de Performance"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-4 4"/></svg>
@@ -423,7 +689,7 @@
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><div class="image-placeholder">Simulador</div></div>
+                        <div class="feature-slide-image"><img src="assets/placeholder.png" alt="Simulador"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
@@ -435,7 +701,7 @@
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><div class="image-placeholder">Ordens OCO</div></div>
+                        <div class="feature-slide-image"><img src="assets/placeholder.png" alt="Ordens OCO"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>
@@ -447,7 +713,7 @@
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><div class="image-placeholder">Múltiplos Monitores</div></div>
+                        <div class="feature-slide-image"><img src="assets/placeholder.png" alt="Múltiplos Monitores"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
@@ -459,7 +725,7 @@
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><div class="image-placeholder">Volume Profile</div></div>
+                        <div class="feature-slide-image"><img src="assets/placeholder.png" alt="Volume Profile"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
@@ -471,7 +737,7 @@
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><div class="image-placeholder">Busca de Ativos</div></div>
+                        <div class="feature-slide-image"><img src="assets/placeholder.png" alt="Busca de Ativos"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -483,7 +749,7 @@
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><div class="image-placeholder">Custódia</div></div>
+                        <div class="feature-slide-image"><img src="assets/placeholder.png" alt="Custódia"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
@@ -495,7 +761,7 @@
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><div class="image-placeholder">Métricas</div></div>
+                        <div class="feature-slide-image"><img src="assets/placeholder.png" alt="Métricas"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
@@ -555,7 +821,7 @@
             padding: 0 0 24px 0;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 24px;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
             gap: 0;
@@ -563,24 +829,20 @@
         }
 
         .feature-slide-image {
-            width: 100%;
-            height: 180px;
+            width: calc(100% - 48px); /* Alinhado com a margem do texto */
+            height: 220px; /* Reduzido de 340px para evitar espaços vazios com mockups horizontais */
             overflow: hidden;
-            border-radius: 24px 24px 0 0;
-            margin-bottom: 20px;
+            border-radius: 12px;
+            margin: 24px 24px 10px;
+            background: transparent; /* Removido fundo para não criar "caixas" vazias */
         }
 
-        .feature-slide-image .image-placeholder {
+        .feature-slide-image img {
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-tertiary);
-            color: var(--text-tertiary);
-            font-size: 13px;
-            font-weight: 600;
-            border-radius: 0;
+            object-fit: contain;
+            display: block;
+            padding: 0; /* Removido padding para aproveitar melhor o espaço */
         }
 
         .feature-slide-meta {
