@@ -371,7 +371,7 @@
         </div>
     </section>
 
-    <!-- Funcionalidades accordion -->
+    <!-- Funcionalidades accordion / carousel -->
     <section class="features-accordion-section">
         <div class="container">
             <div class="interactive-header animate-on-scroll">
@@ -379,7 +379,9 @@
                 <h2 class="section-title">Tudo o que você precisa, nativo e rápido</h2>
                 <p class="section-desc">Cada ferramenta foi desenvolvida para reduzir atritos e manter o foco total na execução</p>
             </div>
-            <div class="interactive-container">
+
+            <!-- DESKTOP: original accordion -->
+            <div class="interactive-container desktop-accordion">
                 <div class="interactive-left animate-on-scroll">
                     <div class="interactive-list">
                         <div class="interactive-item active" data-target="info-1"><div class="interactive-item-title"><span>Relatório de Performance</span></div><div class="interactive-expand"><div class="interactive-expand-inner"><p>Métricas e estatísticas precisas de cada trade. Entenda seus padrões, corrija falhas e evolua com dados reais do seu operacional</p></div></div></div>
@@ -403,8 +405,348 @@
                     <div class="interactive-image" id="info-8"><div class="image-placeholder">Métricas</div></div>
                 </div>
             </div>
+
+            <!-- MOBILE: Stories-style carousel -->
+            <div class="features-carousel mobile-carousel">
+                <div class="features-carousel-track" id="featuresTrack">
+
+                    <div class="feature-slide">
+                        <div class="feature-slide-image"><div class="image-placeholder">Relatório de Performance</div></div>
+                        <div class="feature-slide-meta">
+                            <div class="feature-slide-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-4 4"/></svg>
+                            </div>
+                            <div class="feature-slide-num">01 / 08</div>
+                        </div>
+                        <h3 class="feature-slide-title">Relatório de Performance</h3>
+                        <p class="feature-slide-desc">Métricas e estatísticas precisas de cada trade. Entenda seus padrões, corrija falhas e evolua com dados reais do seu operacional.</p>
+                    </div>
+
+                    <div class="feature-slide">
+                        <div class="feature-slide-image"><div class="image-placeholder">Simulador</div></div>
+                        <div class="feature-slide-meta">
+                            <div class="feature-slide-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                            </div>
+                            <div class="feature-slide-num">02 / 08</div>
+                        </div>
+                        <h3 class="feature-slide-title">Simulador em Tempo Real</h3>
+                        <p class="feature-slide-desc">Opere em simulação com os mesmos dados do mercado ao vivo. Teste estratégias sem risco financeiro antes de ir ao mercado real.</p>
+                    </div>
+
+                    <div class="feature-slide">
+                        <div class="feature-slide-image"><div class="image-placeholder">Ordens OCO</div></div>
+                        <div class="feature-slide-meta">
+                            <div class="feature-slide-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>
+                            </div>
+                            <div class="feature-slide-num">03 / 08</div>
+                        </div>
+                        <h3 class="feature-slide-title">Ordens OCO</h3>
+                        <p class="feature-slide-desc">Defina stop e alvo na mesma ordem. A gestão de risco é automática: se um lado for executado, o outro é cancelado instantaneamente.</p>
+                    </div>
+
+                    <div class="feature-slide">
+                        <div class="feature-slide-image"><div class="image-placeholder">Múltiplos Monitores</div></div>
+                        <div class="feature-slide-meta">
+                            <div class="feature-slide-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                            </div>
+                            <div class="feature-slide-num">04 / 08</div>
+                        </div>
+                        <h3 class="feature-slide-title">Múltiplos Monitores</h3>
+                        <p class="feature-slide-desc">Estenda seu workspace por quantas telas quiser. Suporte nativo a múltiplos monitores, sem plugins ou configurações complexas.</p>
+                    </div>
+
+                    <div class="feature-slide">
+                        <div class="feature-slide-image"><div class="image-placeholder">Volume Profile</div></div>
+                        <div class="feature-slide-meta">
+                            <div class="feature-slide-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                            </div>
+                            <div class="feature-slide-num">05 / 08</div>
+                        </div>
+                        <h3 class="feature-slide-title">Volume Profile</h3>
+                        <p class="feature-slide-desc">Visualize onde o volume se concentrou por faixa de preço. Identifique os blocos institucionais e opere nos níveis de maior liquidez.</p>
+                    </div>
+
+                    <div class="feature-slide">
+                        <div class="feature-slide-image"><div class="image-placeholder">Busca de Ativos</div></div>
+                        <div class="feature-slide-meta">
+                            <div class="feature-slide-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                            </div>
+                            <div class="feature-slide-num">06 / 08</div>
+                        </div>
+                        <h3 class="feature-slide-title">Busca Ágil de Ativos</h3>
+                        <p class="feature-slide-desc">Encontre papéis, derivativos e indicadores instantaneamente com a nova janela de busca otimizada.</p>
+                    </div>
+
+                    <div class="feature-slide">
+                        <div class="feature-slide-image"><div class="image-placeholder">Custódia</div></div>
+                        <div class="feature-slide-meta">
+                            <div class="feature-slide-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                            </div>
+                            <div class="feature-slide-num">07 / 08</div>
+                        </div>
+                        <h3 class="feature-slide-title">Acompanhamento de Custódia</h3>
+                        <p class="feature-slide-desc">Visão clara de todos os seus ativos em carteira, separados por estratégia e tipo de alocação.</p>
+                    </div>
+
+                    <div class="feature-slide">
+                        <div class="feature-slide-image"><div class="image-placeholder">Métricas</div></div>
+                        <div class="feature-slide-meta">
+                            <div class="feature-slide-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                            </div>
+                            <div class="feature-slide-num">08 / 08</div>
+                        </div>
+                        <h3 class="feature-slide-title">Métricas Precisas</h3>
+                        <p class="feature-slide-desc">Estatísticas detalhadas de lucro bruto, prejuízo, fator de lucro e drawdown em poucos cliques.</p>
+                    </div>
+
+                </div>
+
+                <!-- Navigation footer: prev · stories · next -->
+                <div class="carousel-nav">
+                    <button class="carousel-btn" id="carouselPrev" aria-label="Anterior">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+
+                    <div class="carousel-stories" id="carouselStories">
+                        <div class="story-bar active"><div class="story-bar-fill"></div></div>
+                        <div class="story-bar"><div class="story-bar-fill"></div></div>
+                        <div class="story-bar"><div class="story-bar-fill"></div></div>
+                        <div class="story-bar"><div class="story-bar-fill"></div></div>
+                        <div class="story-bar"><div class="story-bar-fill"></div></div>
+                        <div class="story-bar"><div class="story-bar-fill"></div></div>
+                        <div class="story-bar"><div class="story-bar-fill"></div></div>
+                        <div class="story-bar"><div class="story-bar-fill"></div></div>
+                    </div>
+
+                    <button class="carousel-btn" id="carouselNext" aria-label="Próximo">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
+                </div>
+            </div>
+
         </div>
     </section>
+
+    <style>
+        /* ── Mobile Carousel ─────────────────────────────── */
+        .mobile-carousel  { display: none; }
+        .desktop-accordion { display: grid; }
+
+        .features-carousel-track {
+            display: flex;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            gap: 0;
+        }
+        .features-carousel-track::-webkit-scrollbar { display: none; }
+
+        .feature-slide {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            padding: 0 0 24px 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            overflow: hidden;
+        }
+
+        .feature-slide-image {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            border-radius: 24px 24px 0 0;
+            margin-bottom: 20px;
+        }
+
+        .feature-slide-image .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+            color: var(--text-tertiary);
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 0;
+        }
+
+        .feature-slide-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 24px;
+            margin-bottom: 10px;
+        }
+
+        .feature-slide-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(0,131,187,0.1);
+            border: 1px solid rgba(0,131,187,0.25);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-slide-num {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--brand-light);
+            opacity: 0.7;
+        }
+
+        .feature-slide-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin: 0 0 8px;
+            padding: 0 24px;
+        }
+
+        .feature-slide-desc {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            line-height: 1.65;
+            margin: 0;
+            padding: 0 24px;
+        }
+
+        /* Nav footer */
+        .carousel-nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .carousel-btn {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .carousel-btn:active {
+            background: rgba(0,131,187,0.2);
+            border-color: rgba(0,131,187,0.4);
+        }
+
+        /* Stories bars */
+        .carousel-stories {
+            display: flex;
+            flex: 1;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .story-bar {
+            flex: 1;
+            height: 3px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 99px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .story-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--brand-light);
+            border-radius: 99px;
+            transition: width 0.25s ease;
+        }
+
+        .story-bar.active .story-bar-fill { width: 100%; }
+        .story-bar.done .story-bar-fill {
+            width: 100%;
+            background: rgba(0,131,187,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .desktop-accordion { display: none !important; }
+            .mobile-carousel { display: block !important; }
+        }
+    </style>
+
+    <script>
+        (function() {
+            const track = document.getElementById('featuresTrack');
+            const stories = document.querySelectorAll('#carouselStories .story-bar');
+            const btnPrev = document.getElementById('carouselPrev');
+            const btnNext = document.getElementById('carouselNext');
+            if (!track || !stories.length) return;
+
+            const total = stories.length;
+            let current = 0;
+
+            function goTo(index) {
+                // Loop behavior: wraparound
+                if (index < 0) index = total - 1;
+                if (index >= total) index = 0;
+                
+                current = index;
+                const slideW = track.clientWidth;
+                track.scrollTo({ left: current * slideW, behavior: 'smooth' });
+                stories.forEach((bar, i) => {
+                    bar.classList.remove('active', 'done');
+                    if (i < current) bar.classList.add('done');
+                    if (i === current) bar.classList.add('active');
+                });
+            }
+
+            if (btnPrev) btnPrev.addEventListener('click', () => goTo(current - 1));
+            if (btnNext) btnNext.addEventListener('click', () => goTo(current + 1));
+
+            // Tap on bars to navigate directly
+            stories.forEach((bar, i) => bar.addEventListener('click', () => goTo(i)));
+
+            // Sync on swipe/scroll (keep internal state consistent)
+            let scrollTimer;
+            track.addEventListener('scroll', () => {
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(() => {
+                    const slideW = track.clientWidth || 1;
+                    const idx = Math.round(track.scrollLeft / slideW);
+                    if (idx !== current) {
+                        current = idx;
+                        stories.forEach((bar, i) => {
+                            bar.classList.remove('active', 'done');
+                            if (i < current) bar.classList.add('done');
+                            if (i === current) bar.classList.add('active');
+                        });
+                    }
+                }, 80);
+            });
+        })();
+    </script>
 
     <!-- CTA -->
     <section class="resources-cta">
