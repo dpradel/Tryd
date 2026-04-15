@@ -3170,8 +3170,17 @@ section {
         padding: 0 16px !important;
     }
     
-    .hero-beam-base, .hero-beam-light, .hero-beam-core, .bg-glow, .bg-grid, .hero-screenshot, .app-mockup {
+    .hero-beam-base, .hero-beam-light, .bg-glow, .bg-grid, .hero-screenshot, .app-mockup {
         max-width: 100vw !important;
+    }
+
+    .hero-beam-core {
+        display: none !important;
+    }
+
+    .app-mockup {
+        transform: translateZ(0); /* Safari clipping fix */
+        -webkit-mask-image: -webkit-radial-gradient(white, black); /* Safari clipping fix */
     }
     
     .orbit-container {
