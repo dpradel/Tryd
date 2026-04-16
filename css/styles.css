@@ -2990,8 +2990,9 @@ section {
 }
 
 .footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 48px;
     margin-bottom: 56px;
 }
@@ -3139,7 +3140,7 @@ section {
     }
 
     .footer-top {
-        grid-template-columns: 1fr 1fr;
+        justify-content: space-between;
     }
 }
 
@@ -3361,16 +3362,18 @@ section {
     }
 
     .footer-top {
-        grid-template-columns: 1fr 1fr !important;
-        gap: 32px 16px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 40px;
     }
     
     .footer-brand {
-        grid-column: span 2;
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-bottom: 0;
     }
 
     .stats-grid {
