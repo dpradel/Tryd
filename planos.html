@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <style>
         .plans-hero {
-            padding: 160px 0 80px;
+            padding: 160px 0 0;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -50,7 +50,7 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            margin: 32px auto 60px;
+            margin: 32px auto 0;
         }
         .billing-toggle span {
             font-size: 14px;
@@ -99,6 +99,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 24px;
             align-items: start;
+            margin-top: 24px;
         }
         .plan-page-card {
             background: var(--bg-card);
@@ -170,16 +171,16 @@
             font-weight: 500;
             opacity: 0.7;
         }
-        .plan-page-desc {
+        .faq-item p {
             font-size: 14px;
             color: var(--text-tertiary);
-            line-height: 1.6;
-            margin-bottom: 32px;
+            line-height: 1.65;
+            margin: 0;
         }
         .plan-page-divider {
             border: none;
             border-top: 1px solid var(--border-color);
-            margin: 28px 0;
+            margin: 20px 0;
         }
         .plan-page-features {
             list-style: none;
@@ -236,46 +237,20 @@
             transform: translateY(-1px);
         }
 
-        /* FAQ */
-        .faq-section {
-            padding: 80px 0 96px;
-            border-top: 1px solid var(--border-color);
-        }
-        .faq-header {
-            text-align: center;
-            margin-bottom: 56px;
-        }
-        .faq-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-        .faq-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 28px;
-            transition: border-color 0.3s;
-        }
-        .faq-item:hover { border-color: rgba(0,131,187,0.3); }
-        .faq-item h4 {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text-primary);
-        }
-        .faq-item p {
-            font-size: 14px;
-            color: var(--text-tertiary);
-            line-height: 1.65;
-        }
-
+        /* FAQ removido estilo local para usar global de styles.css */
+        
         /* Final CTA */
         .plans-final { padding: 80px 0; border-top: 1px solid var(--border-color); text-align: center; }
 
         @media (max-width: 768px) {
-            .plans-page-grid { grid-template-columns: 1fr; }
-            .faq-grid { grid-template-columns: 1fr; }
+            .plans-page-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 20px; }
+            .billing-toggle { margin: 16px auto 0; }
+            .plan-page-card { padding: 24px; }
+            .plans-hero { padding: 120px 0 0 !important; }
+            .plans-page-section { padding: 16px 0 48px !important; }
+            .faq-grid { display: flex !important; flex-direction: column !important; gap: 12px !important; }
+            .faq-header { display: flex; flex-direction: column; align-items: center; }
+            .faq-header .section-badge { margin: 0 auto 16px auto !important; }
         }
     </style>
 </head>
@@ -384,30 +359,30 @@
                 <h2 class="section-title">Perguntas & Respostas</h2>
             </div>
             <div class="faq-grid">
-                <div class="faq-item animate-on-scroll">
-                    <h4>Preciso de cartão de crédito para testar?</h4>
+                <details class="faq-item animate-on-scroll">
+                    <summary>Preciso de cartão de crédito para testar?</summary>
                     <p>Não. O período de avaliação gratuita não exige nenhum dado de pagamento. Você só fornece informações de cobrança quando optar por assinar.</p>
-                </div>
-                <div class="faq-item animate-on-scroll">
-                    <h4>Posso cancelar a qualquer momento?</h4>
+                </details>
+                <details class="faq-item animate-on-scroll">
+                    <summary>Posso cancelar a qualquer momento?</summary>
                     <p>Sim. Você pode cancelar a qualquer momento pelo painel do usuário, sem burocracia ou taxas adicionais. Sem fidelidade.</p>
-                </div>
-                <div class="faq-item animate-on-scroll">
-                    <h4>O plano inclui suporte à minha corretora?</h4>
+                </details>
+                <details class="faq-item animate-on-scroll">
+                    <summary>O plano inclui suporte à minha corretora?</summary>
                     <p>O Tryd é homologado nas principais corretoras do Brasil. Verifique a lista completa na página de Corretoras Parceiras.</p>
-                </div>
-                <div class="faq-item animate-on-scroll">
-                    <h4>Tenho desconto por ser cliente da corretora parceira?</h4>
+                </details>
+                <details class="faq-item animate-on-scroll">
+                    <summary>Tenho desconto por ser cliente da corretora parceira?</summary>
                     <p>Sim! As corretoras parceiras oferecem condições especiais, incluindo desconto ou isenção total da assinatura. Consulte a sua corretora.</p>
-                </div>
-                <div class="faq-item animate-on-scroll">
-                    <h4>Quantos computadores posso usar simultaneamente?</h4>
+                </details>
+                <details class="faq-item animate-on-scroll">
+                    <summary>Quantos computadores posso usar simultaneamente?</summary>
                     <p>O plano Pro permite até 3 conexões simultâneas. Ideal para quem opera em setup com múltiplos monitores ou máquinas.</p>
-                </div>
-                <div class="faq-item animate-on-scroll">
-                    <h4>Qual a diferença entre o Starter e o Pro?</h4>
+                </details>
+                <details class="faq-item animate-on-scroll">
+                    <summary>Qual a diferença entre o Starter e o Pro?</summary>
                     <p>O Starter é permanentemente gratuito e inclui funcionalidades essenciais. O Pro desbloqueia alta frequência, indicadores premium, Chart Trading e Tape Reading completo.</p>
-                </div>
+                </details>
             </div>
         </div>
     </section>
