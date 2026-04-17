@@ -766,89 +766,127 @@ body {
 }
 
 /* ============================================
-   PILARES - Reference style: loose on dark bg, glowing icons
+   PILARES — Feature Strip (full-width band)
    ============================================ */
 .pilares-section {
-    padding: 80px 0 60px;
-    background: transparent;
     position: relative;
+    background: transparent;
+    padding: 0;
 }
 
-.pilares-section::before {
+/* Centered eyebrow label above the strip */
+.pilares-strip-label {
+    text-align: center;
+    padding: 28px 0 20px;
+}
+
+.pilares-strip-label span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* The strip itself — full viewport width via negative margin trick */
+.pilares-strip {
+    display: flex;
+    align-items: stretch;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    background: linear-gradient(
+        180deg,
+        rgba(4, 8, 16, 0.6) 0%,
+        rgba(3, 6, 12, 0.4) 100%
+    );
+    /* subtle inner glow from top */
+    box-shadow: inset 0 1px 0 rgba(0, 131, 187, 0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Wide ambient glow behind the middle item */
+.pilares-strip::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0, 131, 187, 0.06) 0%, transparent 70%);
+    top: -60%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(ellipse at 50% 0%, rgba(0, 131, 187, 0.07) 0%, transparent 65%);
     pointer-events: none;
 }
 
-.pilares-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    position: relative;
-    z-index: 1;
-}
-
-/* Vertical divider between pilares */
-.pilar-card + .pilar-card {
-    border-left: 1px solid var(--border-color);
-}
-
-.pilar-card {
-    padding: 40px 40px;
+/* Each pilar item */
+.pilar-strip-item {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+    padding: 32px 24px;
     transition: background 0.3s ease;
+    position: relative;
 }
 
-.pilar-card:hover {
-    background: rgba(0, 131, 187, 0.03);
+.pilar-strip-item:hover {
+    background: rgba(0, 131, 187, 0.04);
 }
 
-/* Icon container with glow — matching reference style */
-.pilar-icon {
-    width: 48px;
-    height: 48px;
+
+/* Icon */
+.pilar-strip-icon {
+    width: 44px;
+    height: 44px;
     border-radius: 12px;
-    background: rgba(0, 131, 187, 0.12);
-    border: 1px solid rgba(0, 131, 187, 0.25);
+    background: rgba(0, 131, 187, 0.1);
+    border: 1px solid rgba(0, 131, 187, 0.22);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--brand-light);
     flex-shrink: 0;
-    position: relative;
-    /* Outer glow */
     box-shadow:
-        0 0 0 4px rgba(0, 131, 187, 0.08),
-        0 0 20px rgba(0, 131, 187, 0.2),
-        0 0 40px rgba(0, 131, 187, 0.08);
+        0 0 0 3px rgba(0, 131, 187, 0.06),
+        0 0 16px rgba(0, 131, 187, 0.15);
     transition: box-shadow 0.3s ease;
 }
 
-.pilar-card:hover .pilar-icon {
+.pilar-strip-item:hover .pilar-strip-icon {
     box-shadow:
-        0 0 0 4px rgba(0, 131, 187, 0.14),
-        0 0 25px rgba(0, 131, 187, 0.35),
-        0 0 50px rgba(0, 131, 187, 0.15);
+        0 0 0 4px rgba(0, 131, 187, 0.1),
+        0 0 24px rgba(0, 131, 187, 0.3);
 }
 
-.pilar-text h3 {
-    font-size: 15px;
+/* Text */
+.pilar-strip-text h3 {
+    font-size: 14px;
     font-weight: 700;
     color: var(--text-primary);
     letter-spacing: -0.01em;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     line-height: 1.3;
 }
 
-.pilar-text p {
-    font-size: 14px;
+.pilar-strip-text p {
+    font-size: 13px;
     color: var(--text-tertiary);
-    line-height: 1.65;
+    line-height: 1.6;
 }
+
+/* Vertical divider between items */
+.pilar-strip-divider {
+    width: 1px;
+    background: var(--border-color);
+    flex-shrink: 0;
+    align-self: stretch;
+    margin: 0;
+}
+
+
 
 /* ============================================
    STATS - Glassmorphism floating cards
@@ -2585,7 +2623,7 @@ section {
     font-weight: 800;
     letter-spacing: -0.03em;
     line-height: 1.1;
-    margin-bottom: 0;
+    margin-bottom: 20px;
 }
 
 .plans-grid-2 {
@@ -2751,7 +2789,9 @@ section {
 .plan-btn-pro {
     background: linear-gradient(135deg, var(--brand-primary), var(--brand-light));
     color: #040810;
-    font-weight: 500;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
     border-color: transparent;
     box-shadow: 0 0 20px rgba(0, 131, 187, 0.3);
 }
@@ -3195,11 +3235,26 @@ section {
         padding: 64px 0 !important;
     }
 
-    .features-grid, .pilares-grid, 
+    .features-grid,
     .bento-grid, .split-container, .infra-grid, 
     .testimonials-grid, .plans-grid-2, 
     .plans-page-grid, .faq-grid, .testimonials-marquee {
         grid-template-columns: 1fr !important;
+    }
+
+    /* Pilares strip — stack vertically on mobile */
+    .pilares-strip {
+        flex-direction: column;
+    }
+
+    .pilar-strip-item {
+        padding: 24px 20px;
+    }
+
+    .pilar-strip-divider {
+        width: auto;
+        height: 1px;
+        align-self: auto;
     }
 
     .orbit-container {
