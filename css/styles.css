@@ -1319,18 +1319,18 @@ section {
 .interactive-left {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0;
 }
 
 .interactive-list {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0;
 }
 
 /* ---- Inactive item: plain text row ---- */
 .interactive-item {
-    padding: 18px 20px;
+    padding: 12px 20px;
     cursor: pointer;
     position: relative;
     border-radius: 24px;
@@ -1440,7 +1440,7 @@ section {
     border: none;
     overflow: hidden;
     box-shadow: none; /* Removido conforme solicitado */
-    min-height: 600px; /* Aumentado para mockups mais altos */
+    min-height: 400px; /* Reduzido para diminuir espaço vazio embaixo da imagem */
     position: sticky;
     top: 100px;
 }

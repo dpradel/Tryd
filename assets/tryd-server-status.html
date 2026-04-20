@@ -283,7 +283,7 @@
             </div>
             <div class="status-badge">
                 <div class="pulse-dot"></div>
-                SLA 99.9%
+                Máxima Disponibilidade
             </div>
         </div>
 
@@ -317,34 +317,21 @@
         <div class="stats-bar">
             <div class="stat-item">
                 <div class="stat-lbl">Uptime</div>
-                <div class="stat-val">99.9<span>%</span></div>
+                <div class="stat-val">Máxima</div>
             </div>
             <div class="stat-item">
                 <div class="stat-lbl">Latência Média</div>
-                <div class="stat-val ping-val" id="ping-display">3<span>ms</span></div>
+                <div class="stat-val ping-val" id="ping-display">Mínima</div>
             </div>
             <div class="stat-item">
                 <div class="stat-lbl">Pacotes Perdidos</div>
-                <div class="stat-val">0.00<span>%</span></div>
+                <div class="stat-val">Mínimos</div>
             </div>
         </div>
     </div>
 
     <script>
-        const pingDisplay = document.getElementById('ping-display');
-        
-        // Simulate minor ping fluctuations
-        setInterval(() => {
-            const basePing = 3;
-            // 70% chance to be 3, 20% to be 4, 10% to be 2
-            const rand = Math.random();
-            let currentPing = basePing;
-            if (rand > 0.9) currentPing = 2;
-            else if (rand > 0.7) currentPing = 4;
-            else if (rand > 0.98) currentPing = 5;
-
-            pingDisplay.innerHTML = `${currentPing}<span>ms</span>`;
-        }, 1200);
+        // Simulation logic removed to maintain general performance claims
     </script>
 </body>
 </html>
