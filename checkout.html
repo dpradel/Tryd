@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Tryd - Assinar Pro</title>
+    <meta name="description" content="Finalize a assinatura do Tryd Pro e eleve o seu nível no trading.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .checkout-page {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        /* Order Summary Styles */
+        .order-summary-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 32px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .order-summary-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .plan-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .plan-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(0,131,187,0.2), rgba(0,131,187,0.05));
+            border: 1px solid rgba(0,131,187,0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-light);
+            flex-shrink: 0;
+        }
+
+        .plan-details h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .plan-details p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Selection Pills Group */
+        .selection-group {
+            margin-bottom: 24px;
+        }
+        
+        .selection-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pill-toggle {
+            display: flex;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .pill-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-family: inherit;
+            font-weight: 600;
+            padding: 10px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .pill-btn.active {
+            background: rgba(0,131,187,0.15);
+            color: var(--brand-lighter);
+            box-shadow: inset 0 0 0 1px rgba(0,131,187,0.5);
+        }
+
+        .price-summary {
+            padding-top: 16px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 8px;
+        }
+
+        .price-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .price-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .price-subtext {
+            font-size: 12px;
+            color: var(--success);
+            text-align: right;
+            font-weight: 500;
+        }
+
+        /* Authentication Area */
+        .auth-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+        }
+
+        .auth-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 24px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .auth-tab:hover {
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.01);
+        }
+
+        .auth-tab.active {
+            color: var(--brand-light);
+            border-bottom-color: var(--brand-primary);
+            background: transparent;
+        }
+
+        .auth-body {
+            padding: 40px;
+        }
+
+        .auth-form {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form Common Styles */
+        .form-section-title {
+            margin: 0 0 20px 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .form-group { margin-bottom: 20px; position: relative; }
+        .form-row { display: flex; gap: 16px; }
+        .form-row > * { flex: 1; min-width: 0; }
+        
+        /* Flex row for DDD + Telephone */
+        .phone-group { display: flex; gap: 12px; }
+        .phone-ddd { width: 80px; flex-shrink: 0; }
+        
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+
+        .form-input:focus {
+            border-color: rgba(0,131,187,0.5);
+            background-color: rgba(0,131,187,0.03);
+            box-shadow: 0 0 0 4px rgba(0,131,187,0.1);
+        }
+        
+        .form-input::placeholder { color: var(--text-muted); }
+
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            bottom: 14px;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+            padding: 0;
+            display: flex;
+        }
+
+        .password-toggle:hover { color: var(--text-primary); }
+
+        /* Checklist style */
+        .password-rules {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-top: -8px;
+            margin-bottom: 20px;
+            list-style: none;
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            border: 1px dashed var(--border-color);
+        }
+
+        .password-rules li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 6px;
+            transition: color 0.2s;
+        }
+        .password-rules li:last-child { margin-bottom: 0; }
+
+        .password-rules li::before {
+            content: '×';
+            position: absolute;
+            left: 0;
+            top: -2px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #ff5f57;
+        }
+        .password-rules li.valid { color: var(--text-primary); }
+        .password-rules li.valid::before {
+            content: '✓';
+            color: var(--success);
+            font-size: 13px;
+            top: 0;
+        }
+
+        .helper-link {
+            font-size: 12px;
+            color: var(--brand-light);
+            text-decoration: none;
+            float: right;
+            margin-top: -26px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .helper-link:hover { text-decoration: underline; }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-light));
+            color: #040810;
+            border: none;
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 32px;
+            box-shadow: 0 0 20px rgba(0,131,187,0.3);
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0,131,187,0.5);
+        }
+
+        @media (max-width: 968px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .order-summary-card {
+                position: static;
+                order: -1; /* visually place it at top */
+            }
+            .form-row { flex-direction: column; gap: 0; }
+            .auth-body { padding: 32px 24px; }
+            .checkout-page { padding: 100px 0 60px; }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
+
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <img src="assets/tryd logo white and blue.svg" alt="Tryd" style="height: 32px;">
+            </a>
+            <div class="nav-links">
+                <a href="recursos.html">Recursos</a>
+                <a href="planos.html">Planos</a>
+                <a href="corretoras.html">Corretoras</a>
+                <a href="baixar.html">Baixar</a>
+                <a href="contato.html">Contato</a>
+            </div>
+            <!-- Using simple back button on checkout -->
+            <div class="nav-actions">
+                <a href="planos.html" class="btn btn-outline btn-sm">Voltar</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="checkout-page">
+        <div class="container" style="max-width: 1100px;">
+            
+            <div class="checkout-grid">
+                
+                <!-- Left: Order Summary -->
+                <div class="order-summary-card">
+                    <h2 class="order-summary-title">Resumo do Pedido</h2>
+                    
+                    <div class="plan-item">
+                        <div class="plan-icon">
+                            <img src="assets/symbol.svg" alt="Tryd" style="width: 26px; height: 26px;">
+                        </div>
+                        <div class="plan-details">
+                            <h4>Plano Tryd Pro</h4>
+                            <p>Acesso imdediato e ilimitado</p>
+                        </div>
+                    </div>
+
+                    <!-- Client Type Toggle -->
+                    <div class="selection-group">
+                        <label class="selection-label">Tipo de Cliente</label>
+                        <div class="pill-toggle" id="clientTypeToggle">
+                            <button type="button" class="pill-btn active" data-value="n-prof">Não Profissional</button>
+                            <button type="button" class="pill-btn" data-value="prof">Profissional</button>
+                        </div>
+                    </div>
+
+                    <!-- Term Toggle -->
+                    <div class="selection-group">
+                        <label class="selection-label">Período</label>
+                        <div class="pill-toggle" id="termToggle">
+                            <button type="button" class="pill-btn active" data-value="anual">Anual</button>
+                            <button type="button" class="pill-btn" data-value="semestral">Semestral</button>
+                            <button type="button" class="pill-btn" data-value="mensal">Mensal</button>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Display -->
+                    <div class="price-summary">
+                        <div class="price-row">
+                            <span class="price-label">Total</span>
+                            <span class="price-value" id="displayTotal">R$ 1.428,00</span>
+                        </div>
+                        <div class="price-subtext" id="displayInstallment">Em até 12x s/ juros no cartão</div>
+                        
+                        <div id="installmentContainer" style="margin-top: 20px;">
+                            <label class="form-label" style="font-size: 12px; margin-bottom: 6px;">Parcelamento</label>
+                            <select id="installmentSelect" class="form-input" style="padding: 12px; font-size: 14px; font-weight: 600; cursor: pointer; border-color: rgba(0,131,187,0.3);">
+                                <!-- dynamically filled -->
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right: Authentication -->
+                <div class="auth-container">
+                    
+                    <div class="auth-tabs">
+                        <div class="auth-tab active" data-target="form-login">Já tenho conta</div>
+                        <div class="auth-tab" data-target="form-register">Criar nova conta</div>
+                    </div>
+
+                    <div class="auth-body">
+                        
+                        <!-- Login Form -->
+                        <form id="form-login" class="auth-form active" novalidate onsubmit="return false;">
+                            <div class="form-group">
+                                <label class="form-label" for="loginId">E-mail ou CPF/CNPJ</label>
+                                <input type="text" id="loginId" class="form-input" placeholder="Digite seu e-mail ou documento..." required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="loginPass">Senha</label>
+                                <a href="recuperar-senha.html" class="helper-link">Esqueci minha senha</a>
+                                <input type="password" id="loginPass" class="form-input" placeholder="Sua senha de acesso" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('loginPass')">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="eye-open" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                </button>
+                            </div>
+
+                            <button type="button" class="form-submit" onclick="simulateLogin()">
+                                Entrar e Continuar
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+                        </form>
+
+                        <!-- Registration Form -->
+                        <form id="form-register" class="auth-form" novalidate onsubmit="return false;">
+                            
+                            <h3 class="form-section-title">Dados Cadastrais</h3>
+                            <div class="form-group">
+                                <label class="form-label" for="regName">Nome Completo</label>
+                                <input type="text" id="regName" class="form-input" placeholder="Seu nome legível" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="regCpf">CPF</label>
+                                    <input type="text" id="regCpf" class="form-input" placeholder="000.000.000-00" inputmode="numeric" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="regDob">Data de Nascimento</label>
+                                    <input type="date" id="regDob" class="form-input" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group phone-group">
+                                    <div class="phone-ddd">
+                                        <label class="form-label" for="regDdd">DDD</label>
+                                        <input type="text" id="regDdd" class="form-input" placeholder="Ex: 51" maxlength="2" pattern="[0-9]{2}" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                                    </div>
+                                    <div style="flex:1;">
+                                        <label class="form-label" for="regPhone">Telefone / Celular</label>
+                                        <input type="tel" id="regPhone" class="form-input" placeholder="90000-0000" maxlength="11" pattern="[0-9]{8,11}" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="regEmail">E-mail</label>
+                                    <input type="email" id="regEmail" class="form-input" placeholder="seuemail@exemplo.com" required>
+                                </div>
+                            </div>
+
+                            <h3 class="form-section-title" style="margin-top: 24px;">Criação de Senha</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="regPass">Senha</label>
+                                    <input type="password" id="regPass" class="form-input" placeholder="Crie uma senha forte" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('regPass')">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    </button>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="regPassConf">Confirmar Senha</label>
+                                    <input type="password" id="regPassConf" class="form-input" placeholder="Repita a senha" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('regPassConf')">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <ul class="password-rules" id="passRules">
+                                <li id="ruleLength">Mínimo de 8 caractere(s)</li>
+                                <li id="ruleNum">Mínimo de 1 número(s)</li>
+                                <li id="ruleUpper">Mínimo de 1 letra(s) maiúscula(s)</li>
+                                <li id="ruleLower">Mínimo de 1 letra(s) minúscula(s)</li>
+                                <li id="ruleSpec">Não conter caractere(s) especial(is)</li>
+                            </ul>
+
+
+                            <h3 class="form-section-title" style="margin-top: 24px;">Dados de Endereço</h3>
+                            <div class="form-row" style="align-items: flex-end;">
+                                <div class="form-group">
+                                    <label class="form-label" for="regCep">CEP</label>
+                                    <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" rel="noopener" class="helper-link">Não sei meu CEP</a>
+                                    <input type="text" id="regCep" class="form-input" placeholder="00000-000" maxlength="9" inputmode="numeric" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="regLogradouro">Endereço</label>
+                                    <input type="text" id="regLogradouro" class="form-input" placeholder="Rua / Avenida" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="regNumero">Número</label>
+                                    <input type="text" id="regNumero" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="regComp">Complemento (opcional)</label>
+                                    <input type="text" id="regComp" class="form-input" placeholder="Apto, Bloco">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="regBairro">Bairro</label>
+                                    <input type="text" id="regBairro" class="form-input" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group" style="flex: 2;">
+                                    <label class="form-label" for="regCidade">Cidade</label>
+                                    <input type="text" id="regCidade" class="form-input" required>
+                                </div>
+                                <div class="form-group" style="flex: 1;">
+                                    <label class="form-label" for="regUf">Estado</label>
+                                    <input type="text" id="regUf" class="form-input" placeholder="UF" maxlength="2" required>
+                                </div>
+                            </div>
+
+
+                            <button type="button" class="form-submit" onclick="simulateRegister()">
+                                Criar Conta e Continuar
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </button>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- Order Summary Logic ---
+        const config = {
+            type: 'n-prof', // n-prof | prof
+            term: 'anual'   // anual | semestral | mensal
+        };
+
+        const plans = {
+            'n-prof': {
+                'mensal': { total: 149.00, sub: 'Cobrança recorrente mensal' },
+                'semestral': { total: 804.60, sub: 'Em até 6x s/ juros no cartão' }, // 10% off -> 134.10 * 6
+                'anual': { total: 1428.00, sub: 'Em até 12x s/ juros no cartão' } // ~20% off -> 119.00 * 12
+            },
+            'prof': {
+                'mensal': { total: 299.00, sub: 'Cobrança recorrente mensal' },
+                'semestral': { total: 1614.60, sub: 'Em até 6x s/ juros no cartão' },
+                'anual': { total: 2868.00, sub: 'Em até 12x s/ juros no cartão' }
+            }
+        };
+
+        const updateSummary = () => {
+            const data = plans[config.type][config.term];
+            const formattedTotal = 'R$ ' + data.total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('displayTotal').innerText = formattedTotal;
+            document.getElementById('displayInstallment').innerText = data.sub;
+
+            // Handle installments select array
+            const selContainer = document.getElementById('installmentContainer');
+            const sel = document.getElementById('installmentSelect');
+            sel.innerHTML = '';
+            
+            if (config.term === 'mensal') {
+                selContainer.style.display = 'none';
+            } else {
+                selContainer.style.display = 'block';
+                const maxInst = config.term === 'anual' ? 12 : 6;
+                for(let i = 1; i <= maxInst; i++) {
+                    const instValue = data.total / i;
+                    const formattedInst = 'R$ ' + instValue.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    const opt = document.createElement('option');
+                    opt.value = i;
+                    opt.text = `${i}x de ${formattedInst} sem juros`;
+                    // default to max installments
+                    if(i === maxInst) opt.selected = true;
+                    sel.appendChild(opt);
+                }
+            }
+        };
+
+        document.querySelectorAll('#clientTypeToggle .pill-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('#clientTypeToggle .pill-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                config.type = e.target.dataset.value;
+                updateSummary();
+            });
+        });
+
+        document.querySelectorAll('#termToggle .pill-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('#termToggle .pill-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                config.term = e.target.dataset.value;
+                updateSummary();
+            });
+        });
+
+        // Initialize
+        updateSummary();
+
+        // --- Tabs Logic ---
+        document.querySelectorAll('.auth-tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                // reset active states
+                document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+                
+                // activate target
+                e.target.classList.add('active');
+                const targetId = e.target.dataset.target;
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // --- Auth Utilities ---
+        function togglePassword(id) {
+            const el = document.getElementById(id);
+            if (el.type === 'password') {
+                el.type = 'text';
+            } else {
+                el.type = 'password';
+            }
+        }
+
+        // --- Validation Logic ---
+        const passInput = document.getElementById('regPass');
+        passInput.addEventListener('input', (e) => {
+            const val = e.target.value;
+            
+            // Length
+            const isLengthOk = val.length >= 8;
+            document.getElementById('ruleLength').className = isLengthOk ? 'valid' : '';
+            
+            // Numbers
+            const hasNum = /\d/.test(val);
+            document.getElementById('ruleNum').className = hasNum ? 'valid' : '';
+            
+            // Uppercase
+            const hasUpper = /[A-Z]/.test(val);
+            document.getElementById('ruleUpper').className = hasUpper ? 'valid' : '';
+            
+            // Lowercase
+            const hasLower = /[a-z]/.test(val);
+            document.getElementById('ruleLower').className = hasLower ? 'valid' : '';
+            
+            // No Special Characters
+            const noSpec = val.length > 0 && /^[A-Za-z0-9]+$/.test(val);
+            document.getElementById('ruleSpec').className = noSpec ? 'valid' : '';
+        });
+
+        // --- CEP Auto complete via ViaCEP API ---
+        const cepInput = document.getElementById('regCep');
+        cepInput.addEventListener('blur', (e) => {
+            let cep = e.target.value.replace(/\D/g, '');
+            if (cep.length === 8) {
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(res => res.json())
+                .then(data => {
+                    if (!data.erro) {
+                        document.getElementById('regLogradouro').value = data.logradouro;
+                        document.getElementById('regBairro').value = data.bairro;
+                        document.getElementById('regCidade').value = data.localidade;
+                        document.getElementById('regUf').value = data.uf;
+                        document.getElementById('regNumero').focus();
+                    }
+                })
+                .catch(err => console.error("CEP fetch err:", err));
+            }
+        });
+
+        // Masks (simplified logic)
+        cepInput.addEventListener('input', (e) => {
+            let v = e.target.value.replace(/\D/g, '');
+            if(v.length > 5) v = v.slice(0,5) + '-' + v.slice(5,8);
+            e.target.value = v;
+        });
+
+        const cpfInput = document.getElementById('regCpf');
+        cpfInput.addEventListener('input', (e) => {
+            let v = e.target.value.replace(/\D/g, '');
+            if(v.length <= 11) {
+                if(v.length > 9) v = v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9)+'-'+v.slice(9,11);
+                else if(v.length > 6) v = v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9);
+                else if(v.length > 3) v = v.slice(0,3)+'.'+v.slice(3,6);
+                e.target.value = v;
+            } else {
+                e.target.value = e.target.value.slice(0, 14);
+            }
+        });
+
+        function simulateLogin() {
+            // logic
+            alert('Simulação de Login - Avançando de etapa...');
+        }
+        function simulateRegister() {
+            // logic
+            alert('Simulação de Registro - Avançando de etapa...');
+        }
+
+    </script>
+</body>
+</html>
