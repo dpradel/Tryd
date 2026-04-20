@@ -3453,6 +3453,24 @@ section {
         margin-bottom: 0;
     }
 
+    .section-header-mobile-left {
+        text-align: left !important;
+    }
+    .section-header-mobile-left .section-desc {
+        margin: 0 !important;
+    }
+    .section-header-mobile-left .section-badge {
+        margin: 0 0 16px 0 !important;
+    }
+
+    .system-card-center {
+        text-align: center;
+    }
+    .system-card-center .system-icon {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .stats-grid {
         grid-template-columns: 1fr 1fr;
         gap: 16px;
@@ -3472,7 +3490,11 @@ section {
     }
 
     .split-text {
-        padding-top: 20px !important;
+        margin-top: 40px !important;
+    }
+    
+    .split-visual {
+        margin-bottom: 16px !important;
     }
     
     .dom-widget {
@@ -3486,9 +3508,10 @@ section {
     /* Make all CTA buttons large and centered on mobile by default */
     .btn:not(.nav-actions .btn):not(.mobile-menu-btn) {
         width: 100% !important;
-        max-width: 300px !important;
+        max-width: none !important;
         display: flex;
         justify-content: center;
+        align-items: center; /* keep inner text centered */
         margin-left: auto;
         margin-right: auto;
     }
@@ -3556,9 +3579,11 @@ section {
 
     .hero-cta {
         flex-direction: column;
-        align-items: center !important;
+        align-items: stretch !important;
         gap: 16px;
         margin-bottom: 12px !important;
+        width: 100%;
+        padding: 0 10px;
     }
 
     .faq-item summary {
@@ -3618,7 +3643,7 @@ section {
 .orbit-circle {
     position: absolute;
     border-radius: 50%;
-    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border: 1px dashed rgba(255, 255, 255, 0.35);
     animation: spin linear infinite;
 }
 
