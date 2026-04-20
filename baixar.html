@@ -171,6 +171,7 @@
             position: relative;
             overflow: hidden;
             transition: all 0.4s;
+            text-align: center;
         }
         .system-card::after {
             content: '';
@@ -198,7 +199,7 @@
             align-items: center;
             justify-content: center;
             color: var(--brand-light);
-            margin-bottom: 20px;
+            margin: 0 auto 20px auto;
         }
         .system-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
         .system-card .req-list {
@@ -211,6 +212,8 @@
         .system-card .req-list li {
             display: flex;
             flex-direction: column;
+            align-items: center;
+            text-align: center;
             gap: 4px;
             font-size: 13px;
             color: var(--text-tertiary);
@@ -236,9 +239,6 @@
             }
             .download-hero .hero-inner { padding: 0 24px; }
             .download-screenshot { padding: 0 24px; margin-top: 40px; }
-            .system-card { text-align: center; }
-            .system-card .system-icon { margin: 0 auto 20px auto; }
-            .req-list li { align-items: center; text-align: center; }
         }
     </style>
 </head>
