@@ -1,0 +1,21 @@
+{
+  "name": "tryd-website",
+  "version": "1.0.0",
+  "description": "Redesign do site institucional da Tryd com foco em UX premium e performance.",
+  "main": "index.html",
+  "scripts": {
+    "start": "browser-sync start --server --files \"*.html, css/*.css, js/*.js\" --no-notify --port 3000",
+    "dev": "npm start"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.0"
+  },
+  "keywords": [
+    "trading",
+    "institutional",
+    "glassmorphism",
+    "tryd"
+  ],
+  "author": "Antigravity Agent",
+  "license": "ISC"
+}

@@ -1,0 +1,23 @@
+# Tryd Design System & Web Development Rules
+
+## Design Principles
+- **Aesthetic:** Premium, Modern, Institutional.
+- **Visual Effects:** Glassmorphism (semi-transparent backgrounds with blur), subtle glow/shadows, and smooth transitions.
+- **Hierarchy:** High contrast between primary headings (white) and secondary text (var(--text-tertiary)).
+
+## UI Tokens (CSS Variables)
+Always use these variables from `styles.css` for consistency:
+- **Primary Color:** `--brand-primary` (#0083bb)
+- **Secondary Background:** `--bg-secondary` (#0a0e1a)
+- **Tertiary Background:** `--bg-tertiary` (#040810)
+- **Border Radius:** `20px` to `24px` for cards; `100px` for pills/buttons.
+
+## Animation Guidelines
+- Use `.animate-on-scroll` class for elements that should fade in.
+- All primary CTAs must have the icon on the **right**.
+- Use the standard label "Teste Grátis" for high-priority downloads/sign-ups.
+
+## Figma Synchronization
+- The project is configured for 'Code to Canvas'.
+- The local server runs on port 3000 (`npm start`).
+- When importing from Figma, ensure mapping to these specific CSS tokens.
