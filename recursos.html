@@ -5,27 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tryd - Recursos</title>
-    <meta name="description" content="Conheça todos os recursos da plataforma Tryd: análise gráfica, fluxo de ordens, relatórios de performance e muito mais.">
+    <meta name="description"
+        content="Conheça todos os recursos da plataforma Tryd: análise gráfica, fluxo de ordens, relatórios de performance e muito mais.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <style>
-
-
         /* Resource categories */
         .resource-category {
             padding: 96px 0;
             border-top: 1px solid var(--border-color);
         }
+
         .resource-split {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
         }
-        .resource-split.reverse { direction: rtl; }
-        .resource-split.reverse > * { direction: ltr; }
+
+        .resource-split.reverse {
+            direction: rtl;
+        }
+
+        .resource-split.reverse>* {
+            direction: ltr;
+        }
 
         .resource-visual {
             display: flex;
@@ -34,12 +41,17 @@
             position: relative;
             /* Estilos removidos para suportar PNGs sem fundo já tratados */
         }
+
         .resource-visual img {
             width: 100%;
             height: auto;
             display: block;
         }
-        .resource-text .section-badge { margin-bottom: 16px; }
+
+        .resource-text .section-badge {
+            margin-bottom: 16px;
+        }
+
         .resource-text h2 {
             font-size: clamp(26px, 3vw, 38px);
             font-weight: 800;
@@ -47,21 +59,25 @@
             line-height: 1.15;
             margin-bottom: 16px;
         }
+
         .resource-text .section-desc {
             font-size: 16px;
             color: var(--text-tertiary);
             line-height: 1.7;
             margin-bottom: 32px;
         }
+
         .resource-items {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
+
         .resource-item {
             display: flex;
             gap: 12px;
         }
+
         .resource-item-icon {
             flex-shrink: 0;
             width: 36px;
@@ -74,13 +90,19 @@
             justify-content: center;
             color: var(--brand-light);
         }
-        .resource-item-icon svg { width: 16px; height: 16px; }
+
+        .resource-item-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
         .resource-item h4 {
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 3px;
             color: var(--text-primary);
         }
+
         .resource-item p {
             font-size: 12.5px;
             color: var(--text-tertiary);
@@ -89,7 +111,8 @@
 
         /* Hero Evolution Unificado */
         .feature-hero-evolution {
-            padding: 200px 0 0; /* Mais padding no topo para a Hero */
+            padding: 200px 0 0;
+            /* Mais padding no topo para a Hero */
             text-align: center;
             position: relative;
         }
@@ -102,7 +125,8 @@
         /* Mockup posicionado como fundo, atrás do texto */
         .evolution-bg-image {
             position: absolute;
-            top: -40px; /* sobe a imagem para ficar por trás do topo */
+            top: -40px;
+            /* sobe a imagem para ficar por trás do topo */
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
@@ -125,7 +149,8 @@
         .evolution-text {
             position: relative;
             z-index: 2;
-            padding-top: 340px; /* empurra o texto para baixo do mockup */
+            padding-top: 340px;
+            /* empurra o texto para baixo do mockup */
         }
 
         .evolution-text .section-badge {
@@ -147,6 +172,7 @@
             padding: 96px 0;
             border-top: 1px solid var(--border-color);
         }
+
         .cta-box {
             background: linear-gradient(180deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
             border: 1px solid var(--border-color);
@@ -156,6 +182,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .cta-box::before {
             content: '';
             position: absolute;
@@ -167,6 +194,7 @@
             background: radial-gradient(circle, rgba(0, 131, 187, 0.1) 0%, transparent 70%);
             pointer-events: none;
         }
+
         .cta-box h2 {
             font-size: clamp(28px, 4vw, 42px);
             font-weight: 800;
@@ -174,6 +202,7 @@
             margin-bottom: 16px;
             position: relative;
         }
+
         .cta-box p {
             color: var(--text-tertiary);
             font-size: 17px;
@@ -182,15 +211,27 @@
         }
 
         @media (max-width: 968px) {
-            .resource-split { grid-template-columns: 1fr; gap: 48px; }
-            .resource-split.reverse { direction: ltr; }
-            .resource-items { grid-template-columns: 1fr; }
+            .resource-split {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .resource-split.reverse {
+                direction: ltr;
+            }
+
+            .resource-items {
+                grid-template-columns: 1fr;
+            }
 
             .evolution-text {
-                padding-top: 220px; /* Reduced from 340px to get closer to the image */
+                padding-top: 220px;
+                /* Reduced from 340px to get closer to the image */
             }
+
             .evolution-bg-image {
-                top: -20px; /* Slightly lower on mobile to better integrate with small screens */
+                top: -20px;
+                /* Slightly lower on mobile to better integrate with small screens */
             }
         }
     </style>
@@ -230,16 +271,28 @@
                 <div class="evolution-text">
                     <div class="section-badge">Uma Nova Era</div>
                     <h1 class="section-title">Feito por quem opera,<br>para quem opera</h1>
-                    <p class="section-desc" style="margin: 0 auto 36px;">Cada pixel do Novo Tryd foi reconstruído para reduzir a carga cognitiva. Menos ruído visual, mais clareza para ler o preço e apertar o botão na hora certa</p>
-                    
-                    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 10;">
+                    <p class="section-desc" style="margin: 0 auto 36px;">Cada pixel do Novo Tryd foi reconstruído para
+                        reduzir a carga cognitiva. Menos ruído visual, mais clareza para ler o preço e apertar o botão
+                        na hora certa</p>
+
+                    <div
+                        style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 10;">
                         <a href="baixar.html" class="btn btn-primary btn-large">
                             Teste Grátis
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
                         </a>
                         <a href="planos.html" class="btn btn-outline btn-large">
                             Ver Planos
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-top: 1px;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" style="margin-top: 1px;">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -257,23 +310,52 @@
                 <div class="resource-text animate-on-scroll">
                     <div class="section-badge">Tape Reading Avançado</div>
                     <h2>Leia o fluxo de ordens com precisão</h2>
-                    <p class="section-desc">O módulo de análise de fluxo mais completo disponível no mercado brasileiro. Identifique o posicionamento institucional antes que o movimento aconteça.</p>
+                    <p class="section-desc">O módulo de análise de fluxo mais completo disponível no mercado brasileiro.
+                        Identifique o posicionamento institucional antes que o movimento aconteça.</p>
                     <div class="resource-items">
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-                            <div><h4>Filtro por tamanho</h4><p>Destaque automático de agressões relevantes por volume</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                                </svg></div>
+                            <div>
+                                <h4>Filtro por tamanho</h4>
+                                <p>Destaque automático de agressões relevantes por volume</p>
+                            </div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
-                            <div><h4>Footprint Chart</h4><p>Delta de volume em cada vela, desequilíbrios e exaustão</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M18 20V10" />
+                                    <path d="M12 20V4" />
+                                    <path d="M6 20v-6" />
+                                </svg></div>
+                            <div>
+                                <h4>Footprint Chart</h4>
+                                <p>Delta de volume em cada vela, desequilíbrios e exaustão</p>
+                            </div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
-                            <div><h4>Book de Ofertas</h4><p>Profundidade de mercado com mapa de calor de liquidez</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg></div>
+                            <div>
+                                <h4>Book de Ofertas</h4>
+                                <p>Profundidade de mercado com mapa de calor de liquidez</p>
+                            </div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-                            <div><h4>Configuração total</h4><p>Personalize filtros, cores e colunas para seu estilo</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 20h9" />
+                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                                </svg></div>
+                            <div>
+                                <h4>Configuração total</h4>
+                                <p>Personalize filtros, cores e colunas para seu estilo</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -290,24 +372,65 @@
                 </div>
                 <div class="resource-text animate-on-scroll">
                     <div class="section-badge">Análise Gráfica Avançada</div>
-                    <h2>O motor gráfico mais avançado do mercado</h2>
-                    <p class="section-desc">Renderização acelerada por GPU para dados de alta frequência. Envie ordens diretamente pelo gráfico com drag-and-drop intuitivo.</p>
+                    <h2>O gráfico mais avançado do mercado</h2>
+                    <p class="section-desc">Renderização acelerada por GPU para dados de alta frequência. Envie ordens
+                        diretamente pelo gráfico com drag-and-drop intuitivo.</p>
                     <div class="resource-items">
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 4v16"/><path d="M15 2v20"/><rect x="6" y="8" width="6" height="8"/><rect x="12" y="6" width="6" height="12"/></svg></div>
-                            <div><h4>5 tipos de gráfico</h4><p>Candle, Heikin Ashi, Renko, Footprint e mais</p></div>
+                            <div class="resource-item-icon">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M4.5 3V5" />
+                                    <path d="M4.5 11V13" />
+                                    <path d="M11.5 1V4" />
+                                    <path d="M11.5 12V15" />
+                                    <path d="M6.5 5.33H2.5V10.66H6.5V5.33Z" />
+                                    <path d="M13.5 4H9.5V12H13.5V4Z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Tipos de gráfico</h4>
+                                <p>Escolha seu gráfico ideal: Candle, Heikin Ashi, Renko e mais</p>
+                            </div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg></div>
-                            <div><h4>Replay de mercado</h4><p>Reviva sessões históricas para estudo e backtesting</p></div>
+                            <div class="resource-item-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Múltiplos períodos</h4>
+                                <p>Compare diferentes tempos gráficos sem mudar de aba</p>
+                            </div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg></div>
-                            <div><h4>Chart Trading</h4><p>Envie ordens, mova stops e alvos no gráfico</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
+                                    <path d="M12 8v8" />
+                                    <path d="M8 12h8" />
+                                </svg></div>
+                            <div>
+                                <h4>Chart Trading</h4>
+                                <p>Mais velocidade e controle no envio de ordens pelo gráfico</p>
+                            </div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15h18"/><path d="M8 15v6"/><path d="M16 15v6"/><path d="M3 8h18"/></svg></div>
-                            <div><h4>Indicadores</h4><p>Clássicos e proprietários, customizáveis por regras</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                                    <path d="M3 15h18" />
+                                    <path d="M8 15v6" />
+                                    <path d="M16 15v6" />
+                                    <path d="M3 8h18" />
+                                </svg></div>
+                            <div>
+                                <h4>Indicadores</h4>
+                                <p>Potencialize sua análise com indicadores direto no gráfico</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -323,25 +446,56 @@
                     <img src="assets/custodia.png" alt="Gestão de Risco">
                 </div>
                 <div class="resource-text animate-on-scroll">
-                    <div class="section-badge">Gestão de Risco e Custódia</div>
+                    <div class="section-badge">Posição e Custódia</div>
                     <h2>O controle absoluto do seu capital</h2>
-                    <p class="section-desc">Acompanhe sua carteira, o resultado aberto (PnL) e a evolução do seu patrimônio em tempo real. Audite cada trade com dados, não com intuição.</p>
+                    <p class="section-desc">Acompanhe em tempo real suas operações e evolução do seu patrimônio. Tenha
+                        controle total sobre suas posições abertas e o resultado dos seus investimentos em todas suas
+                        contas conectadas.</p>
                     <div class="resource-items">
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-                            <div><h4>PnL em tempo real</h4><p>Resultado aberto e fechado atualizado tick a tick</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <line x1="12" y1="2" x2="12" y2="22" />
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                </svg></div>
+                            <div>
+                                <h4>PnL em tempo real</h4>
+                                <p>Monitore ganhos e perdas das suas posições com atualização contínua</p>
+                            </div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-4 4"/></svg></div>
-                            <div><h4>Performance Analytics</h4><p>Fator de lucro, drawdown e win rate por estratégia</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                </svg></div>
+                            <div>
+                                <h4>Poder patrimonial</h4>
+                                <p>Opere com a confiança de quem sabe exatamente onde cada centavo está alocado</p>
+                            </div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg></div>
-                            <div><h4>Ordens OCO</h4><p>Stop e alvo automáticos vinculados à mesma ordem</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="3" />
+                                    <line x1="12" y1="7" x2="12" y2="17" />
+                                    <line x1="7" y1="12" x2="17" y2="12" />
+                                </svg></div>
+                            <div>
+                                <h4>Resultado por ativo</h4>
+                                <p>Veja rapidamente o desempenho individual de cada posição</p>
+                            </div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-                            <div><h4>Diário de operações</h4><p>Histórico completo com filtros por ativo, data e resultado</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg></div>
+                            <div>
+                                <h4>Posições Day Trade</h4>
+                                <p>Visualize apenas os resultados do dia e posições em aberto</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -366,49 +520,57 @@
 
                         <!-- Foguete SVG -->
                         <div class="uptime-rocket">
-                            <svg width="80" height="120" viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="80" height="120" viewBox="0 0 80 120" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <!-- Corpo do foguete -->
-                                <path d="M40 5 C26 5 16 28 14 55 L66 55 C64 28 54 5 40 5Z" fill="url(#rocketGrad)"/>
+                                <path d="M40 5 C26 5 16 28 14 55 L66 55 C64 28 54 5 40 5Z" fill="url(#rocketGrad)" />
                                 <!-- Janela -->
-                                <circle cx="40" cy="32" r="9" fill="url(#windowGrad)" opacity="0.9"/>
-                                <circle cx="40" cy="32" r="6" fill="rgba(0,180,255,0.3)"/>
+                                <circle cx="40" cy="32" r="9" fill="url(#windowGrad)" opacity="0.9" />
+                                <circle cx="40" cy="32" r="6" fill="rgba(0,180,255,0.3)" />
                                 <!-- Corpo inferior -->
-                                <rect x="18" y="54" width="44" height="22" rx="4" fill="url(#rocketBodyGrad)"/>
+                                <rect x="18" y="54" width="44" height="22" rx="4" fill="url(#rocketBodyGrad)" />
                                 <!-- Asa esquerda -->
-                                <path d="M18 54 L4 76 L18 72 Z" fill="url(#wingGrad)"/>
+                                <path d="M18 54 L4 76 L18 72 Z" fill="url(#wingGrad)" />
                                 <!-- Asa direita -->
-                                <path d="M62 54 L76 76 L62 72 Z" fill="url(#wingGrad)"/>
+                                <path d="M62 54 L76 76 L62 72 Z" fill="url(#wingGrad)" />
                                 <!-- Bico do fogo -->
-                                <ellipse cx="40" cy="78" rx="10" ry="6" fill="rgba(0,131,187,0.6)"/>
+                                <ellipse cx="40" cy="78" rx="10" ry="6" fill="rgba(0,131,187,0.6)" />
                                 <!-- Fogo animado -->
-                                <path class="flame flame-1" d="M34 78 Q40 100 40 110 Q40 100 46 78Z" fill="url(#flameGrad1)"/>
-                                <path class="flame flame-2" d="M37 78 Q42 95 40 105 Q38 95 43 78Z" fill="url(#flameGrad2)" opacity="0.8"/>
+                                <path class="flame flame-1" d="M34 78 Q40 100 40 110 Q40 100 46 78Z"
+                                    fill="url(#flameGrad1)" />
+                                <path class="flame flame-2" d="M37 78 Q42 95 40 105 Q38 95 43 78Z"
+                                    fill="url(#flameGrad2)" opacity="0.8" />
 
                                 <defs>
-                                    <linearGradient id="rocketGrad" x1="40" y1="5" x2="40" y2="55" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
-                                        <stop offset="100%" stop-color="rgba(0,131,187,0.35)"/>
+                                    <linearGradient id="rocketGrad" x1="40" y1="5" x2="40" y2="55"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="rgba(255,255,255,0.18)" />
+                                        <stop offset="100%" stop-color="rgba(0,131,187,0.35)" />
                                     </linearGradient>
                                     <radialGradient id="windowGrad" cx="50%" cy="50%" r="50%">
-                                        <stop offset="0%" stop-color="rgba(0,200,255,0.9)"/>
-                                        <stop offset="100%" stop-color="rgba(0,131,187,0.5)"/>
+                                        <stop offset="0%" stop-color="rgba(0,200,255,0.9)" />
+                                        <stop offset="100%" stop-color="rgba(0,131,187,0.5)" />
                                     </radialGradient>
-                                    <linearGradient id="rocketBodyGrad" x1="18" y1="54" x2="62" y2="76" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0%" stop-color="rgba(255,255,255,0.12)"/>
-                                        <stop offset="100%" stop-color="rgba(0,131,187,0.4)"/>
+                                    <linearGradient id="rocketBodyGrad" x1="18" y1="54" x2="62" y2="76"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="rgba(255,255,255,0.12)" />
+                                        <stop offset="100%" stop-color="rgba(0,131,187,0.4)" />
                                     </linearGradient>
-                                    <linearGradient id="wingGrad" x1="0" y1="54" x2="0" y2="76" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0%" stop-color="rgba(0,131,187,0.5)"/>
-                                        <stop offset="100%" stop-color="rgba(0,131,187,0.15)"/>
+                                    <linearGradient id="wingGrad" x1="0" y1="54" x2="0" y2="76"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="rgba(0,131,187,0.5)" />
+                                        <stop offset="100%" stop-color="rgba(0,131,187,0.15)" />
                                     </linearGradient>
-                                    <linearGradient id="flameGrad1" x1="40" y1="78" x2="40" y2="110" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0%" stop-color="rgba(0,200,255,0.9)"/>
-                                        <stop offset="50%" stop-color="rgba(0,131,187,0.6)"/>
-                                        <stop offset="100%" stop-color="transparent"/>
+                                    <linearGradient id="flameGrad1" x1="40" y1="78" x2="40" y2="110"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="rgba(0,200,255,0.9)" />
+                                        <stop offset="50%" stop-color="rgba(0,131,187,0.6)" />
+                                        <stop offset="100%" stop-color="transparent" />
                                     </linearGradient>
-                                    <linearGradient id="flameGrad2" x1="40" y1="78" x2="40" y2="105" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0%" stop-color="rgba(120,220,255,0.8)"/>
-                                        <stop offset="100%" stop-color="transparent"/>
+                                    <linearGradient id="flameGrad2" x1="40" y1="78" x2="40" y2="105"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="rgba(120,220,255,0.8)" />
+                                        <stop offset="100%" stop-color="transparent" />
                                     </linearGradient>
                                 </defs>
                             </svg>
@@ -428,14 +590,12 @@
                         <div class="uptime-card card-left">
                             <div class="uptime-card-label">Uptime</div>
                             <div class="uptime-card-value">99.9%</div>
-                            <div class="uptime-card-dot"></div>
                         </div>
 
                         <!-- Card métrica: Latência -->
                         <div class="uptime-card card-right">
                             <div class="uptime-card-label">Latência</div>
                             <div class="uptime-card-value">&lt;5ms</div>
-                            <div class="uptime-card-dot"></div>
                         </div>
 
                     </div>
@@ -449,9 +609,11 @@
                             box-shadow: none;
                             overflow: visible;
                         }
+
                         .uptime-illustration {
                             position: relative;
-                            width: 320px; /* Reduced slightly for safety */
+                            width: 320px;
+                            /* Reduced slightly for safety */
                             height: 400px;
                             display: flex;
                             align-items: center;
@@ -460,18 +622,29 @@
                         }
 
                         /* ... (rest of the styles are same, I'll just add the mobile override at the end of the block) */
-                        
+
                         @media (max-width: 968px) {
                             .uptime-visual {
                                 min-height: 300px;
                             }
+
                             .uptime-illustration {
                                 height: 320px;
                             }
-                            .card-left { top: 30%; }
-                            .card-right { top: 45%; }
-                            
-                            .uptime-ring.ring-3 { display: none; } /* Remove largest ring on mobile to save space */
+
+                            .card-left {
+                                top: 30%;
+                            }
+
+                            .card-right {
+                                top: 45%;
+                            }
+
+                            .uptime-ring.ring-3 {
+                                display: none;
+                            }
+
+                            /* Remove largest ring on mobile to save space */
                         }
 
                         /* Glow central */
@@ -480,27 +653,60 @@
                             width: 200px;
                             height: 200px;
                             border-radius: 50%;
-                            background: radial-gradient(circle, rgba(0,131,187,0.25) 0%, transparent 70%);
+                            background: radial-gradient(circle, rgba(0, 131, 187, 0.25) 0%, transparent 70%);
                             animation: glowPulse 3s ease-in-out infinite;
                         }
+
                         @keyframes glowPulse {
-                            0%, 100% { transform: scale(1); opacity: 0.7; }
-                            50%       { transform: scale(1.3); opacity: 1; }
+
+                            0%,
+                            100% {
+                                transform: scale(1);
+                                opacity: 0.7;
+                            }
+
+                            50% {
+                                transform: scale(1.3);
+                                opacity: 1;
+                            }
                         }
 
                         /* Anéis concêntricos pulsando */
                         .uptime-ring {
                             position: absolute;
                             border-radius: 50%;
-                            border: 1px solid rgba(0,131,187,0.35);
+                            border: 1px solid rgba(0, 131, 187, 0.35);
                             animation: ringExpand 3s ease-out infinite;
                         }
-                        .ring-1 { width: 160px; height: 160px; animation-delay: 0s; }
-                        .ring-2 { width: 240px; height: 240px; animation-delay: 1s; }
-                        .ring-3 { width: 320px; height: 320px; animation-delay: 2s; }
+
+                        .ring-1 {
+                            width: 160px;
+                            height: 160px;
+                            animation-delay: 0s;
+                        }
+
+                        .ring-2 {
+                            width: 240px;
+                            height: 240px;
+                            animation-delay: 1s;
+                        }
+
+                        .ring-3 {
+                            width: 320px;
+                            height: 320px;
+                            animation-delay: 2s;
+                        }
+
                         @keyframes ringExpand {
-                            0%   { transform: scale(0.7); opacity: 0.8; }
-                            100% { transform: scale(1.1); opacity: 0; }
+                            0% {
+                                transform: scale(0.7);
+                                opacity: 0.8;
+                            }
+
+                            100% {
+                                transform: scale(1.1);
+                                opacity: 0;
+                            }
                         }
 
                         /* Foguete */
@@ -511,11 +717,19 @@
                             justify-content: center;
                             animation: rocketFloat 4s ease-in-out infinite;
                             z-index: 2;
-                            filter: drop-shadow(0 0 20px rgba(0,131,187,0.5));
+                            filter: drop-shadow(0 0 20px rgba(0, 131, 187, 0.5));
                         }
+
                         @keyframes rocketFloat {
-                            0%, 100% { transform: translateY(0px) rotate(-10deg); }
-                            50%       { transform: translateY(-18px) rotate(-10deg); }
+
+                            0%,
+                            100% {
+                                transform: translateY(0px) rotate(-10deg);
+                            }
+
+                            50% {
+                                transform: translateY(-18px) rotate(-10deg);
+                            }
                         }
 
                         /* Borda glassmorphism ao redor do foguete */
@@ -524,8 +738,8 @@
                             width: 110px;
                             height: 150px;
                             border-radius: 50px 50px 20px 20px;
-                            border: 1px solid rgba(0,180,255,0.2);
-                            background: rgba(0,131,187,0.05);
+                            border: 1px solid rgba(0, 180, 255, 0.2);
+                            background: rgba(0, 131, 187, 0.05);
                             backdrop-filter: blur(4px);
                             top: 50%;
                             left: 50%;
@@ -538,37 +752,116 @@
                             transform-origin: center top;
                             animation: flicker 0.15s ease-in-out infinite alternate;
                         }
-                        .flame-1 { animation-duration: 0.18s; }
-                        .flame-2 { animation-duration: 0.13s; animation-delay: 0.05s; }
+
+                        .flame-1 {
+                            animation-duration: 0.18s;
+                        }
+
+                        .flame-2 {
+                            animation-duration: 0.13s;
+                            animation-delay: 0.05s;
+                        }
+
                         @keyframes flicker {
-                            0%   { transform: scaleX(1) scaleY(1); }
-                            100% { transform: scaleX(0.85) scaleY(0.92); }
+                            0% {
+                                transform: scaleX(1) scaleY(1);
+                            }
+
+                            100% {
+                                transform: scaleX(0.85) scaleY(0.92);
+                            }
                         }
 
                         /* Partículas de rastro */
                         .uptime-particle {
                             position: absolute;
                             border-radius: 50%;
-                            background: rgba(0,180,255,0.7);
+                            background: rgba(0, 180, 255, 0.7);
                             animation: particleDrift 2.5s ease-in infinite;
                         }
-                        .p1 { width: 5px; height: 5px; left: 45%; top: 60%; animation-delay: 0s;    animation-duration: 2.2s; }
-                        .p2 { width: 3px; height: 3px; left: 52%; top: 62%; animation-delay: 0.4s;  animation-duration: 2.5s; }
-                        .p3 { width: 4px; height: 4px; left: 42%; top: 65%; animation-delay: 0.8s;  animation-duration: 2s; }
-                        .p4 { width: 3px; height: 3px; left: 55%; top: 58%; animation-delay: 1.2s;  animation-duration: 2.8s; }
-                        .p5 { width: 5px; height: 5px; left: 48%; top: 70%; animation-delay: 1.6s;  animation-duration: 2.3s; }
-                        @keyframes particleDrift {
-                            0%   { transform: translate(0, 0) scale(1); opacity: 0.9; }
-                            100% { transform: translate(var(--dx, 10px), 60px) scale(0); opacity: 0; }
+
+                        .p1 {
+                            width: 5px;
+                            height: 5px;
+                            left: 45%;
+                            top: 60%;
+                            animation-delay: 0s;
+                            animation-duration: 2.2s;
                         }
-                        .p1 { --dx: -8px; } .p2 { --dx: 6px; } .p3 { --dx: -4px; }
-                        .p4 { --dx: 10px; } .p5 { --dx: -6px; }
+
+                        .p2 {
+                            width: 3px;
+                            height: 3px;
+                            left: 52%;
+                            top: 62%;
+                            animation-delay: 0.4s;
+                            animation-duration: 2.5s;
+                        }
+
+                        .p3 {
+                            width: 4px;
+                            height: 4px;
+                            left: 42%;
+                            top: 65%;
+                            animation-delay: 0.8s;
+                            animation-duration: 2s;
+                        }
+
+                        .p4 {
+                            width: 3px;
+                            height: 3px;
+                            left: 55%;
+                            top: 58%;
+                            animation-delay: 1.2s;
+                            animation-duration: 2.8s;
+                        }
+
+                        .p5 {
+                            width: 5px;
+                            height: 5px;
+                            left: 48%;
+                            top: 70%;
+                            animation-delay: 1.6s;
+                            animation-duration: 2.3s;
+                        }
+
+                        @keyframes particleDrift {
+                            0% {
+                                transform: translate(0, 0) scale(1);
+                                opacity: 0.9;
+                            }
+
+                            100% {
+                                transform: translate(var(--dx, 10px), 60px) scale(0);
+                                opacity: 0;
+                            }
+                        }
+
+                        .p1 {
+                            --dx: -8px;
+                        }
+
+                        .p2 {
+                            --dx: 6px;
+                        }
+
+                        .p3 {
+                            --dx: -4px;
+                        }
+
+                        .p4 {
+                            --dx: 10px;
+                        }
+
+                        .p5 {
+                            --dx: -6px;
+                        }
 
                         /* Cards de métricas flutuantes */
                         .uptime-card {
                             position: absolute;
                             background: rgba(10, 20, 35, 0.75);
-                            border: 1px solid rgba(0,131,187,0.3);
+                            border: 1px solid rgba(0, 131, 187, 0.3);
                             border-radius: 14px;
                             padding: 12px 18px;
                             backdrop-filter: blur(12px);
@@ -576,11 +869,29 @@
                             z-index: 3;
                             animation: cardFloat 3.5s ease-in-out infinite;
                         }
-                        .card-left  { left: 0; top: 40%; animation-delay: 0.5s; }
-                        .card-right { right: 0; top: 55%; animation-delay: 1.5s; }
+
+                        .card-left {
+                            left: 0;
+                            top: 40%;
+                            animation-delay: 0.5s;
+                        }
+
+                        .card-right {
+                            right: 0;
+                            top: 55%;
+                            animation-delay: 1.5s;
+                        }
+
                         @keyframes cardFloat {
-                            0%, 100% { transform: translateY(0); }
-                            50%       { transform: translateY(-6px); }
+
+                            0%,
+                            100% {
+                                transform: translateY(0);
+                            }
+
+                            50% {
+                                transform: translateY(-6px);
+                            }
                         }
 
                         .uptime-card-label {
@@ -588,9 +899,10 @@
                             font-weight: 600;
                             letter-spacing: 0.1em;
                             text-transform: uppercase;
-                            color: rgba(0,180,255,0.7);
+                            color: rgba(0, 180, 255, 0.7);
                             margin-bottom: 4px;
                         }
+
                         .uptime-card-value {
                             font-size: 22px;
                             font-weight: 800;
@@ -598,6 +910,7 @@
                             letter-spacing: -0.03em;
                             line-height: 1;
                         }
+
                         .uptime-card-dot {
                             width: 6px;
                             height: 6px;
@@ -606,32 +919,68 @@
                             margin-top: 6px;
                             animation: dotBlink 1.5s ease-in-out infinite;
                         }
+
                         @keyframes dotBlink {
-                            0%, 100% { opacity: 1; }
-                            50%       { opacity: 0.3; }
+
+                            0%,
+                            100% {
+                                opacity: 1;
+                            }
+
+                            50% {
+                                opacity: 0.3;
+                            }
                         }
                     </style>
                 </div>
                 <div class="resource-text animate-on-scroll">
                     <div class="section-badge">Alta Disponibilidade</div>
                     <h2>Estabilidade que protege o seu capital</h2>
-                    <p class="section-desc">Redundância de servidores e hospedagem a poucos quilômetros da B3. Opere sem travamentos nos momentos de maior volatilidade do mercado.</p>
+                    <p class="section-desc">Redundância de servidores e hospedagem a poucos quilômetros da B3. Opere sem
+                        travamentos nos momentos de maior volatilidade do mercado.</p>
                     <div class="resource-items">
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-                            <div><h4>&lt; 5ms de latência</h4><p>Conexão direta com os servidores da B3</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                                </svg></div>
+                            <div>
+                                <h4>&lt; 5ms de latência</h4>
+                                <p>Conexão direta com os servidores da B3</p>
+                            </div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                            <div><h4>99.9% de uptime</h4><p>SLA enterprise com redundância total de infraestrutura</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                </svg></div>
+                            <div>
+                                <h4>99.9% de uptime</h4>
+                                <p>SLA enterprise com redundância total de infraestrutura</p>
+                            </div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/></svg></div>
-                            <div><h4>1000+ servidores</h4><p>Infraestrutura própria de alta capacidade processal</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="2" y="2" width="20" height="8" rx="2" />
+                                    <rect x="2" y="14" width="20" height="8" rx="2" />
+                                    <line x1="6" y1="6" x2="6.01" y2="6" />
+                                </svg></div>
+                            <div>
+                                <h4>1000+ servidores</h4>
+                                <p>Infraestrutura própria de alta capacidade processal</p>
+                            </div>
                         </div>
                         <div class="resource-item">
-                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-                            <div><h4>SOC 2 & TLS 1.3</h4><p>Encriptação ponta a ponta e conformidade auditada</p></div>
+                            <div class="resource-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                </svg></div>
+                            <div>
+                                <h4>SOC 2 & TLS 1.3</h4>
+                                <p>Encriptação ponta a ponta e conformidade auditada</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -645,32 +994,104 @@
             <div class="interactive-header animate-on-scroll">
                 <div class="section-badge">Tudo em um só lugar</div>
                 <h2 class="section-title">Tudo o que você precisa, nativo e rápido</h2>
-                <p class="section-desc">Cada ferramenta foi desenvolvida para reduzir atritos e manter o foco total na execução</p>
+                <p class="section-desc">Cada ferramenta foi desenvolvida para reduzir atritos e manter o foco total na
+                    execução</p>
             </div>
 
             <!-- DESKTOP: original accordion -->
             <div class="interactive-container desktop-accordion">
                 <div class="interactive-left animate-on-scroll">
                     <div class="interactive-list">
-                        <div class="interactive-item active" data-target="info-1"><div class="interactive-item-title"><span>Relatório de Performance</span></div><div class="interactive-expand"><div class="interactive-expand-inner"><p>Métricas e estatísticas precisas de cada trade. Entenda seus padrões, corrija falhas e evolua com dados reais do seu operacional</p></div></div></div>
-                        <div class="interactive-item" data-target="info-2"><div class="interactive-item-title"><span>Simulador em Tempo Real</span></div><div class="interactive-expand"><div class="interactive-expand-inner"><p>Opere em simulação com os mesmos dados do mercado ao vivo. Teste estratégias sem risco financeiro antes de ir ao mercado real</p></div></div></div>
-                        <div class="interactive-item" data-target="info-3"><div class="interactive-item-title"><span>Ordens OCO</span></div><div class="interactive-expand"><div class="interactive-expand-inner"><p>Defina stop e alvo na mesma ordem. A gestão de risco é automática: se um lado for executado, o outro é cancelado instantaneamente</p></div></div></div>
-                        <div class="interactive-item" data-target="info-4"><div class="interactive-item-title"><span>Múltiplos Monitores</span></div><div class="interactive-expand"><div class="interactive-expand-inner"><p>Estenda seu workspace por quantas telas quiser. Suporte nativo a múltiplos monitores, sem plugins ou configurações complexas</p></div></div></div>
-                        <div class="interactive-item" data-target="info-5"><div class="interactive-item-title"><span>Volume Profile</span></div><div class="interactive-expand"><div class="interactive-expand-inner"><p>Visualize onde o volume se concentrou por faixa de preço. Identifique os blocos institucionais e opere nos níveis de maior liquidez</p></div></div></div>
-                        <div class="interactive-item" data-target="info-6"><div class="interactive-item-title"><span>Busca Ágil de Ativos</span></div><div class="interactive-expand"><div class="interactive-expand-inner"><p>Encontre papéis, derivativos e indicadores instantaneamente com a nova janela de busca otimizada</p></div></div></div>
-                        <div class="interactive-item" data-target="info-7"><div class="interactive-item-title"><span>Acompanhamento de Custódia</span></div><div class="interactive-expand"><div class="interactive-expand-inner"><p>Visão clara de todos os seus ativos em carteira, separados por estratégia e tipo de alocação</p></div></div></div>
-                        <div class="interactive-item" data-target="info-8"><div class="interactive-item-title"><span>Métricas Precisas</span></div><div class="interactive-expand"><div class="interactive-expand-inner"><p>Estatísticas detalhadas de lucro bruto, prejuízo, fator de lucro e drawdown em poucos cliques</p></div></div></div>
+                        <div class="interactive-item active" data-target="info-1">
+                            <div class="interactive-item-title"><span>Relatório de Performance</span></div>
+                            <div class="interactive-expand">
+                                <div class="interactive-expand-inner">
+                                    <p>Métricas e estatísticas precisas de cada trade. Entenda seus padrões, corrija
+                                        falhas e evolua com dados reais do seu operacional</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="interactive-item" data-target="info-2">
+                            <div class="interactive-item-title"><span>Simulador em Tempo Real</span></div>
+                            <div class="interactive-expand">
+                                <div class="interactive-expand-inner">
+                                    <p>Opere em simulação com os mesmos dados do mercado ao vivo. Teste estratégias sem
+                                        risco financeiro antes de ir ao mercado real</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="interactive-item" data-target="info-3">
+                            <div class="interactive-item-title"><span>Ordens OCO</span></div>
+                            <div class="interactive-expand">
+                                <div class="interactive-expand-inner">
+                                    <p>Gerencie seu risco e ganho em uma única ação. Defina seu alvo de Gain e uma tolerância de Loss, se um lado for executado, o outro é cancelado instantaneamente</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="interactive-item" data-target="info-4">
+                            <div class="interactive-item-title"><span>Múltiplos Monitores</span></div>
+                            <div class="interactive-expand">
+                                <div class="interactive-expand-inner">
+                                    <p>Estenda seu workspace por quantas telas quiser. Suporte nativo a múltiplos
+                                        monitores, sem plugins ou configurações complexas</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="interactive-item" data-target="info-5">
+                            <div class="interactive-item-title"><span>Volume Profile</span></div>
+                            <div class="interactive-expand">
+                                <div class="interactive-expand-inner">
+                                    <p>Visualize onde o volume se concentrou por faixa de preço. Identifique os blocos
+                                        institucionais e opere nos níveis de maior liquidez</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="interactive-item" data-target="info-6">
+                            <div class="interactive-item-title"><span>Busca Ágil de Ativos</span></div>
+                            <div class="interactive-expand">
+                                <div class="interactive-expand-inner">
+                                    <p>Encontre papéis, derivativos e indicadores instantaneamente com a nova janela de
+                                        busca otimizada</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="interactive-item" data-target="info-7">
+                            <div class="interactive-item-title"><span>Replay de Mercado</span></div>
+                            <div class="interactive-expand">
+                                <div class="interactive-expand-inner">
+                                    <p>Volte no tempo e reviva o mercado em qualquer momento. Treine suas estratégias com dados reais, simule operações e evolua sua tomada de decisão sem risco.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="interactive-item" data-target="info-8">
+                            <div class="interactive-item-title"><span>Métricas Precisas</span></div>
+                            <div class="interactive-expand">
+                                <div class="interactive-expand-inner">
+                                    <p>Estatísticas detalhadas de lucro bruto, prejuízo, fator de lucro e drawdown em
+                                        poucos cliques</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="interactive-visual animate-on-scroll" style="min-height: 400px;">
-                    <div class="interactive-image active" id="info-1"><img src="assets/funcionalidades/Relatório de Performance.png" alt="Relatório de Performance"></div>
-                    <div class="interactive-image" id="info-2"><img src="assets/funcionalidades/Simulador em tempo real.png" alt="Simulador"></div>
-                    <div class="interactive-image" id="info-3"><img src="assets/funcionalidades/Ordens OCO.png" alt="Ordens OCO"></div>
-                    <div class="interactive-image" id="info-4"><img src="assets/funcionalidades/Múltiplos Monitores.png" alt="Múltiplos Monitores"></div>
-                    <div class="interactive-image" id="info-5"><img src="assets/funcionalidades/Volume Profile.png" alt="Volume Profile"></div>
-                    <div class="interactive-image" id="info-6"><img src="assets/funcionalidades/Busca Agil de Ativos.png" alt="Busca de Ativos"></div>
-                    <div class="interactive-image" id="info-7"><img src="assets/funcionalidades/Acompanhamento de Custodia.png" alt="Custódia"></div>
-                    <div class="interactive-image" id="info-8"><img src="assets/funcionalidades/Metricas Precisas.png" alt="Métricas"></div>
+                    <div class="interactive-image active" id="info-1"><img
+                            src="assets/funcionalidades/Relatório de Performance.png" alt="Relatório de Performance">
+                    </div>
+                    <div class="interactive-image" id="info-2"><img
+                            src="assets/funcionalidades/Simulador em tempo real.png" alt="Simulador"></div>
+                    <div class="interactive-image" id="info-3"><img src="assets/funcionalidades/Ordens OCO.png"
+                            alt="Ordens OCO"></div>
+                    <div class="interactive-image" id="info-4"><img src="assets/funcionalidades/Múltiplos Monitores.png"
+                            alt="Múltiplos Monitores"></div>
+                    <div class="interactive-image" id="info-5"><img src="assets/funcionalidades/Volume Profile.png"
+                            alt="Volume Profile"></div>
+                    <div class="interactive-image" id="info-6"><img
+                            src="assets/funcionalidades/Busca Agil de Ativos.png" alt="Busca de Ativos"></div>
+                    <div class="interactive-image" id="info-7"><img
+                            src="assets/funcionalidades/Acompanhamento de Custodia.png" alt="Custódia"></div>
+                    <div class="interactive-image" id="info-8"><img src="assets/funcionalidades/Metricas Precisas.png"
+                            alt="Métricas"></div>
                 </div>
             </div>
 
@@ -679,99 +1100,146 @@
                 <div class="features-carousel-track" id="featuresTrack">
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><img src="assets/funcionalidades/Relatório de Performance.png" alt="Relatório de Performance"></div>
+                        <div class="feature-slide-image"><img src="assets/funcionalidades/Relatório de Performance.png"
+                                alt="Relatório de Performance"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-4 4"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)"
+                                    stroke-width="1.75">
+                                    <path d="M3 3v18h18" />
+                                    <path d="m19 9-5 5-4-4-4 4" />
+                                </svg>
                             </div>
                             <div class="feature-slide-num">01 / 08</div>
                         </div>
                         <h3 class="feature-slide-title">Relatório de Performance</h3>
-                        <p class="feature-slide-desc">Métricas e estatísticas precisas de cada trade. Entenda seus padrões, corrija falhas e evolua com dados reais do seu operacional.</p>
+                        <p class="feature-slide-desc">Métricas e estatísticas precisas de cada trade. Entenda seus
+                            padrões, corrija falhas e evolua com dados reais do seu operacional.</p>
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><img src="assets/funcionalidades/Simulador em tempo real.png" alt="Simulador"></div>
+                        <div class="feature-slide-image"><img src="assets/funcionalidades/Simulador em tempo real.png"
+                                alt="Simulador"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)"
+                                    stroke-width="1.75">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 8v4l3 3" />
+                                </svg>
                             </div>
                             <div class="feature-slide-num">02 / 08</div>
                         </div>
                         <h3 class="feature-slide-title">Simulador em Tempo Real</h3>
-                        <p class="feature-slide-desc">Opere em simulação com os mesmos dados do mercado ao vivo. Teste estratégias sem risco financeiro antes de ir ao mercado real.</p>
+                        <p class="feature-slide-desc">Opere em simulação com os mesmos dados do mercado ao vivo. Teste
+                            estratégias sem risco financeiro antes de ir ao mercado real.</p>
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><img src="assets/funcionalidades/Ordens OCO.png" alt="Ordens OCO"></div>
+                        <div class="feature-slide-image"><img src="assets/funcionalidades/Ordens OCO.png"
+                                alt="Ordens OCO"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)"
+                                    stroke-width="1.75">
+                                    <rect x="2" y="2" width="20" height="8" rx="2" />
+                                    <rect x="2" y="14" width="20" height="8" rx="2" />
+                                </svg>
                             </div>
                             <div class="feature-slide-num">03 / 08</div>
                         </div>
                         <h3 class="feature-slide-title">Ordens OCO</h3>
-                        <p class="feature-slide-desc">Defina stop e alvo na mesma ordem. A gestão de risco é automática: se um lado for executado, o outro é cancelado instantaneamente.</p>
+                        <p class="feature-slide-desc">Gerencie seu risco e ganho em uma única ação. Defina seu alvo de Gain e uma tolerância de Loss, se um lado for executado, o outro é cancelado instantaneamente</p>
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><img src="assets/funcionalidades/Múltiplos Monitores.png" alt="Múltiplos Monitores"></div>
+                        <div class="feature-slide-image"><img src="assets/funcionalidades/Múltiplos Monitores.png"
+                                alt="Múltiplos Monitores"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)"
+                                    stroke-width="1.75">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" />
+                                    <path d="M8 21h8M12 17v4" />
+                                </svg>
                             </div>
                             <div class="feature-slide-num">04 / 08</div>
                         </div>
                         <h3 class="feature-slide-title">Múltiplos Monitores</h3>
-                        <p class="feature-slide-desc">Estenda seu workspace por quantas telas quiser. Suporte nativo a múltiplos monitores, sem plugins ou configurações complexas.</p>
+                        <p class="feature-slide-desc">Estenda seu workspace por quantas telas quiser. Suporte nativo a
+                            múltiplos monitores, sem plugins ou configurações complexas.</p>
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><img src="assets/funcionalidades/Volume Profile.png" alt="Volume Profile"></div>
+                        <div class="feature-slide-image"><img src="assets/funcionalidades/Volume Profile.png"
+                                alt="Volume Profile"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)"
+                                    stroke-width="1.75">
+                                    <path d="M18 20V10" />
+                                    <path d="M12 20V4" />
+                                    <path d="M6 20v-6" />
+                                </svg>
                             </div>
                             <div class="feature-slide-num">05 / 08</div>
                         </div>
                         <h3 class="feature-slide-title">Volume Profile</h3>
-                        <p class="feature-slide-desc">Visualize onde o volume se concentrou por faixa de preço. Identifique os blocos institucionais e opere nos níveis de maior liquidez.</p>
+                        <p class="feature-slide-desc">Visualize onde o volume se concentrou por faixa de preço.
+                            Identifique os blocos institucionais e opere nos níveis de maior liquidez.</p>
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><img src="assets/funcionalidades/Busca Agil de Ativos.png" alt="Busca de Ativos"></div>
+                        <div class="feature-slide-image"><img src="assets/funcionalidades/Busca Agil de Ativos.png"
+                                alt="Busca de Ativos"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)"
+                                    stroke-width="1.75">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <path d="m21 21-4.35-4.35" />
+                                </svg>
                             </div>
                             <div class="feature-slide-num">06 / 08</div>
                         </div>
                         <h3 class="feature-slide-title">Busca Ágil de Ativos</h3>
-                        <p class="feature-slide-desc">Encontre papéis, derivativos e indicadores instantaneamente com a nova janela de busca otimizada.</p>
+                        <p class="feature-slide-desc">Encontre papéis, derivativos e indicadores instantaneamente com a
+                            nova janela de busca otimizada.</p>
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><img src="assets/funcionalidades/Acompanhamento de Custodia.png" alt="Custódia"></div>
+                        <div class="feature-slide-image"><img
+                                src="assets/funcionalidades/Acompanhamento de Custodia.png" alt="Custódia"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)"
+                                    stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                                    <path d="M3 3v5h5" />
+                                    <path d="M12 7v5l4 2" />
+                                </svg>
                             </div>
                             <div class="feature-slide-num">07 / 08</div>
                         </div>
-                        <h3 class="feature-slide-title">Acompanhamento de Custódia</h3>
-                        <p class="feature-slide-desc">Visão clara de todos os seus ativos em carteira, separados por estratégia e tipo de alocação.</p>
+                        <h3 class="feature-slide-title">Replay de Mercado</h3>
+                        <p class="feature-slide-desc">Volte no tempo e reviva o mercado em qualquer momento. Treine suas estratégias com dados reais, simule operações e evolua sua tomada de decisão sem risco.</p>
                     </div>
 
                     <div class="feature-slide">
-                        <div class="feature-slide-image"><img src="assets/funcionalidades/Metricas Precisas.png" alt="Métricas"></div>
+                        <div class="feature-slide-image"><img src="assets/funcionalidades/Metricas Precisas.png"
+                                alt="Métricas"></div>
                         <div class="feature-slide-meta">
                             <div class="feature-slide-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-light)"
+                                    stroke-width="1.75">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                                </svg>
                             </div>
                             <div class="feature-slide-num">08 / 08</div>
                         </div>
                         <h3 class="feature-slide-title">Métricas Precisas</h3>
-                        <p class="feature-slide-desc">Estatísticas detalhadas de lucro bruto, prejuízo, fator de lucro e drawdown em poucos cliques.</p>
+                        <p class="feature-slide-desc">Estatísticas detalhadas de lucro bruto, prejuízo, fator de lucro e
+                            drawdown em poucos cliques.</p>
                     </div>
 
                 </div>
@@ -779,22 +1247,44 @@
                 <!-- Navigation footer: prev · stories · next -->
                 <div class="carousel-nav">
                     <button class="carousel-btn" id="carouselPrev" aria-label="Anterior">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="m15 18-6-6 6-6" />
+                        </svg>
                     </button>
 
                     <div class="carousel-stories" id="carouselStories">
-                        <div class="story-bar active"><div class="story-bar-fill"></div></div>
-                        <div class="story-bar"><div class="story-bar-fill"></div></div>
-                        <div class="story-bar"><div class="story-bar-fill"></div></div>
-                        <div class="story-bar"><div class="story-bar-fill"></div></div>
-                        <div class="story-bar"><div class="story-bar-fill"></div></div>
-                        <div class="story-bar"><div class="story-bar-fill"></div></div>
-                        <div class="story-bar"><div class="story-bar-fill"></div></div>
-                        <div class="story-bar"><div class="story-bar-fill"></div></div>
+                        <div class="story-bar active">
+                            <div class="story-bar-fill"></div>
+                        </div>
+                        <div class="story-bar">
+                            <div class="story-bar-fill"></div>
+                        </div>
+                        <div class="story-bar">
+                            <div class="story-bar-fill"></div>
+                        </div>
+                        <div class="story-bar">
+                            <div class="story-bar-fill"></div>
+                        </div>
+                        <div class="story-bar">
+                            <div class="story-bar-fill"></div>
+                        </div>
+                        <div class="story-bar">
+                            <div class="story-bar-fill"></div>
+                        </div>
+                        <div class="story-bar">
+                            <div class="story-bar-fill"></div>
+                        </div>
+                        <div class="story-bar">
+                            <div class="story-bar-fill"></div>
+                        </div>
                     </div>
 
                     <button class="carousel-btn" id="carouselNext" aria-label="Próximo">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="m9 18 6-6-6-6" />
+                        </svg>
                     </button>
                 </div>
             </div>
@@ -804,8 +1294,13 @@
 
     <style>
         /* ── Mobile Carousel ─────────────────────────────── */
-        .mobile-carousel  { display: none; }
-        .desktop-accordion { display: grid; }
+        .mobile-carousel {
+            display: none;
+        }
+
+        .desktop-accordion {
+            display: grid;
+        }
 
         .features-carousel-track {
             display: flex;
@@ -815,7 +1310,10 @@
             scrollbar-width: none;
             gap: 0;
         }
-        .features-carousel-track::-webkit-scrollbar { display: none; }
+
+        .features-carousel-track::-webkit-scrollbar {
+            display: none;
+        }
 
         .feature-slide {
             flex: 0 0 100%;
@@ -831,12 +1329,15 @@
         }
 
         .feature-slide-image {
-            width: calc(100% - 48px); /* Alinhado com a margem do texto */
-            height: 220px; /* Reduzido de 340px para evitar espaços vazios com mockups horizontais */
+            width: calc(100% - 48px);
+            /* Alinhado com a margem do texto */
+            height: 220px;
+            /* Reduzido de 340px para evitar espaços vazios com mockups horizontais */
             overflow: hidden;
             border-radius: 12px;
             margin: 24px 24px 10px;
-            background: transparent; /* Removido fundo para não criar "caixas" vazias */
+            background: transparent;
+            /* Removido fundo para não criar "caixas" vazias */
         }
 
         .feature-slide-image img {
@@ -844,7 +1345,8 @@
             height: 100%;
             object-fit: contain;
             display: block;
-            padding: 0; /* Removido padding para aproveitar melhor o espaço */
+            padding: 0;
+            /* Removido padding para aproveitar melhor o espaço */
         }
 
         .feature-slide-meta {
@@ -858,8 +1360,8 @@
         .feature-slide-icon {
             width: 36px;
             height: 36px;
-            background: rgba(0,131,187,0.1);
-            border: 1px solid rgba(0,131,187,0.25);
+            background: rgba(0, 131, 187, 0.1);
+            border: 1px solid rgba(0, 131, 187, 0.25);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -907,8 +1409,8 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             color: var(--text-primary);
             display: flex;
             align-items: center;
@@ -919,8 +1421,8 @@
         }
 
         .carousel-btn:active {
-            background: rgba(0,131,187,0.2);
-            border-color: rgba(0,131,187,0.4);
+            background: rgba(0, 131, 187, 0.2);
+            border-color: rgba(0, 131, 187, 0.4);
         }
 
         /* Stories bars */
@@ -934,7 +1436,7 @@
         .story-bar {
             flex: 1;
             height: 3px;
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 99px;
             overflow: hidden;
             cursor: pointer;
@@ -948,20 +1450,28 @@
             transition: width 0.25s ease;
         }
 
-        .story-bar.active .story-bar-fill { width: 100%; }
+        .story-bar.active .story-bar-fill {
+            width: 100%;
+        }
+
         .story-bar.done .story-bar-fill {
             width: 100%;
-            background: rgba(0,131,187,0.4);
+            background: rgba(0, 131, 187, 0.4);
         }
 
         @media (max-width: 768px) {
-            .desktop-accordion { display: none !important; }
-            .mobile-carousel { display: block !important; }
+            .desktop-accordion {
+                display: none !important;
+            }
+
+            .mobile-carousel {
+                display: block !important;
+            }
         }
     </style>
 
     <script>
-        (function() {
+        (function () {
             const track = document.getElementById('featuresTrack');
             const stories = document.querySelectorAll('#carouselStories .story-bar');
             const btnPrev = document.getElementById('carouselPrev');
@@ -975,7 +1485,7 @@
                 // Loop behavior: wraparound
                 if (index < 0) index = total - 1;
                 if (index >= total) index = 0;
-                
+
                 current = index;
                 const slideW = track.clientWidth;
                 track.scrollTo({ left: current * slideW, behavior: 'smooth' });
@@ -1032,7 +1542,8 @@
                 Acesse todos os recursos<br>gratuitamente
             </h2>
             <p class="cta-final-sub">
-                Teste gratuitamente por 30 dias. Sem cartão de crédito.<br>Conecte-se à sua corretora e opere com a plataforma que os melhores traders escolheram.</p>
+                Teste gratuitamente por 30 dias. Sem cartão de crédito.<br>Conecte-se à sua corretora e opere com a
+                plataforma que os melhores traders escolheram.</p>
             <div class="cta-final-actions">
                 <a href="baixar.html" class="btn btn-primary btn-large">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1045,11 +1556,17 @@
                 <a href="planos.html" class="btn btn-outline btn-large">Ver Planos</a>
             </div>
             <p class="cta-trust-line" style="color: #cbd5e1;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                </svg>
                 30 dias gr&#225;tis
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                </svg>
                 Sem cart&#227;o
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                </svg>
                 Cancele quando quiser
             </p>
         </div>
@@ -1070,13 +1587,15 @@
                                     d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                             </svg>
                         </a>
-                        <a href="https://br.linkedin.com/company/tryd-trading-solutions" target="_blank" aria-label="LinkedIn">
+                        <a href="https://br.linkedin.com/company/tryd-trading-solutions" target="_blank"
+                            aria-label="LinkedIn">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                             </svg>
                         </a>
-                        <a href="https://www.youtube.com/channel/UCGcda_wJZWI-U7yUSrMpPww" target="_blank" aria-label="YouTube">
+                        <a href="https://www.youtube.com/channel/UCGcda_wJZWI-U7yUSrMpPww" target="_blank"
+                            aria-label="YouTube">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -1113,5 +1632,5 @@
 
     <script src="js/main.js"></script>
 </body>
-</html>
 
+</html>
