@@ -58,34 +58,7 @@
         }
 
         /* Download button */
-        .download-btn-main {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, var(--brand-primary), var(--brand-light));
-            color: #040810;
-            padding: 18px 40px;
-            border-radius: 100px;
-            font-size: 17px;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0 0 40px rgba(0,131,187,0.4), 0 16px 40px rgba(0,0,0,0.4);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        .download-btn-main::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
-            background-size: 200% 100%;
-            animation: shine-btn-fill 3s ease-in-out infinite alternate;
-        }
-        .download-btn-main:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 60px rgba(0,131,187,0.5), 0 20px 60px rgba(0,0,0,0.5);
-        }
+        /* Estilo do botão principal removido para usar o padrão global .btn-primary */
         .download-meta {
             margin-top: 16px;
             display: flex;
@@ -294,7 +267,7 @@
             <div class="section-badge">Download</div>
             <h1>A plataforma que<br><span>os melhores usam</span></h1>
             <p>Instale em minutos e tenha acesso a ferramentas de nível institucional. 30 dias grátis, sem cartão de crédito.</p>
-            <a href="#" class="download-btn-main" id="downloadBtn">
+            <a href="#" class="btn btn-primary btn-large" id="downloadBtn">
                 Baixar Tryd para Windows
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
