@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Tryd - Compra Concluída</title>
+    <meta name="description" content="Seu pagamento foi aprovado com sucesso.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .success-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .success-card {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px 32px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 0 60px rgba(16,185,129,0.1);
+        }
+
+        .success-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: rgba(16,185,129,0.1);
+            border: 2px solid rgba(16,185,129,0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--success);
+            margin: 0 auto 32px;
+            box-shadow: 0 0 30px rgba(16,185,129,0.3);
+            animation: bounceIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .success-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .success-subtitle {
+            font-size: 15px;
+            color: var(--text-tertiary);
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .details-box {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: left;
+        }
+
+        .details-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .details-row:last-child { margin-bottom: 0; }
+
+        .details-label { color: var(--text-tertiary); }
+        .details-value { color: var(--text-primary); font-weight: 600; }
+
+        .dashboard-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--success), #34d399);
+            color: #040810;
+            border: none;
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(16,185,129,0.3);
+        }
+
+        .dashboard-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(16,185,129,0.5);
+        }
+
+        @media (max-width: 480px) {
+            .success-card { padding: 40px 24px; }
+            .success-title { font-size: 24px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-glow" style="background: radial-gradient(circle at 50% -20%, rgba(16,185,129,0.15) 0%, transparent 60%);"></div>
+    <div class="bg-grid"></div>
+
+    <div class="success-page">
+        <div class="success-card">
+            <div class="success-icon-wrapper">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+            <h1 class="success-title">Pagamento Aprovado!</h1>
+            <p class="success-subtitle">Sua assinatura Premium foi confirmada com sucesso. Você já tem acesso liberado imediatamente a todos os recursos da plataforma.</p>
+
+            <div class="details-box">
+                <div class="details-row">
+                    <span class="details-label">ID do Pedido</span>
+                    <span class="details-value">#TR-8002931</span>
+                </div>
+                <div class="details-row">
+                    <span class="details-label">Plano</span>
+                    <span class="details-value">Tryd Pro</span>
+                </div>
+                <div class="details-row">
+                    <span class="details-label">Status</span>
+                    <span class="details-value" style="color: var(--success);">Ativo</span>
+                </div>
+            </div>
+
+            <a href="index.html" class="dashboard-btn">
+                Ir para o Dashboard
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

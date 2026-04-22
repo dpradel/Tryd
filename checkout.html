@@ -252,12 +252,46 @@
             outline: none;
             transition: all 0.3s;
             box-sizing: border-box;
+            color-scheme: dark;
+        }
+        
+        select.form-input {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 10px auto;
+            padding-right: 40px;
+        }
+
+        select.form-input option {
+            background-color: #040810;
+            color: #fff;
         }
 
         .form-input:focus {
             border-color: rgba(0,131,187,0.5);
             background-color: rgba(0,131,187,0.03);
             box-shadow: 0 0 0 4px rgba(0,131,187,0.1);
+        }
+
+        .form-input.invalid-field {
+            border-color: #ff5f57 !important;
+            background-color: rgba(255,95,87,0.05);
+        }
+
+        .field-feedback {
+            color: #ff5f57;
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .form-input.invalid-field ~ .field-feedback {
+            display: block;
         }
         
         .form-input::placeholder { color: var(--text-muted); }
@@ -347,10 +381,142 @@
             box-shadow: 0 0 20px rgba(0,131,187,0.3);
         }
 
-        .form-submit:hover {
+        .form-submit:disabled {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.4);
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .form-submit:not(:disabled):hover {
             transform: translateY(-2px);
             box-shadow: 0 0 30px rgba(0,131,187,0.5);
         }
+        
+        /* Payment Step Styles */
+        .payment-step {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .payment-step.active {
+            display: block;
+        }
+        
+        .payment-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .payment-subtitle {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            margin-bottom: 32px;
+        }
+
+        .method-tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .method-tab {
+            flex: 1;
+            padding: 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .method-tab:hover { background: rgba(255,255,255,0.05); }
+
+        .method-tab.active {
+            background: rgba(0,131,187,0.1);
+            border-color: rgba(0,131,187,0.5);
+            color: var(--brand-light);
+            box-shadow: 0 0 20px rgba(0,131,187,0.1);
+        }
+
+        .method-tab svg {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 4px;
+        }
+
+        .method-content { display: none; animation: fadeIn 0.4s ease-out; }
+        .method-content.active { display: block; }
+        
+        .pix-container {
+            text-align: center;
+            background: #fff;
+            padding: 16px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            width: fit-content;
+            margin: 0 auto 24px auto;
+        }
+        
+        .pix-qr {
+            width: 180px;
+            height: 180px;
+            background: #fff;
+            margin: 0 auto;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pix-code {
+            position: relative;
+            background: rgba(255,255,255,0.05);
+            border: 1px dashed rgba(255,255,255,0.2);
+            padding: 16px;
+            border-radius: 12px;
+            word-break: break-all;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            text-align: left;
+        }
+        .btn-copy {
+            position: absolute;
+            top: -12px;
+            right: 12px;
+            background: var(--brand-primary);
+            color: #000;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+        }
+        .btn-copy:hover { transform: translateY(-1px); }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0,131,187,0.2);
+            border-top-color: var(--brand-lighter);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
         @media (max-width: 968px) {
             .checkout-grid {
@@ -459,7 +625,7 @@
                     <div class="auth-body">
                         
                         <!-- Login Form -->
-                        <form id="form-login" class="auth-form active" novalidate onsubmit="return false;">
+                        <form id="form-login" class="auth-form active" novalidate onsubmit="simulateLogin(event)">
                             <div class="form-group">
                                 <label class="form-label" for="loginId">E-mail ou CPF/CNPJ</label>
                                 <input type="text" id="loginId" class="form-input" placeholder="Digite seu e-mail ou documento..." required>
@@ -474,19 +640,19 @@
                                 </button>
                             </div>
 
-                            <button type="button" class="form-submit" onclick="simulateLogin()">
+                            <button type="submit" class="form-submit">
                                 Entrar e Continuar
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                             </button>
                         </form>
 
                         <!-- Registration Form -->
-                        <form id="form-register" class="auth-form" novalidate onsubmit="return false;">
+                        <form id="form-register" class="auth-form" novalidate onsubmit="simulateRegister(event)">
                             
                             <h3 class="form-section-title">Dados Cadastrais</h3>
                             <div class="form-group">
                                 <label class="form-label" for="regName">Nome Completo</label>
-                                <input type="text" id="regName" class="form-input" placeholder="Seu nome legível" required>
+                                <input type="text" id="regName" class="form-input" placeholder="Seu nome legível" pattern="[a-zA-ZÀ-ÿ]+\s+[a-zA-ZÀ-ÿ\s]+" title="Digite seu nome e sobrenome" required>
                             </div>
                             
                             <div class="form-row">
@@ -496,7 +662,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="regDob">Data de Nascimento</label>
-                                    <input type="date" id="regDob" class="form-input" required>
+                                    <input type="date" id="regDob" class="form-input" min="1900-01-01" max="2026-12-31" required>
                                 </div>
                             </div>
 
@@ -513,7 +679,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="regEmail">E-mail</label>
-                                    <input type="email" id="regEmail" class="form-input" placeholder="seuemail@exemplo.com" required>
+                                    <input type="email" id="regEmail" class="form-input" placeholder="seuemail@exemplo.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" data-err-pattern="Insira um e-mail válido com ponto (ex: .com)." required>
                                 </div>
                             </div>
 
@@ -545,13 +711,21 @@
 
 
                             <h3 class="form-section-title" style="margin-top: 24px;">Dados de Endereço</h3>
-                            <div class="form-row" style="align-items: flex-end;">
-                                <div class="form-group">
+                            <div class="form-group">
+                                <label class="form-label" for="regCountry">País</label>
+                                <select id="regCountry" class="form-input" style="cursor: pointer;" onchange="toggleBrazilAddress(this.value)">
+                                    <option value="br" selected>Brasil</option>
+                                    <option value="외">Exterior (Outro País)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-row" style="align-items: flex-end;" id="brCepRow">
+                                <div class="form-group" style="flex:1;">
                                     <label class="form-label" for="regCep">CEP</label>
-                                    <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" rel="noopener" class="helper-link">Não sei meu CEP</a>
+                                    <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" rel="noopener" class="helper-link" id="linkBuscadorCep">Não sei meu CEP</a>
                                     <input type="text" id="regCep" class="form-input" placeholder="00000-000" maxlength="9" inputmode="numeric" required>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" style="flex:2;">
                                     <label class="form-label" for="regLogradouro">Endereço</label>
                                     <input type="text" id="regLogradouro" class="form-input" placeholder="Rua / Avenida" required>
                                 </div>
@@ -584,13 +758,87 @@
                             </div>
 
 
-                            <button type="button" class="form-submit" onclick="simulateRegister()">
+                            <button type="submit" class="form-submit" id="btnRegister">
                                 Criar Conta e Continuar
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                             </button>
 
                         </form>
+                    </div>
 
+                    <!-- Payment Step Container -->
+                    <div id="payment-step" class="payment-step">
+                        <div class="payment-title">Pagamento Seguro</div>
+                        <p class="payment-subtitle">Conclua sua compra para iniciar os testes da ferramenta.</p>
+
+                        <div class="method-tabs">
+                            <div class="method-tab active" data-method="cc">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                                <span>Cartão de Crédito</span>
+                            </div>
+                            <div class="method-tab" data-method="pix">
+                                <svg fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11.917 11.71a2.046 2.046 0 0 1-1.454-.602l-2.1-2.1a.4.4 0 0 0-.551 0l-2.108 2.108a2.044 2.044 0 0 1-1.454.602h-.414l2.66 2.66c.83.83 2.177.83 3.007 0l2.667-2.668h-.253zM4.25 4.282c.55 0 1.066.214 1.454.602l2.108 2.108a.39.39 0 0 0 .552 0l2.1-2.1a2.044 2.044 0 0 1 1.453-.602h.253L9.503 1.623a2.127 2.127 0 0 0-3.007 0l-2.66 2.66h.414z"/>
+                                    <path d="m14.377 6.496-1.612-1.612a.307.307 0 0 1-.114.023h-.733c-.379 0-.75.154-1.017.422l-2.1 2.1a1.005 1.005 0 0 1-1.425 0L5.268 5.32a1.448 1.448 0 0 0-1.018-.422h-.9a.306.306 0 0 1-.109-.021L1.623 6.496c-.83.83-.83 2.177 0 3.008l1.618 1.618a.305.305 0 0 1 .108-.022h.901c.38 0 .75-.153 1.018-.421L7.375 8.57a1.034 1.034 0 0 1 1.426 0l2.1 2.1c.267.268.638.421 1.017.421h.733c.04 0 .079.01.114.024l1.612-1.612c.83-.83.83-2.178 0-3.008z"/>
+                                </svg>
+                                <span>PIX</span>
+                            </div>
+                        </div>
+
+                        <!-- Credit Card Form -->
+                        <form id="method-cc" class="method-content active" onsubmit="processCard(event)">
+                            <div class="form-group">
+                                <label class="form-label" for="ccNum">Número do Cartão</label>
+                                <input type="text" id="ccNum" class="form-input" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric" required data-errmsg="Número de cartão inválido">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="ccName">Nome Impresso no Cartão</label>
+                                <input type="text" id="ccName" class="form-input" placeholder="NOME DO TITULAR" style="text-transform: uppercase;" required data-errmsg="Informe o nome impresso">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="ccExp">Validade</label>
+                                    <input type="text" id="ccExp" class="form-input" placeholder="MM/AA" maxlength="5" inputmode="numeric" required data-errmsg="Validade incorreta">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="ccCvv">Código de Segurança (CVV)</label>
+                                    <input type="password" id="ccCvv" class="form-input" placeholder="123" maxlength="4" inputmode="numeric" required data-errmsg="CVV inválido">
+                                </div>
+                            </div>
+                            <button class="form-submit" type="submit" id="ccSubmitBtn" style="margin-top:20px;">
+                                <span id="ccBtnText">Concluir Pagamento</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </button>
+                        </form>
+
+                        <!-- Pix Viewer -->
+                        <div id="method-pix" class="method-content">
+                            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 24px; font-size: 14px;">Gere o código PIX para escanear ou copiar pelo seu banco.</p>
+                            
+                            <div id="pixActionArea" style="text-align:center;">
+                                <button class="form-submit" type="button" onclick="generatePix()">
+                                    Gerar Código PIX
+                                </button>
+                            </div>
+
+                            <div id="pixGeneratedArea" style="display:none;">
+                                <div class="pix-container">
+                                    <div class="pix-qr">
+                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=00020126360014br.gov.bcb.pix0114+5511999999999520400005303986540510.005802BR5913Tryd+Software6009Sao+Paulo62070503***630460A2" alt="QR Code PIX">
+                                    </div>
+                                </div>
+
+                                <div class="pix-code">
+                                    <button class="btn-copy" onclick="copyPix()">Copiar</button>
+                                    00020126360014br.gov.bcb.pix0114+551...
+                                </div>
+
+                                <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-top:16px;">
+                                    <div class="spinner"></div>
+                                    <span style="font-size:14px; font-weight:600;">Aguardando pagamento...</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -632,6 +880,9 @@
             
             if (config.term === 'mensal') {
                 selContainer.style.display = 'none';
+                if(document.getElementById('ccBtnText')) {
+                    document.getElementById('ccBtnText').innerText = `Pagar ${formattedTotal}`;
+                }
             } else {
                 selContainer.style.display = 'block';
                 const maxInst = config.term === 'anual' ? 12 : 6;
@@ -641,12 +892,23 @@
                     const opt = document.createElement('option');
                     opt.value = i;
                     opt.text = `${i}x de ${formattedInst} sem juros`;
-                    // default to max installments
                     if(i === maxInst) opt.selected = true;
                     sel.appendChild(opt);
                 }
+                updatePaymentBtnText();
             }
         };
+
+        const updatePaymentBtnText = () => {
+            const sel = document.getElementById('installmentSelect');
+            const btnText = document.getElementById('ccBtnText');
+            if(sel && btnText && sel.options.length > 0) {
+                const selectedText = sel.options[sel.selectedIndex].text;
+                btnText.innerText = `Pagar em ${selectedText}`;
+            }
+        };
+
+        document.getElementById('installmentSelect')?.addEventListener('change', updatePaymentBtnText);
 
         document.querySelectorAll('#clientTypeToggle .pill-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -741,6 +1003,7 @@
 
         // Masks (simplified logic)
         cepInput.addEventListener('input', (e) => {
+            if(document.getElementById('regCountry').value !== 'br') return;
             let v = e.target.value.replace(/\D/g, '');
             if(v.length > 5) v = v.slice(0,5) + '-' + v.slice(5,8);
             e.target.value = v;
@@ -759,13 +1022,169 @@
             }
         });
 
-        function simulateLogin() {
-            // logic
-            alert('Simulação de Login - Avançando de etapa...');
+        // Passwords Validation Match
+        const passConfInput = document.getElementById('regPassConf');
+        const validatePasswords = () => {
+            if (passInput.value !== passConfInput.value && passConfInput.value !== "") {
+                passConfInput.setCustomValidity("As senhas não coincidem.");
+            } else {
+                passConfInput.setCustomValidity(""); // Clear error
+            }
+        };
+        passInput.addEventListener('input', validatePasswords);
+        passConfInput.addEventListener('input', validatePasswords);
+
+        // UI Toggle for country 
+        function toggleBrazilAddress(val) {
+            if(val === 'br') {
+                cepInput.placeholder = "00000-000";
+                cepInput.setAttribute("maxlength", "9");
+                document.getElementById('linkBuscadorCep').style.display = "block";
+            } else {
+                cepInput.placeholder = "Zip Code / Postal Code";
+                cepInput.removeAttribute("maxlength");
+                document.getElementById('linkBuscadorCep').style.display = "none";
+            }
         }
-        function simulateRegister() {
-            // logic
-            alert('Simulação de Registro - Avançando de etapa...');
+
+        // Centralized Validation Flow (Custom Feedbacks)
+        function checkInputValidity(input) {
+            let errorMsg = "";
+            let isValid = input.checkValidity();
+
+            if (!isValid) {
+                if (input.validity.valueMissing) {
+                    errorMsg = input.getAttribute('data-err-missing') || "Este campo é obrigatório.";
+                } else if (input.validity.patternMismatch) {
+                    // Pattern error or fallback to element title
+                    errorMsg = input.getAttribute('data-err-pattern') || input.title || "Formato inválido.";
+                } else if (input.validity.typeMismatch) {
+                    if(input.type === 'email') errorMsg = "Insira um e-mail válido com @.";
+                    else errorMsg = "Formato inválido.";
+                } else if (input.validationMessage) {
+                    errorMsg = input.validationMessage;
+                }
+            }
+
+            let feedbackSpan = input.nextElementSibling;
+            if (!feedbackSpan || !feedbackSpan.classList.contains('field-feedback')) {
+                feedbackSpan = document.createElement('span');
+                feedbackSpan.className = 'field-feedback';
+                input.parentNode.insertBefore(feedbackSpan, input.nextSibling);
+            }
+
+            if (isValid) {
+                input.classList.remove('invalid-field');
+                feedbackSpan.style.display = 'none';
+                feedbackSpan.innerText = "";
+            } else {
+                input.classList.add('invalid-field');
+                feedbackSpan.innerText = errorMsg;
+                feedbackSpan.style.display = 'block';
+            }
+            return isValid;
+        }
+
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('blur', () => {
+                if(input.id === 'regPass') validatePasswords();
+                checkInputValidity(input);
+            });
+            input.addEventListener('input', () => {
+                // Remove error gracefully as they type
+                if (input.classList.contains('invalid-field')) {
+                    checkInputValidity(input);
+                }
+            });
+        });
+
+        // Simulators Transition to Payment
+        function transitionToPayment() {
+            document.querySelector('.auth-tabs').style.display = 'none';
+            document.querySelector('.auth-body').style.display = 'none';
+            document.getElementById('payment-step').classList.add('active');
+        }
+
+        function simulateLogin(e) {
+            e.preventDefault(); 
+            // Mock Validation
+            let valid = true;
+            document.querySelectorAll('#form-login .form-input[required]').forEach(i => {
+                if(!checkInputValidity(i)) valid = false;
+            });
+            if(valid) transitionToPayment();
+        }
+
+        function simulateRegister(e) {
+            e.preventDefault();
+            // Mock Validation
+            let valid = true;
+            document.querySelectorAll('#form-register .form-input[required]').forEach(i => {
+                if(!checkInputValidity(i)) valid = false;
+            });
+            if(valid) transitionToPayment();
+        }
+
+        // Allow the button to be clicked so user sees validation errors
+        const regForm = document.getElementById('form-register');
+        const btnRegister = document.getElementById('btnRegister');
+
+        // --- PAYMENT LOGIC ---
+        // Tab Switcher for Methods
+        document.querySelectorAll('.method-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.method-content').forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('method-' + tab.dataset.method).classList.add('active');
+            });
+        });
+
+        // Credit Card Input Masks
+        const ccNum = document.getElementById('ccNum');
+        if(ccNum) {
+            ccNum.addEventListener('input', e => {
+                let v = e.target.value.replace(/\D/g, '');
+                v = v.replace(/(\d{4})(?=\d)/g, '$1 ');
+                e.target.value = v;
+            });
+        }
+
+        const ccExp = document.getElementById('ccExp');
+        if(ccExp) {
+            ccExp.addEventListener('input', e => {
+                let v = e.target.value.replace(/\D/g, '');
+                if(v.length > 2) { v = v.substring(0,2) + '/' + v.substring(2,4); }
+                e.target.value = v;
+            });
+        }
+
+        function processCard(e) {
+            e.preventDefault();
+            let valid = true;
+            document.querySelectorAll('#method-cc .form-input[required]').forEach(i => { if(!checkInputValidity(i)) valid = false; });
+            
+            if(valid) {
+                const btn = document.getElementById('ccSubmitBtn');
+                btn.innerHTML = '<div class="spinner" style="border-width:2px;width:16px;height:16px;margin:auto;"></div>';
+                btn.disabled = true;
+                setTimeout(() => { window.location.href = 'sucesso.html'; }, 2000);
+            }
+        }
+
+        let pixInterval;
+        function generatePix() {
+            document.getElementById('pixActionArea').style.display = 'none';
+            document.getElementById('pixGeneratedArea').style.display = 'block';
+            if(pixInterval) clearInterval(pixInterval);
+            pixInterval = setTimeout(() => { window.location.href = 'sucesso.html'; }, 7000);
+        }
+
+        function copyPix() {
+            navigator.clipboard.writeText('00020126360014br.gov.bcb.pix0114+5511999999999520400005303986540510.005802BR5913Tryd+Software6009Sao+Paulo62070503***630460A2');
+            const btn = document.querySelector('.btn-copy');
+            btn.innerText = 'Copiado!';
+            setTimeout(() => { btn.innerText = 'Copiar'; }, 2000);
         }
 
     </script>
