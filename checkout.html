@@ -483,30 +483,48 @@
             background: rgba(255,255,255,0.05);
             border: 1px dashed rgba(255,255,255,0.2);
             padding: 16px;
+            padding-right: 90px;
             border-radius: 12px;
-            word-break: break-all;
             font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
             color: var(--text-secondary);
             margin-bottom: 24px;
             text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
+        
+        .pix-code::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 120px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(4, 8, 16, 0.9) 60%);
+            border-radius: 0 12px 12px 0;
+            pointer-events: none;
+        }
+
         .btn-copy {
             position: absolute;
-            top: -12px;
+            top: 50%;
             right: 12px;
+            transform: translateY(-50%);
             background: var(--brand-primary);
             color: #000;
             border: none;
-            padding: 4px 12px;
+            padding: 6px 14px;
             border-radius: 100px;
             font-size: 11px;
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             transition: all 0.2s;
+            z-index: 2;
         }
-        .btn-copy:hover { transform: translateY(-1px); }
+        .btn-copy:hover { transform: translateY(-50%) scale(1.05); }
 
         .spinner {
             width: 20px;
@@ -572,8 +590,8 @@
                             <img src="assets/symbol.svg" alt="Tryd" style="width: 26px; height: 26px;">
                         </div>
                         <div class="plan-details">
-                            <h4>Plano Tryd Pro</h4>
-                            <p>Acesso imdediato e ilimitado</p>
+                            <h3 class="plan-item-title">Plano Tryd Pro</h3>
+                            <p class="plan-item-desc">Acesso imediato e ilimitado</p>
                         </div>
                     </div>
 
@@ -719,7 +737,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-row" style="align-items: flex-end;" id="brCepRow">
+                            <div class="form-row" id="brCepRow">
                                 <div class="form-group" style="flex:1;">
                                     <label class="form-label" for="regCep">CEP</label>
                                     <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" rel="noopener" class="helper-link" id="linkBuscadorCep">Não sei meu CEP</a>
@@ -895,20 +913,8 @@
                     if(i === maxInst) opt.selected = true;
                     sel.appendChild(opt);
                 }
-                updatePaymentBtnText();
             }
         };
-
-        const updatePaymentBtnText = () => {
-            const sel = document.getElementById('installmentSelect');
-            const btnText = document.getElementById('ccBtnText');
-            if(sel && btnText && sel.options.length > 0) {
-                const selectedText = sel.options[sel.selectedIndex].text;
-                btnText.innerText = `Pagar em ${selectedText}`;
-            }
-        };
-
-        document.getElementById('installmentSelect')?.addEventListener('change', updatePaymentBtnText);
 
         document.querySelectorAll('#clientTypeToggle .pill-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -1168,7 +1174,7 @@
                 const btn = document.getElementById('ccSubmitBtn');
                 btn.innerHTML = '<div class="spinner" style="border-width:2px;width:16px;height:16px;margin:auto;"></div>';
                 btn.disabled = true;
-                setTimeout(() => { window.location.href = 'sucesso.html'; }, 2000);
+                setTimeout(() => { window.location.href = 'sucesso.html?metodo=cartao'; }, 2000);
             }
         }
 
@@ -1177,7 +1183,7 @@
             document.getElementById('pixActionArea').style.display = 'none';
             document.getElementById('pixGeneratedArea').style.display = 'block';
             if(pixInterval) clearInterval(pixInterval);
-            pixInterval = setTimeout(() => { window.location.href = 'sucesso.html'; }, 7000);
+            pixInterval = setTimeout(() => { window.location.href = 'sucesso.html?metodo=pix'; }, 7000);
         }
 
         function copyPix() {

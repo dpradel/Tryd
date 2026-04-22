@@ -127,12 +127,12 @@
 
     <div class="success-page">
         <div class="success-card">
-            <div class="success-icon-wrapper">
+            <div class="success-icon-wrapper" id="successIcon">
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
             
-            <h1 class="success-title">Pagamento Aprovado!</h1>
-            <p class="success-subtitle">Sua assinatura Premium foi confirmada com sucesso. Você já tem acesso liberado imediatamente a todos os recursos da plataforma.</p>
+            <h1 class="success-title" id="successTitle">Pagamento Aprovado!</h1>
+            <p class="success-subtitle" id="successSubtitle">Sua assinatura Premium foi confirmada com sucesso. Você já tem acesso liberado imediatamente a todos os recursos da plataforma.</p>
 
             <div class="details-box">
                 <div class="details-row">
@@ -145,7 +145,7 @@
                 </div>
                 <div class="details-row">
                     <span class="details-label">Status</span>
-                    <span class="details-value" style="color: var(--success);">Ativo</span>
+                    <span class="details-value" id="successStatus" style="color: var(--success);">Ativo</span>
                 </div>
             </div>
 
@@ -155,5 +155,23 @@
             </a>
         </div>
     </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const metodo = urlParams.get('metodo');
+
+        if (metodo === 'cartao') {
+            document.getElementById('successTitle').innerText = "Pagamento em Processamento";
+            document.getElementById('successSubtitle').innerText = "Seu pedido está sendo processado. Em breve você receberá um e-mail com a confirmação e os detalhes do seu acesso.";
+            document.getElementById('successStatus').innerText = "Processando";
+            document.getElementById('successStatus').style.color = "#fbbf24"; // Amber/Yellow
+            
+            // Change icon to clock
+            document.getElementById('successIcon').innerHTML = '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>';
+            document.getElementById('successIcon').style.background = 'rgba(251, 191, 36, 0.1)';
+            document.getElementById('successIcon').style.borderColor = 'rgba(251, 191, 36, 0.4)';
+            document.getElementById('successIcon').style.color = '#fbbf24';
+            document.getElementById('successIcon').style.boxShadow = '0 0 30px rgba(251, 191, 36, 0.3)';
+        }
+    </script>
 </body>
 </html>
