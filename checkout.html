@@ -590,7 +590,7 @@
                             <img src="assets/symbol.svg" alt="Tryd" style="width: 26px; height: 26px;">
                         </div>
                         <div class="plan-details">
-                            <h3 class="plan-item-title">Plano Tryd Pro</h3>
+                            <h3 class="plan-item-title" id="checkoutPlanTitle">Plano Tryd Pro</h3>
                             <p class="plan-item-desc">Acesso imediato e ilimitado</p>
                         </div>
                     </div>
@@ -1192,6 +1192,24 @@
             btn.innerText = 'Copiado!';
             setTimeout(() => { btn.innerText = 'Copiar'; }, 2000);
         }
+
+        // Handle dynamic plan display
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const plan = params.get('plano');
+            if (plan === 'trader') {
+                const titleEl = document.getElementById('checkoutPlanTitle');
+                if (titleEl) titleEl.innerText = 'Plano Tryd Trader';
+                const priceEl = document.getElementById('totalPrice');
+                if (priceEl) priceEl.innerHTML = 'R$ 99,00<span>/mês</span>';
+                
+                // Update final buttons
+                const btnCc = document.getElementById('ccSubmitBtn');
+                if (btnCc) btnCc.innerText = 'Assinar Tryd Trader';
+                const btnPix = document.getElementById('pixSubmitBtn');
+                if (btnPix) btnPix.innerText = 'Assinar Tryd Trader';
+            }
+        });
 
     </script>
 </body>
