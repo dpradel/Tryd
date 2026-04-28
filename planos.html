@@ -242,6 +242,29 @@
         /* Final CTA */
         .plans-final { padding: 80px 0; border-top: 1px solid var(--border-color); text-align: center; }
 
+        /* Compare Table */
+        .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; text-align: left; min-width: 600px; }
+        .compare-table th {
+            padding: 16px;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 57px;
+            background: rgba(9, 13, 22, 0.95);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            z-index: 10;
+        }
+        .compare-table th::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2px;
+            background: var(--border-color);
+        }
+        .th-funcionalidade { color: var(--text-primary); font-weight: 700; width: 50%; }
+        .th-trader { color: var(--text-primary); font-weight: 700; text-align: center; width: 25%; }
+        .th-pro { color: var(--brand-primary); font-weight: 800; text-align: center; width: 25%; }
+
         @media (max-width: 768px) {
             .plans-page-grid { display: flex; flex-direction: column-reverse; gap: 16px; margin-top: 20px; }
             .billing-toggle { margin: 16px auto 0; }
@@ -251,6 +274,11 @@
             .faq-grid { display: flex !important; flex-direction: column !important; gap: 12px !important; }
             .faq-header { display: flex; flex-direction: column; align-items: center; }
             .faq-header .section-badge { margin: 0 auto 16px auto !important; }
+            
+            /* Table mobile fixes */
+            .compare-table { min-width: 100%; font-size: 13px; }
+            .compare-table th, .compare-table td { padding: 12px 8px !important; }
+            .hide-mobile { display: none; }
         }
     </style>
 </head>
@@ -353,13 +381,13 @@
                 <p style="color: var(--text-tertiary); max-width: 600px; margin: 0 auto;">Confira lado a lado todas as ferramentas e recursos disponíveis em cada versão do Tryd.</p>
             </div>
             
-            <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left; min-width: 600px;">
+            <div class="compare-table-wrapper">
+                <table class="compare-table">
                     <thead>
                         <tr>
-                            <th style="padding: 16px; border-bottom: 2px solid var(--border-color); color: var(--text-primary); font-weight: 700; width: 50%;">Funcionalidade</th>
-                            <th style="padding: 16px; border-bottom: 2px solid var(--border-color); color: var(--text-primary); font-weight: 700; text-align: center; width: 25%;">Tryd Trader</th>
-                            <th style="padding: 16px; border-bottom: 2px solid var(--border-color); color: var(--brand-primary); font-weight: 800; text-align: center; width: 25%;">Tryd Pro</th>
+                            <th class="th-funcionalidade">Funcionalidade</th>
+                            <th class="th-trader"><span class="hide-mobile">Tryd </span>Trader</th>
+                            <th class="th-pro"><span class="hide-mobile">Tryd </span>Pro</th>
                         </tr>
                     </thead>
                     <tbody>
